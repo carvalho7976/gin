@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="patrimonio")
@@ -36,9 +35,9 @@ public class Patrimonio {
 	@JsonBackReference
 	private List<Comentario> comentarios;
 	
-	@OneToMany(mappedBy="patrimonio", targetEntity=Registro.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="patrimonio", targetEntity=Historico.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonBackReference
-	private List<Registro> registros;
+	private List<Historico> registros;
 
 	public Integer getId() {
 		return id;
@@ -96,11 +95,11 @@ public class Patrimonio {
 		this.comentarios = comentarios;
 	}
 
-	public List<Registro> getRegistros() {
+	public List<Historico> getRegistros() {
 		return registros;
 	}
 
-	public void setRegistros(List<Registro> registros) {
+	public void setRegistros(List<Historico> registros) {
 		this.registros = registros;
 	}
 }

@@ -7,6 +7,6 @@
 		<title>Invetário UFC</title>
 	</head>
 	<body>
-		<h2>Bem vindo ao Inventário da UFC!</h2>
+		<h2>It's work!</h2>
 	</body>
 </html>
