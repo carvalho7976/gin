@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="registro")
-public class Registro {
+public class Historico {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
