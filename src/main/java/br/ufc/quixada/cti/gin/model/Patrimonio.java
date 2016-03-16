@@ -1,9 +1,12 @@
 package br.ufc.quixada.cti.gin.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +26,28 @@ public class Patrimonio {
 	private Integer id;
 	
 	private Integer tombamento;
-	private String marca;
-	private String modelo;
-	private String status;
+	private String descricao;
+			
+	@ManyToOne
+	@JoinColumn(name="id_categoria")
+	private Categoria categoria;
+	
+	@Enumerated(EnumType.STRING)
+	private Situacao situacao;
+	
+	@Enumerated(EnumType.STRING)
+	private Lotacao list_de_lotacao;
+	
+	@Enumerated(EnumType.STRING)
+	private Conservacao conservacao;
+	
+	private Date data_incorporacao;
+	private Date data_chegada_campus;
+	private Date data_registro_sist; 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_sala")
-	private Sala sala;
+	@JoinColumn(name="id_local")
+	private Local local;
 	
 	@OneToMany(mappedBy="patrimonio", targetEntity=Comentario.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonBackReference
@@ -55,36 +73,79 @@ public class Patrimonio {
 		this.tombamento = tombamento;
 	}
 
-	public String getMarca() {
-		return marca;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	
+	public Situacao getSituacao() {
+		return situacao;
 	}
 
-	public String getStatus() {
-		return status;
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
+	}
+	
+	
+	public Lotacao getList_de_lotacao() {
+		return list_de_lotacao;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setList_de_lotacao(Lotacao list_de_lotacao) {
+		this.list_de_lotacao = list_de_lotacao;
+	}
+	
+	
+	public Conservacao getConservacao() {
+		return conservacao;
 	}
 
-	public Sala getSala() {
-		return sala;
+	public void setConservacao(Conservacao conservacao) {
+		this.conservacao = conservacao;
 	}
 
-	public void setSala(Sala sala) {
-		this.sala = sala;
+	public Date getData_incorporacao() {
+		return data_incorporacao;
+	}
+
+	public void setData_incorporacao(Date data_incorporacao) {
+		this.data_incorporacao = data_incorporacao;
+	}
+
+	public Date getData_chegada_campus() {
+		return data_chegada_campus;
+	}
+
+	public void setData_chegada_campus(Date data_chegada_campus) {
+		this.data_chegada_campus = data_chegada_campus;
+	}
+
+	public Date getData_registro_sist() {
+		return data_registro_sist;
+	}
+
+	public void setData_registro_sist(Date data_registro_sist) {
+		this.data_registro_sist = data_registro_sist;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 	public List<Comentario> getComentarios() {
@@ -102,4 +163,6 @@ public class Patrimonio {
 	public void setRegistros(List<Historico> registros) {
 		this.registros = registros;
 	}
+
+	
 }

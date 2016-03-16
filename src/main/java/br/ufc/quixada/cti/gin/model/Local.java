@@ -14,13 +14,13 @@ import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
-@Table(name="sala")
-public class Sala {
+@Table(name="local")
+public class Local {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="sala", targetEntity=Patrimonio.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="local", targetEntity=Patrimonio.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonBackReference
 	private List<Patrimonio> patrimonios;
 	
