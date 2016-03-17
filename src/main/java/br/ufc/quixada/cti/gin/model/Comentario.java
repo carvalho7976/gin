@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.ufc.quixada.cti.gin.enumeration.TipoComentario;
+
 @Entity
 @Table(name="comentario")
 public class Comentario {
@@ -53,8 +55,6 @@ public class Comentario {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-	
 	public TipoComentario getTipo_comentario() {
 		return tipo_comentario;
 	}

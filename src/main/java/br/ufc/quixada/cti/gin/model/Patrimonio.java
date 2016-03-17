@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 
+import br.ufc.quixada.cti.gin.enumeration.Conservacao;
+import br.ufc.quixada.cti.gin.enumeration.Lotacao;
+import br.ufc.quixada.cti.gin.enumeration.Situacao;
+
 @Entity
 @Table(name="patrimonio")
 public class Patrimonio {
