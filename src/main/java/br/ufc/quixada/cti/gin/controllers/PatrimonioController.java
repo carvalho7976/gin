@@ -27,9 +27,7 @@ public class PatrimonioController {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
 		
-		// TODO - definir jsp de retorno que irá listar todos os patrimônios.
-		
-		return "";
+		return "patrimonio/listar";
 	}
 	
 	@RequestMapping(value = {"cadastrar"}, method = RequestMethod.GET)
