@@ -3,21 +3,33 @@ package br.ufc.quixada.cti.gin.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+/** representa o log do sistema, alterações feita em algum patrimonio.
+ * é salvo quando alguma alteração em patrimonio é feita * 
+ * **/
+
 
 @Entity
-@Table(name="registro")
+@Table(name="historico")
 public class Historico {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	//data do ocorrido
 	private Date timestamp;
+	
+	/*representa qualquer alteracao que é feita. 
+	 * É registrado no momento em que atualização ou criação de um item	é feita * 
+	 * Registra a alteração, EX: Local alterado de <X> para Y;
+	 */	
 	private String comentario;
 	
 	@ManyToOne
@@ -39,7 +51,8 @@ public class Historico {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-
+	
+	
 	public String getComentario() {
 		return comentario;
 	}

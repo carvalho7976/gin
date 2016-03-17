@@ -3,6 +3,8 @@ package br.ufc.quixada.cti.gin.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +25,9 @@ public class Comentario {
 	
 	private String mensagem;
 	private Date timestamp;
-	private String tipo_comentario;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoComentario tipo_comentario;
 	
 	public Integer getId() {
 		return id;
@@ -49,10 +53,12 @@ public class Comentario {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	public String getTipo_comentario() {
+	
+	
+	public TipoComentario getTipo_comentario() {
 		return tipo_comentario;
 	}
-	public void setTipo_comentario(String tipo_comentario) {
+	public void setTipo_comentario(TipoComentario tipo_comentario) {
 		this.tipo_comentario = tipo_comentario;
 	}
 	
