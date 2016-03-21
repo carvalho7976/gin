@@ -30,7 +30,7 @@ public class PatrimonioController {
 		return "patrimonio/listar";
 	}
 	
-	@RequestMapping(value = {"cadastrar"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/cadastrar"}, method = RequestMethod.GET)
 	public String cadastrarPatrimonio(Model model) {
 		
 		model.addAttribute("action", "cadastrar");
@@ -39,13 +39,14 @@ public class PatrimonioController {
 		return "patrimonio/cadastrar";
 	}
 	
-	@RequestMapping(value = {"cadastrar"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/cadastrar"}, method = RequestMethod.POST)
 	public String cadastrarPatrimonio(Model model, @Valid @ModelAttribute("patrimonio") Patrimonio patrimonio, 
 			BindingResult result, RedirectAttributes redirect) {
 		
 		model.addAttribute("action", "cadastrar");
 		
 		if (result.hasErrors()) {
+			System.out.println(result.toString());
 			model.addAttribute("patrimonio", patrimonio);
 			return "patrimonio/cadastrar";
 		}
@@ -56,7 +57,7 @@ public class PatrimonioController {
 		return "redirect:/patrimonio/listar";
 	}
 	
-	@RequestMapping(value = {"editar/{idPatrimonio}"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/editar/{idPatrimonio}"}, method = RequestMethod.GET)
 	public String editarPatrimonio(@PathVariable("idPatrimonio") Integer idPatrimonio, Model model) {
 		
 		Patrimonio patrimonio = patrimonioService.find(Patrimonio.class, idPatrimonio);
@@ -67,7 +68,7 @@ public class PatrimonioController {
 		return "patrimonio/cadastrar";
 	}
 	
-	@RequestMapping(value = {"editar"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/editar"}, method = RequestMethod.POST)
 	public String editarPatrimonio(Model model, @Valid @ModelAttribute("patrimonio") Patrimonio patrimonio, 
 			BindingResult result, RedirectAttributes redirect) {
 		
@@ -83,7 +84,7 @@ public class PatrimonioController {
 		return "redirect:/patrimonio/listar";
 	}
 	
-	@RequestMapping(value = {"excluir/{idPatrimonio}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value = {"/excluir/{idPatrimonio}"}, method = RequestMethod.DELETE)
 	public String deletarPatrimonio(@PathVariable("idPatrimonio") Integer idPatrimonio, RedirectAttributes redirect) {
 		
 		Patrimonio patrimonio = patrimonioService.find(Patrimonio.class, idPatrimonio);
