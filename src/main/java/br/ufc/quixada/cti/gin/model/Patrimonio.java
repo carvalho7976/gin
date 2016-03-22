@@ -35,7 +35,7 @@ public class Patrimonio {
 	private Integer tombamento;
 	private String descricao;
 			
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	
