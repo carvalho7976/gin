@@ -29,6 +29,8 @@
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>${titulo}</legend>
+				<form:input path="id" id="id" type="hidden"/>
+				<form:input path="categoria.id" id="categoria.id" type="hidden"/>
 				<div class="form-group">
 					<label for="tombamento" class="col-lg-2 control-label">Tombamento</label>
 					<div class="col-lg-10">
@@ -52,7 +54,7 @@
 					<div class="col-lg-10">
 						<form:input path="categoria.nome" id="categoria" class="form-control" type="text" placeholder="Categoria..."/>
 						<div class="error-validation">
-							<form:errors path="categoria"></form:errors>
+							<form:errors path="categoria.nome"></form:errors>
 						</div>
 					</div>
 				</div>

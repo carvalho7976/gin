@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

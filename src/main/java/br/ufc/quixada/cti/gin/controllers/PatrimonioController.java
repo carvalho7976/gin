@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.ufc.quixada.cti.gin.model.Categoria;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
+import br.ufc.quixada.cti.gin.service.CategoriaService;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
 @Controller
@@ -22,7 +24,10 @@ public class PatrimonioController {
 	@Inject
 	private PatrimonioService patrimonioService;
 	
-	@RequestMapping(value = {"listar"}, method = RequestMethod.GET)
+	@Inject
+	private CategoriaService categoriaService;
+	
+	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
@@ -78,13 +83,17 @@ public class PatrimonioController {
 			model.addAttribute("patrimonio", patrimonio);
 			return "patrimonio/cadastrar";
 		}
+		Categoria categoria = patrimonio.getCategoria();
 		
+		//coloquei o service pq a categoria não estava atualizando
+		categoriaService.update(categoria);
 		patrimonioService.update(patrimonio);
+		
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";
 	}
 	
-	@RequestMapping(value = {"/excluir/{idPatrimonio}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value = {"/excluir/{idPatrimonio}"}, method = RequestMethod.GET)
 	public String deletarPatrimonio(@PathVariable("idPatrimonio") Integer idPatrimonio, RedirectAttributes redirect) {
 		
 		Patrimonio patrimonio = patrimonioService.find(Patrimonio.class, idPatrimonio);
