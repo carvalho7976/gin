@@ -49,13 +49,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="categoria" class="col-lg-2 control-label">Categoria</label>
-					<div class="col-lg-10">
-						<form:input path="categoria.nome" id="categoria" class="form-control" type="text" placeholder="Categoria..."/>
-						<div class="error-validation">
-							<form:errors path="categoria.nome"></form:errors>
+				<div class="row form-group">
+					<div>
+						<label for="categoria" class="col-lg-2 control-label">Categoria</label>
+						<div class="col-lg-9">
+							<form:input path="categoria.nome" id="categoria"
+								class="form-control" type="text" placeholder="Categoria..." />
+							<div class="error-validation">
+								<form:errors path="categoria.nome"></form:errors>
+							</div>
 						</div>
+					</div>
+					<div class="col-lg-2">
+						<a class="btn btn-success"> <span class="glyphicon glyphicon-plus"></span> </a>
 					</div>
 				</div>
 				<div class="form-group">
@@ -63,7 +69,7 @@
 					<div class="col-lg-10">
 						<form:select path="situacao" id="situacao" class="form-control">
 							<form:option value="NONE"> Selecione uma opção</form:option>
-							<form:options items="${situacao.tipo }"/>
+							<form:options items="${situacao }" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation">
 							<form:errors path="situacao"></form:errors>
@@ -75,7 +81,7 @@
 					<div class="col-lg-10">
 						<form:select path="list_de_lotacao" id="lotacao" class="form-control">
 							<form:option value="NONE"> Selecione uma opção</form:option>
-							<form:options items="${list_de_lotacao.tipo }"/>
+							<form:options items="${list_de_lotacao }" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation">
 							<form:errors path="list_de_lotacao"></form:errors>
@@ -87,27 +93,30 @@
 					<div class="col-lg-10">
 						<form:select path="conservacao" id="conservacao" class="form-control">
 							<form:option value="NONE"> Selecione uma opção</form:option>
-							<form:options items="${conservacao.tipo }"/>
+							<form:options items="${conservacao}" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation">
 							<form:errors path="conservacao"></form:errors>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="data_incorporacao" class="col-lg-2 control-label">Data de Incorporação</label>
-					<div class="col-lg-10">
-						<form:input id="data_incorporacao" class="form-control" path="data_incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
-						<form:errors path="data_incorporacao" cssClass="error" />
+				<div class="row">
+					<div>
+						<label for="data_incorporacao" class="col-lg-2 control-label">Data de Incorporação</label>
+						<div class="col-lg-4">
+							<form:input id="data_incorporacao" class="form-control" path="data_incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+							<form:errors path="data_incorporacao" cssClass="error" />
+						</div>
+					</div>
+					<div>
+						<label for="data_chegada_campus" class="col-lg-2 control-label">Chegada no Campus</label>
+						<div class="col-lg-4">
+							<form:input id="data_chegada_campus" class="form-control" path="data_chegada_campus" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+							<form:errors path="data_chegada_campus" cssClass="error" />
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="data_chegada_campus" class="col-lg-2 control-label">Chegada no Campus</label>
-					<div class="col-lg-10">
-						<form:input id="data_chegada_campus" class="form-control" path="data_chegada_campus" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
-						<form:errors path="data_chegada_campus" cssClass="error" />
-					</div>
-				</div>
+				<br> <br>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 						<button type="reset" class="btn btn-default">Cancel</button>
@@ -117,13 +126,13 @@
 			</fieldset>
 		</form:form>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
+
 	<script type="text/javascript">
 		$(function(){
 			$("#data_incorporacao").datepicker({dateFormat: 'dd/mm/yy'});
 			$("#data_chegada_campus").datepicker({dateFormat: 'dd/mm/yy'});
 		});
 	</script>
-
-	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
