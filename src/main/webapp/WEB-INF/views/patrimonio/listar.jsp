@@ -8,15 +8,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
+
 	<jsp:include page="../header.jsp"></jsp:include>
-<title>Insert title here</title>
+	<title>Lista de Patrimonios</title>
 </head>
 <body>
-<div class="container">
-		<table class="table" id="tablePatrimonio">
+
+<div class="table-responsive">
+		<table class="table table-bordered" id="tablePatrimonio">
 			<thead>
-				<tr>
-					<th>Tombamento</th>
+				<tr class="info">
+					<th >Tombamento</th>
 					<th>Descrição</th>
 					<th>Categoria</th>
 					<th>Situação</th>
@@ -24,12 +26,12 @@
 					<th>Conservação</th>
 					<th>Data de Incorporação</th>
 					<th>Chegana no campus</th>
-					<th></th>
+					<th>#</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${patrimonios}" var="patrimonio">
-					<tr>
+					<tr >
 						<td>${patrimonio.tombamento}</td>
 						<td>${patrimonio.descricao} </td>
 						<td>${patrimonio.categoria.nome}</td>
@@ -38,15 +40,16 @@
 						<td>${patrimonio.conservacao}</td>
 						<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_incorporacao}" /></td>
 						<td> <fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_chegada_campus}" /></td>
-						<td> <a
+						<td> <a 
 							href="<c:url value="/patrimonio/editar/${patrimonio.id }/" ></c:url>">
-								<button type="button" class="btn btn-warning">
-									<span class="glyphicon glyphicon-edit"></span> Editar Patrimonio
+								<button type="button" class="btn btn-info btn-xs" style="margin: 1px">
+									Editar&nbsp Patrimonio
 								</button>
-						</a> <a
+						</a> 
+						<a
 							href="<c:url value="/patrimonio/excluir/${patrimonio.id }/" ></c:url>">
-								<button type="button" class="btn btn-danger">
-									<span class="glyphicon glyphicon-trash"></span> Excluir Patrimonio
+								<button type="button" class="btn btn-danger btn-xs" style="margin: 1px">
+									Excluir Patrimonio
 								</button>
 						</a></td>
 					</tr>
@@ -56,6 +59,7 @@
 		
 	</div>
 	
-	<jsp:include page="../footer.jsp"></jsp:include>
+	
 </body>
+
 </html>
