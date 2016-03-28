@@ -13,13 +13,14 @@
 	<title>Lista de Patrimonios</title>
 </head>
 <body>
-
+<jsp:include page="../menu.jsp"></jsp:include>
+</br>
 <div class="table-responsive">
 		<table class="table table-bordered" id="tablePatrimonio">
 			<thead>
 				<tr class="info">
-					<th >Tombamento</th>
-					<th>Descrição</th>
+					<th class ="no-sort">Tombamento</th>
+					<th class ="no-sort">Descrição</th>
 					<th>Categoria</th>
 					<th>Situação</th>
 					<th>Lotação</th>

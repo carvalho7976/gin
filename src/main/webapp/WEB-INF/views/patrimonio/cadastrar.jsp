@@ -24,7 +24,7 @@
 	<title>${titulo}</title>
 </head>
 <body>
-
+<jsp:include page="../menu.jsp"></jsp:include>
 	<div class="container">
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
@@ -124,6 +124,5 @@
 		});
 	</script>
 
-	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
