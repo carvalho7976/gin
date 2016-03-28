@@ -18,7 +18,7 @@ import br.ufc.quixada.cti.gin.service.CategoriaService;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
 @Controller
-@RequestMapping("patrimonio")
+@RequestMapping({"patrimonio", "/"})
 public class PatrimonioController {
 
 	@Inject
@@ -27,7 +27,7 @@ public class PatrimonioController {
 	@Inject
 	private CategoriaService categoriaService;
 	
-	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"index","/","/listar"}, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
