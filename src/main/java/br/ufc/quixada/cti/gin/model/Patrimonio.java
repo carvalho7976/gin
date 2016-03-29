@@ -40,7 +40,7 @@ public class Patrimonio {
 	@NotEmpty(message = "Campo obrigatório.")
 	private String descricao;
 			
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	@NotNull(message = "Campo obrigatório.")
 	private Categoria categoria;

@@ -62,9 +62,9 @@
 					<div>
 						<label for="categoria" class="col-lg-2 control-label">Categoria</label>
 						<div class="col-lg-9">
-							<form:select path="categoria" id="categoria" class="form-control">
-								<form:option value="NONE"> Selecione uma categoria</form:option>
-								<form:options items="${categoria }" itemLabel="nome" />
+							<form:select path="categoria.id" id="categoria" class="form-control">
+								<form:option value=""> Selecione uma categoria</form:option>
+								<form:options items="${categorias }" itemLabel="nome" itemValue="id"/>
 							</form:select>
 						</div>
 					</div>

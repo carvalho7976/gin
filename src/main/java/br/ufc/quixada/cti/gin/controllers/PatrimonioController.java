@@ -28,7 +28,7 @@ public class PatrimonioController {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
 		
-		return "patrimonio/listar";
+		return "patrimonio/listar-patrimonio";
 	}
 	
 	@RequestMapping(value = {"/cadastrar"}, method = RequestMethod.GET)
@@ -36,6 +36,7 @@ public class PatrimonioController {
 		
 		model.addAttribute("action", "cadastrar");
 		model.addAttribute("patrimonio", new Patrimonio());
+		model.addAttribute("categorias", patrimonioService.getCategorias());
 		
 		return "patrimonio/cadastrar-patrimonio";
 	}
@@ -119,6 +120,6 @@ public class PatrimonioController {
 		
 		patrimonioService.salvarCategoria(categoria);
 		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
-		return "redirect:/patrimonio/cadastrar-patrimonio";
+		return "redirect:/patrimonio/cadastrar";
 	}
 }
