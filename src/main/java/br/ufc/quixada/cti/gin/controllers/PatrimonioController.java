@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.cti.gin.model.Categoria;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
-import br.ufc.quixada.cti.gin.service.CategoriaService;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
 @Controller
@@ -24,15 +23,12 @@ public class PatrimonioController {
 	@Inject
 	private PatrimonioService patrimonioService;
 	
-	@Inject
-	private CategoriaService categoriaService;
-	
-	@RequestMapping(value = {"index","/","/listar"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
 		
-		return "patrimonio/listar";
+		return "patrimonio/listar-patrimonio";
 	}
 	
 	@RequestMapping(value = {"/cadastrar"}, method = RequestMethod.GET)
@@ -40,8 +36,9 @@ public class PatrimonioController {
 		
 		model.addAttribute("action", "cadastrar");
 		model.addAttribute("patrimonio", new Patrimonio());
+		model.addAttribute("categorias", patrimonioService.getCategorias());
 		
-		return "patrimonio/cadastrar";
+		return "patrimonio/cadastrar-patrimonio";
 	}
 	
 	@RequestMapping(value = {"/cadastrar"}, method = RequestMethod.POST)
@@ -51,9 +48,9 @@ public class PatrimonioController {
 		model.addAttribute("action", "cadastrar");
 		
 		if (result.hasErrors()) {
-			System.out.println(result.toString());
 			model.addAttribute("patrimonio", patrimonio);
-			return "patrimonio/cadastrar";
+			model.addAttribute("categorias", patrimonioService.getCategorias());
+			return "patrimonio/cadastrar-patrimonio";
 		}
 		
 		patrimonioService.save(patrimonio);
@@ -70,7 +67,7 @@ public class PatrimonioController {
 		model.addAttribute("action", "editar");
 		model.addAttribute("patrimonio", patrimonio);
 		
-		return "patrimonio/cadastrar";
+		return "patrimonio/cadastrar-patrimonio";
 	}
 	
 	@RequestMapping(value = {"/editar"}, method = RequestMethod.POST)
@@ -81,13 +78,8 @@ public class PatrimonioController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("patrimonio", patrimonio);
-			return "patrimonio/cadastrar";
+			return "patrimonio/cadastrar-patrimonio";
 		}
-		Categoria categoria = patrimonio.getCategoria();
-		
-		//coloquei o service pq a categoria não estava atualizando
-		categoriaService.update(categoria);
-		patrimonioService.update(patrimonio);
 		
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";
@@ -108,5 +100,26 @@ public class PatrimonioController {
 		}
 		
 		return "redirect:/patrimonio/listar";
+	}
+	
+	@RequestMapping(value = {"/cadastrar/categoria"}, method = RequestMethod.GET)
+	public String addCategoria(Model model) {
+		
+		model.addAttribute("categoria", new Categoria());
+		
+		return "patrimonio/cadastrar-categoria";
+	}
+	
+	@RequestMapping(value = {"/cadastrar/categoria"}, method = RequestMethod.POST)
+	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirect) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("categoria", categoria);
+			return "patrimonio/cadastrar-categoria";
+		}
+		
+		patrimonioService.salvarCategoria(categoria);
+		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
+		return "redirect:/patrimonio/cadastrar";
 	}
 }

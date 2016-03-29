@@ -17,8 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
@@ -32,11 +34,15 @@ public class Patrimonio {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull(message = "Campo obrigatório.")
 	private Integer tombamento;
+	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String descricao;
 			
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="id_categoria")
+	@NotNull(message = "Campo obrigatório.")
 	private Categoria categoria;
 	
 	@Enumerated(EnumType.STRING)
