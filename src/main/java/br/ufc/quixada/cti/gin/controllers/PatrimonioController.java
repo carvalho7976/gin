@@ -17,7 +17,7 @@ import br.ufc.quixada.cti.gin.model.Patrimonio;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
 @Controller
-@RequestMapping("patrimonio")
+@RequestMapping({"patrimonio", "/"})
 public class PatrimonioController {
 
 	@Inject

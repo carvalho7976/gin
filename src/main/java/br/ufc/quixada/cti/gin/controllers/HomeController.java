@@ -3,10 +3,10 @@ package br.ufc.quixada.cti.gin.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+//@Controller
 public class HomeController {
 
-	@RequestMapping(value = {"/", ""})
+	//@RequestMapping(value = {"/", ""})
 	public String index(){
 		return "index";
 	}

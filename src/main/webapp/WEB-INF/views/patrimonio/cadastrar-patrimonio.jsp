@@ -24,7 +24,7 @@
 	<title>${titulo}</title>
 </head>
 <body>
-
+<jsp:include page="../menu.jsp"></jsp:include>
 	<div class="container">
 	
 		<c:if test="${not empty info}">
