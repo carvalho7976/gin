@@ -26,11 +26,20 @@
 <body>
 
 	<div class="container">
+	
+		<c:if test="${not empty info}">
+			<div class="alert alert-success alert-dismissible" role="alert"
+				id="alert-info">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<c:out value="${info}"></c:out>
+			</div>
+		</c:if>
+	
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>${titulo}</legend>
-				<form:input path="id" id="id" type="hidden"/>
-				<form:input path="categoria.id" id="categoria.id" type="hidden"/>
 				<div class="form-group">
 					<label for="tombamento" class="col-lg-2 control-label">Tombamento</label>
 					<div class="col-lg-10">
@@ -53,15 +62,15 @@
 					<div>
 						<label for="categoria" class="col-lg-2 control-label">Categoria</label>
 						<div class="col-lg-9">
-							<form:input path="categoria.nome" id="categoria"
-								class="form-control" type="text" placeholder="Categoria..." />
-							<div class="error-validation">
-								<form:errors path="categoria.nome"></form:errors>
-							</div>
+							<form:select path="categoria" id="categoria" class="form-control">
+								<form:option value="NONE"> Selecione uma categoria</form:option>
+								<form:options items="${categoria }" itemLabel="nome" />
+							</form:select>
 						</div>
 					</div>
-					<div class="col-lg-2">
-						<a class="btn btn-success"> <span class="glyphicon glyphicon-plus"></span> </a>
+					<div class="col-lg-1">
+						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						</a>
 					</div>
 				</div>
 				<div class="form-group">
@@ -120,11 +129,12 @@
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 						<button type="reset" class="btn btn-default">Cancel</button>
-						<button type="submit" class="btn btn-primary">${botao}</button>
+						<button type="submit" class="btn btn-success">${botao}</button>
 					</div>
 				</div>
 			</fieldset>
 		</form:form>
+
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 
