@@ -42,7 +42,7 @@
 						<c:out value="${info}"></c:out>
 					</div>
 				</c:if>
-
+				<form:input path="id" type="hidden"/>
 				<div class="form-group">
 					<label for="tombamento" class="col-lg-2 control-label">Tombamento</label>
 					<div class="col-lg-10">

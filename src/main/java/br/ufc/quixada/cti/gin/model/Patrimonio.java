@@ -68,7 +68,7 @@ public class Patrimonio {
 	@JoinColumn(name="id_local")
 	private Local local;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade= CascadeType.ALL)
 	private Comentario comentario;
 	
 	@OneToMany(mappedBy="patrimonio", targetEntity=Historico.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)

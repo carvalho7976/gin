@@ -2,6 +2,7 @@ package br.ufc.quixada.cti.gin.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Local {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="local", targetEntity=Patrimonio.class)
+	@OneToMany(mappedBy="local", targetEntity=Patrimonio.class, cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private List<Patrimonio> patrimonios;
 	

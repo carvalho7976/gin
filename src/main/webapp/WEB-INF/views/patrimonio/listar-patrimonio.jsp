@@ -10,11 +10,18 @@
 <head>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<title>Lista de Patrimonios</title>
+	<style type="text/css">
+		.dataTables_wrapper {
+   			 margin-left: 10px;
+    		margin-right: 10px;
+    		margin-top: 20px;
+}
+	</style>
 </head>
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>
 	
-	<div class="container">
+	
 		<div class="table-responsive">
 			<table class="table table-bordered" id="tablePatrimonio">
 				<thead>
@@ -60,6 +67,6 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
+	
 </body>
 </html>
