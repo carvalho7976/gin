@@ -58,5 +58,8 @@ public class Local {
 	public void setBloco(String bloco) {
 		this.bloco = bloco;
 	}
+	public String getFullLocal(){
+		return this.nome +" / bloco: " + this.bloco + "/ pavimento: " + this.pavimento;
+	}
 	
 }

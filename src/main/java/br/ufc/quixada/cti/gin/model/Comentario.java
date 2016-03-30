@@ -2,6 +2,7 @@ package br.ufc.quixada.cti.gin.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.ufc.quixada.cti.gin.enumeration.TipoComentario;
@@ -21,8 +23,7 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name="id_patrimonio")
+	@OneToOne(cascade=CascadeType.ALL)
 	private Patrimonio patrimonio;
 	
 	private String mensagem;

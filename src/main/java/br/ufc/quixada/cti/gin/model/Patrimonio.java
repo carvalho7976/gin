@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -68,9 +69,8 @@ public class Patrimonio {
 	@JoinColumn(name="id_local")
 	private Local local;
 	
-	@OneToMany(mappedBy="patrimonio", targetEntity=Comentario.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JsonBackReference
-	private List<Comentario> comentarios;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Comentario comentario;
 	
 	@OneToMany(mappedBy="patrimonio", targetEntity=Historico.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonBackReference
@@ -167,12 +167,12 @@ public class Patrimonio {
 		this.local = local;
 	}
 
-	public List<Comentario> getComentarios() {
-		return comentarios;
+	public Comentario getComentario() {
+		return comentario;
 	}
 
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
+	public void setComentario(Comentario comentario) {
+		this.comentario = comentario;
 	}
 
 	public List<Historico> getRegistros() {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.cti.gin.model.Categoria;
+import br.ufc.quixada.cti.gin.model.Local;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
@@ -23,7 +24,7 @@ public class PatrimonioController {
 	@Inject
 	private PatrimonioService patrimonioService;
 	
-	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"index","/","/listar"}, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
 		
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
@@ -37,6 +38,8 @@ public class PatrimonioController {
 		model.addAttribute("action", "cadastrar");
 		model.addAttribute("patrimonio", new Patrimonio());
 		model.addAttribute("categorias", patrimonioService.getCategorias());
+		model.addAttribute("locais", patrimonioService.getLocais());
+
 		
 		return "patrimonio/cadastrar-patrimonio";
 	}
@@ -50,6 +53,7 @@ public class PatrimonioController {
 		if (result.hasErrors()) {
 			model.addAttribute("patrimonio", patrimonio);
 			model.addAttribute("categorias", patrimonioService.getCategorias());
+			model.addAttribute("locais", patrimonioService.getLocais());
 			return "patrimonio/cadastrar-patrimonio";
 		}
 		
@@ -109,6 +113,14 @@ public class PatrimonioController {
 		
 		return "patrimonio/cadastrar-categoria";
 	}
+	@RequestMapping(value = {"/cadastrar/local"}, method = RequestMethod.GET)
+	public String addLocal(Model model) {
+		
+		model.addAttribute("local", new Local());
+		
+		return "patrimonio/cadastrar-local";
+	}
+	
 	
 	@RequestMapping(value = {"/cadastrar/categoria"}, method = RequestMethod.POST)
 	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirect) {
@@ -120,6 +132,19 @@ public class PatrimonioController {
 		
 		patrimonioService.salvarCategoria(categoria);
 		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
+		return "redirect:/patrimonio/cadastrar";
+	}
+	
+	@RequestMapping(value = {"/cadastrar/local"}, method = RequestMethod.POST)
+	public String addLocal(Model model, @Valid @ModelAttribute("local") Local local, BindingResult result, RedirectAttributes redirect) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("local", local);
+			return "patrimonio/cadastrar-local";
+		}
+		
+		patrimonioService.salvarLocal(local);
+		redirect.addFlashAttribute("info", "Novo local adicionado.");
 		return "redirect:/patrimonio/cadastrar";
 	}
 }

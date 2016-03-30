@@ -74,6 +74,21 @@
 						</a>
 					</div>
 				</div>
+				<div class="row form-group">
+					<div>
+						<label for="local" class="col-lg-2 control-label">Local</label>
+						<div class="col-lg-9">
+							<form:select path="local.id" id="local" class="form-control">
+								<form:option value=""> Selecione um Local</form:option>
+								<form:options items="${locais}" itemLabel="fullLocal" itemValue="id"/>
+							</form:select>
+						</div>
+					</div>
+					<div class="col-lg-1">
+						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/local"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						</a>
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="situacao" class="col-lg-2 control-label">Situação</label>
 					<div class="col-lg-10">
@@ -126,6 +141,18 @@
 						</div>
 					</div>
 				</div>
+				<div class="form-group">
+							<div class="form-item col-sm-12">
+								<label for="comentario" class="control-label">Comentário:</label>
+								<form:textarea id="comentario"
+									path="comentario.mensagem" cssClass="form-control"
+									placeholder="Comentário"  />
+								<div class="error-validation">
+									<form:errors path="comentario.mensagem"></form:errors>
+								</div>
+							</div>
+				</div>
+				
 				<br> <br>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
