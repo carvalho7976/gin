@@ -24,7 +24,9 @@
 	<title>${titulo}</title>
 </head>
 <body>
-<jsp:include page="../menu.jsp"></jsp:include>
+
+	<jsp:include page="../menu.jsp"></jsp:include>
+	
 	<div class="container">
 	
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
@@ -141,18 +143,13 @@
 						</div>
 					</div>
 				</div>
+				<br>
 				<div class="form-group">
-							<div class="form-item col-sm-12">
-								<label for="comentario" class="control-label">Comentário:</label>
-								<form:textarea id="comentario"
-									path="comentario.mensagem" cssClass="form-control"
-									placeholder="Comentário"  />
-								<div class="error-validation">
-									<form:errors path="comentario.mensagem"></form:errors>
-								</div>
-							</div>
+					<label for="comentario" class="col-lg-2 control-label">Comentario</label>
+					<div class="col-lg-10">
+						<form:textarea path="comentario.mensagem" id="comentario" class="form-control" placeholder="Comentário..." rows="3"/>
+					</div>
 				</div>
-				
 				<br> <br>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">

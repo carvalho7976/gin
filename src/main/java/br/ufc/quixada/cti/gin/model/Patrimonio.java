@@ -43,7 +43,6 @@ public class Patrimonio {
 			
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
-	@NotNull(message = "Campo obrigatório.")
 	private Categoria categoria;
 	
 	@Enumerated(EnumType.STRING)

@@ -8,11 +8,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="../header.jsp"></jsp:include>
-<title>Novo local</title>
+	<jsp:include page="../header.jsp"></jsp:include>
+	<title>Novo local</title>
 </head>
 <body>
+
 	<div class="container">
 
 		<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" commandName="local" method="POST" class="form-horizontal">
@@ -21,7 +21,7 @@
 				<div class="form-group">
 					<label for="nome" class="col-lg-2 control-label">Nome do local</label>
 					<div class="col-lg-10">
-						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome do local"/>
+						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome do local..."/>
 						<div class="error-validation">
 							<form:errors path="nome"></form:errors>
 						</div>
@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<label for="pavimento" class="col-lg-2 control-label">Pavimento</label>
 					<div class="col-lg-10">
-						<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="pavimento"/>
+						<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..."/>
 						<div class="error-validation">
 							<form:errors path="pavimento"></form:errors>
 						</div>
@@ -39,7 +39,7 @@
 				<div class="form-group">
 					<label for="bloco" class="col-lg-2 control-label">Bloco</label>
 					<div class="col-lg-10">
-						<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="bloco"/>
+						<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="Bloco..."/>
 						<div class="error-validation">
 							<form:errors path="bloco"></form:errors>
 						</div>
