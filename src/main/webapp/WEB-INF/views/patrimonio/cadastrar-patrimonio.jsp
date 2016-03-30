@@ -27,19 +27,20 @@
 <jsp:include page="../menu.jsp"></jsp:include>
 	<div class="container">
 	
-		<c:if test="${not empty info}">
-			<div class="alert alert-success alert-dismissible" role="alert"
-				id="alert-info">
-				<button type="button" class="close" data-dismiss="alert">
-					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-				</button>
-				<c:out value="${info}"></c:out>
-			</div>
-		</c:if>
-	
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>${titulo}</legend>
+
+				<c:if test="${not empty info}">
+					<div class="alert alert-success alert-dismissible" role="alert"
+						id="alert-info">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<c:out value="${info}"></c:out>
+					</div>
+				</c:if>
+
 				<div class="form-group">
 					<label for="tombamento" class="col-lg-2 control-label">Tombamento</label>
 					<div class="col-lg-10">
