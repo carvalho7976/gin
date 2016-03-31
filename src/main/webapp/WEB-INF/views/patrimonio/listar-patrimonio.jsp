@@ -34,7 +34,7 @@
 						<th>Local</th>
 						<th>Conservação</th>
 						<th>Incorporação</th>
-						<th>Chegana no campus</th>
+						<th>Chegada no Campus</th>
 						<th>Comentário</th>
 						<th>#</th>
 					</tr>
@@ -45,28 +45,45 @@
 							<td>${patrimonio.tombamento}</td>
 							<td>${patrimonio.descricao}</td>
 							<td>${patrimonio.categoria.nome}</td>
-							<td>${patrimonio.situacao}</td>
-							<td>${patrimonio.list_de_lotacao}</td>
+							<td>${patrimonio.situacao.tipo}</td>
+							<td>${patrimonio.list_de_lotacao.tipo}</td>
 							<td>${patrimonio.local.fullLocal}</td>
-							<td>${patrimonio.conservacao}</td>
+							<td>${patrimonio.conservacao.tipo}</td>
 							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_incorporacao}" /></td>
 							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_chegada_campus}" /></td>
 							<td>${patrimonio.comentario.mensagem}</td>
 							<td><a
 								href="<c:url value="/patrimonio/editar/${patrimonio.id }/" ></c:url>">
-									<button type="button" class="btn btn-info btn-xs"
-										style="margin: 1px">Editar&nbsp Patrimonio</button>
-							</a> <a
-								href="<c:url value="/patrimonio/excluir/${patrimonio.id }/" ></c:url>">
-									<button type="button" class="btn btn-danger btn-xs"
-										style="margin: 1px">Excluir Patrimonio</button>
-							</a></td>
+									<button type="button" class="btn btn-info btn-xs" style="margin: 1px">Editar&nbsp Patrimonio</button>
+							</a> <a class="btn btn-danger btn-xs"
+								data-href="<c:url value="/patrimonio/excluir/${patrimonio.id }"></c:url>"
+								data-toggle="modal" data-target="#confirm-delete"> Excluir Patrimônio
+							</a> </td>
 
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-	
+		
+		<div id="confirm-delete" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Confirmar Deleção</h4>
+					</div>
+					<div class="modal-body">
+						<p>Você está a ponto de excluir um patrimônio do estoque, esse procedimento é irreversível.</p>
+						<p>Você deseja continuar?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<a class="btn btn-danger btn-ok">Deletar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

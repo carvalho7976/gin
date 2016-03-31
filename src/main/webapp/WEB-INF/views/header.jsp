@@ -16,7 +16,7 @@
 <script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/jquery-ui.min.js"/>"></script>
 <script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/jquery.dataTables.min.js"/>"></script>
 <script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/dataTables.tableTools.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" 	src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
 <script type="text/javascript"	src="<c:url value="/resources/js/patrimonioDataTable.js"/>"></script>
 
