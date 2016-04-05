@@ -10,17 +10,18 @@
 <head>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<title>Lista de Patrimonios</title>
+	
 	<style type="text/css">
 		.dataTables_wrapper {
-   			 margin-left: 10px;
+   			margin-left: 10px;
     		margin-right: 10px;
     		margin-top: 20px;
-}
+		}
 	</style>
+	
 </head>
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>
-	
 	
 		<div class="table-responsive">
 			<table class="table table-bordered" id="tablePatrimonio">
@@ -55,9 +56,11 @@
 							<td><a
 								href="<c:url value="/patrimonio/editar/${patrimonio.id }/" ></c:url>">
 									<button type="button" class="btn btn-info btn-xs" style="margin: 1px">Editar&nbsp Patrimonio</button>
-							</a> <a class="btn btn-danger btn-xs"
-								data-href="<c:url value="/patrimonio/excluir/${patrimonio.id }"></c:url>"
-								data-toggle="modal" data-target="#confirm-delete"> Excluir Patrimônio
+							</a> <a 
+									data-href="<c:url value="/patrimonio/excluir/${patrimonio.id }"></c:url>"
+									data-toggle="modal" 
+									data-target="#confirm-delete"
+									class="btn btn-danger btn-xs"> Excluir Patrimônio
 							</a> </td>
 
 						</tr>
@@ -84,6 +87,7 @@
 				</div>
 			</div>
 		</div>
+		
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
