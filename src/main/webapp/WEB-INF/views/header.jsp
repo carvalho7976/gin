@@ -10,14 +10,4 @@
 <link href="<c:url value="/resources/css/datatables.min.css" />" rel="stylesheet" />
 <link href="<c:url value="/resources/css/dataTables.tableTools.css" />" rel="stylesheet" />
 <link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet" />
-
-<!-- JS -->
-<script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/jquery.min.js"/>"></script>	
-<script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/jquery-ui.min.js"/>"></script>
-<script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/jquery.dataTables.min.js"/>"></script>
-<script type="text/javascript"	src="<c:url value="/resources/js/jquery_modules/dataTables.tableTools.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-
-<script type="text/javascript"	src="<c:url value="/resources/js/patrimonioDataTable.js"/>"></script>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="<c:url value="/resources/css/gin.css" />" rel="stylesheet" />

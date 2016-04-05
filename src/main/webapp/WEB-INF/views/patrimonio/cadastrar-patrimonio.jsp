@@ -44,9 +44,9 @@
 				</c:if>
 				<form:input path="id" type="hidden"/>
 				<div class="form-group">
-					<label for="tombamento" class="col-lg-2 control-label">Tombamento</label>
+					<label for="tombamento" class="col-lg-2 control-label ">Tombamento</label>
 					<div class="col-lg-10">
-						<form:input path="tombamento" id="tombamento" class="form-control" type="text" placeholder="Tombamento..."/>
+						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="Tombamento..."/>
 						<div class="error-validation">
 							<form:errors path="tombamento"></form:errors>
 						</div>
@@ -81,7 +81,7 @@
 						<label for="local" class="col-lg-2 control-label">Local</label>
 						<div class="col-lg-9">
 							<form:select path="local.id" id="local" class="form-control">
-								<form:option value=""> Selecione um Local</form:option>
+								<form:option value=""> Selecione um local</form:option>
 								<form:options items="${locais}" itemLabel="fullLocal" itemValue="id"/>
 							</form:select>
 						</div>

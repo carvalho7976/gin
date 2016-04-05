@@ -130,6 +130,7 @@ public class PatrimonioController {
 		
 		patrimonioService.salvarCategoria(categoria);
 		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
+
 		return "redirect:/patrimonio/cadastrar";
 	}
 	
@@ -151,6 +152,7 @@ public class PatrimonioController {
 		
 		patrimonioService.salvarLocal(local);
 		redirect.addFlashAttribute("info", "Novo local adicionado.");
+		
 		return "redirect:/patrimonio/cadastrar";
 	}
 }
