@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.ufc.quixada.cti.gin.log.PatrimonioLog;
 import br.ufc.quixada.cti.gin.model.Categoria;
 import br.ufc.quixada.cti.gin.model.Local;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
@@ -93,8 +94,13 @@ public class PatrimonioController {
 
 			return "patrimonio/cadastrar-patrimonio";
 		}
-		
+		Patrimonio antigo = patrimonioService.find(Patrimonio.class, patrimonio.getId());
 		patrimonioService.update(patrimonio);
+		
+		PatrimonioLog pLog = new PatrimonioLog();
+		
+		pLog.editar(antigo, patrimonio);
+		
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";
 	}
