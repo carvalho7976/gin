@@ -17,6 +17,9 @@
 	<div class="container">
 
 		<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
+			<input type="hidden"  name="acao" value="${acao}"/>
+			<input type="hidden" name="idd" value= "${id}"/>'
+			
 			<fieldset>
 				<legend>Nova Categoria</legend>
 				<div class="form-group">
@@ -30,7 +33,8 @@
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<button type="reset" class="btn btn-default">Cancel</button>
+						<a	href="<c:url value="/patrimonio/listar"></c:url>"
+					class="btn btn-danger"">Cancelar</a>
 						<button type="submit" class="btn btn-success">Adicionar</button>
 					</div>
 				</div>

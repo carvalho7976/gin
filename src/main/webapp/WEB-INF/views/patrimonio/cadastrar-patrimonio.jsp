@@ -72,7 +72,7 @@
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria/${action}/${id}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/local"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/local/${action}/${id}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
 				</div>
@@ -153,7 +153,8 @@
 				<br> <br>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<button type="reset" class="btn btn-default">Cancel</button>
+						<a	href="<c:url value="/patrimonio/listar"></c:url>"
+					class="btn btn-danger"">Cancelar</a>
 						<button type="submit" class="btn btn-success">${botao}</button>
 					</div>
 				</div>
