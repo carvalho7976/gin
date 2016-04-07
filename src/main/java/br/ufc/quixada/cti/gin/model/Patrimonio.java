@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
@@ -29,28 +31,34 @@ import br.ufc.quixada.cti.gin.enumeration.Lotacao;
 import br.ufc.quixada.cti.gin.enumeration.Situacao;
 
 @Entity
-@Table(name="patrimonio")
+@Table(name="patrimonio", uniqueConstraints = @UniqueConstraint(columnNames = "tombamento"))
 public class Patrimonio {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull(message = "Campo obrigatório.")
+	@Min(value = 0, message = "Número de tombamento deve ser maior ou igual a um.")
 	private Integer tombamento;
 	
 	@NotEmpty(message = "Campo obrigatório.")
 	private String descricao;
-			
+	
+	@NotNull(message = "Campo obrigatório.")
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	
+	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
 	private Situacao situacao;
 	
+	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
 	private Lotacao list_de_lotacao;
 	
+	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
 	private Conservacao conservacao;
 	
@@ -64,6 +72,7 @@ public class Patrimonio {
 	
 	private Date data_registro_sist; 	
 	
+	@NotNull(message = "Campo obrigatório.")
 	@ManyToOne
 	@JoinColumn(name="id_local")
 	private Local local;
