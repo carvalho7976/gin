@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -26,7 +25,7 @@
 					<label for="nome" class="col-lg-2 control-label">Nome da Categoria</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..."/>
-						<div class="error-validation">
+						<div class="error-validation" id="error-nome">
 							<form:errors path="nome"></form:errors>
 						</div>
 					</div>

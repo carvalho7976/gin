@@ -17,6 +17,7 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 
 	@Inject
 	private GenericRepository<Categoria> categoriaRepository;
+	
 	@Inject
 	private GenericRepository<Local> localRepository;
 	
@@ -40,6 +41,12 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	@Override
 	public List<Local> getLocais() {
 		return localRepository.find(Local.class);
+	}
+
+	@Override
+	public boolean isPatrimonioCadastrado(Patrimonio patrimonio) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

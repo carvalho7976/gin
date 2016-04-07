@@ -9,11 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="local")
+@Table(name="local", uniqueConstraints = @UniqueConstraint(columnNames = {"nome", "pavimento", "bloco"}))
 public class Local {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,10 +25,13 @@ public class Local {
 	@JsonBackReference
 	private List<Patrimonio> patrimonios;
 	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String nome;
 	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String pavimento;
 	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String bloco;
 	
 	public Integer getId() {
