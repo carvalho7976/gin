@@ -52,6 +52,12 @@ public class PatrimonioController {
 		
 		model.addAttribute("action", "cadastrar");
 		
+		if (patrimonio != null) {
+			if (patrimonioService.isPatrimonioCadastrado(patrimonio)) {
+				result.rejectValue("tombamento", "patrimonio.tombamento", "Número de tombamento já existe.");
+			}
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("patrimonio", patrimonio);
 			model.addAttribute("categorias", patrimonioService.getCategorias());
@@ -134,6 +140,11 @@ public class PatrimonioController {
 	@RequestMapping(value = {"/cadastrar/categoria"}, method = RequestMethod.POST)
 	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirect, @RequestParam("acao") String acao, @RequestParam("idd") long id) {
 		
+		if (categoria != null) {
+			if (patrimonioService.isCategoriaCadastrada(categoria)) {
+				result.rejectValue("nome", "categoria.nome", "Categoria já cadastrada.");
+			}
+		}
 		
 		if (result.hasErrors()) {
 			model.addAttribute("categoria", categoria);
