@@ -43,7 +43,6 @@ public class Patrimonio {
 	
 	private String descricao;
 	
-	@NotNull(message = "Campo obrigatório.")
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
@@ -72,7 +71,6 @@ public class Patrimonio {
 	
 	private Date data_registro_sist; 	
 	
-	@NotNull(message = "Campo obrigatório.")
 	@ManyToOne
 	@JoinColumn(name="id_local")
 	private Local local;

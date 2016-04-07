@@ -101,7 +101,7 @@
 					<label for="situacao" class="col-lg-2 control-label">Situação</label>
 					<div class="col-lg-10">
 						<form:select path="situacao" id="situacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${situacao }" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation" id="error-situacao">
@@ -113,7 +113,7 @@
 					<label for="lotacao" class="col-lg-2 control-label">Lotação</label>
 					<div class="col-lg-10">
 						<form:select path="list_de_lotacao" id="lotacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${list_de_lotacao }" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation" id="error-lotacao">
@@ -125,7 +125,7 @@
 					<label for="conservacao" class="col-lg-2 control-label">Conservação</label>
 					<div class="col-lg-10">
 						<form:select path="conservacao" id="conservacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${conservacao}" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation" id="error-conservacao">

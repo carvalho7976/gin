@@ -32,7 +32,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<a	href="<c:url value="/patrimonio/listar"></c:url>" class="btn btn-danger">Cancelar </a>
+						<a	href="#" class="btn btn-danger back">Cancelar </a>
 						<button type="submit" class="btn btn-success">Adicionar</button>
 					</div>
 				</div>
