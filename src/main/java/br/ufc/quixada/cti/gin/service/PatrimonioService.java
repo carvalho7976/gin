@@ -14,4 +14,6 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract List<Local> getLocais();
 	public abstract List<Categoria> getCategorias();
+	public abstract Categoria getCategoria(long id);
+	public abstract Local getLocal(long id);
 }

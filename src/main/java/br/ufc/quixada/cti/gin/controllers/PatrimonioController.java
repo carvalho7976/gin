@@ -104,8 +104,15 @@ public class PatrimonioController {
 		
 		
 		
+		
+		
+		//preenche o objeto completo categoria e local pois os mesmo vem apenas com id na chamada do controller;
+		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
+		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
+		
 		Historico historico = PatrimonioLog.editar(antigo, patrimonio);
-		historicoService.save(historico);
+		if(historico != null)
+			historicoService.save(historico);
 		
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";

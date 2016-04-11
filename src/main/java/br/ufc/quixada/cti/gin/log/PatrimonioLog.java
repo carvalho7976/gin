@@ -20,31 +20,35 @@ public class PatrimonioLog {
 				
 		if(!antigo.getTombamento().equals(novo.getTombamento())){
 			comment = "Tombamento alterado de " + antigo.getTombamento() + " para " + novo.getTombamento() + "# ";
-		}else if(!antigo.getDescricao().equals(novo.getDescricao())){
+		}if(!antigo.getDescricao().equals(novo.getDescricao())){
 			comment += "Descrição alterada de " + antigo.getDescricao() + " para " + novo.getDescricao() + "# ";
-		}else if(!antigo.getCategoria().getNome().equals(novo.getCategoria().getNome())){
-			comment += "Categoria alterada de " + antigo.getCategoria().getNome() + " para " + novo.getCategoria().getNome() + "# ";
-		}else if(!antigo.getSituacao().getTipo().equals(novo.getSituacao().getTipo())){
+		}if(!antigo.getCategoria().getNome().equals(novo.getCategoria().getNome())){
+			comment += "Categoria alterada de " + antigo.getCategoria().getNome() + " para " + novo.getCategoria().getNome() + " # ";
+		}if(!antigo.getSituacao().getTipo().equals(novo.getSituacao().getTipo())){
 			comment += "Situação alterada de " + antigo.getSituacao().getTipo() + " para " + novo.getSituacao().getTipo() + "# ";
-		}else if(!antigo.getList_de_lotacao().getTipo().equals(novo.getList_de_lotacao().getTipo())){
-			comment += "Lista de alterada mudada de " + antigo.getList_de_lotacao().getTipo() + " para " + novo.getList_de_lotacao().getTipo() + "# ";
-		}else if(!antigo.getConservacao().getTipo().equals(novo.getConservacao().getTipo())){
+		}if(!antigo.getList_de_lotacao().getTipo().equals(novo.getList_de_lotacao().getTipo())){
+			comment += "Lista de lotação mudada de " + antigo.getList_de_lotacao().getTipo() + " para " + novo.getList_de_lotacao().getTipo() + "# ";
+		}if(!antigo.getConservacao().getTipo().equals(novo.getConservacao().getTipo())){
 			comment += "Conservação alterada de " + antigo.getConservacao().getTipo() + " para " + novo.getConservacao().getTipo() + "#";		
-		}else if(!antigo.getLocal().getId().equals(novo.getLocal().getId())){
+		}if(!(antigo.getLocal().getId() == novo.getLocal().getId())){
 			comment += "Local alterado de " + antigo.getLocal().getFullLocal() + " para " + novo.getLocal().getFullLocal() + "# ";	
-		}else if(!antigo.getData_incorporacao().equals(novo.getData_incorporacao())){
+		}if(!antigo.getData_incorporacao().equals(novo.getData_incorporacao())){
 			comment += "Data incoporação alterada de " + antigo.getData_incorporacao() + " para " + novo.getData_incorporacao() + "# ";
-		}else if(!antigo.getData_chegada_campus().equals(novo.getData_chegada_campus())){
+		}if(!antigo.getData_chegada_campus().equals(novo.getData_chegada_campus())){
 			comment += "Data de chegada no campus alterada de " + antigo.getData_chegada_campus() + " para " + novo.getData_chegada_campus() + "# ";
+		}if(!antigo.getComentario().getMensagem().equals(novo.getComentario().getMensagem())){
+			comment += "Comentário alterado de ( " + antigo.getComentario().getMensagem() + " ) para ( " + novo.getComentario().getMensagem() + " ) #";
+		}
+		if(!comment.isEmpty()){
+			Historico historico = new Historico();
+			historico.setComentario(comment);
+			historico.setPatrimonio(novo);
+
+			historico.setTimestamp(new Date() );
+			return historico;
 		}
 		
-		Historico historico = new Historico();
-		historico.setComentario(comment);
-		historico.setPatrimonio(novo);
-
-		historico.setTimestamp(new Date() );
-		
-		return historico;		
+		return null;		
 			
 	}
 
