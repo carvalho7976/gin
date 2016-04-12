@@ -152,13 +152,14 @@ public class PatrimonioController {
 		}
 		
 		if (result.hasErrors()) {
+			
 			model.addAttribute("categoria", categoria);
 			
-			if(acao.equals("editar")){
+			if (acao.equals("editar")){
 				model.addAttribute("acao", "editar");
 				model.addAttribute("id", id);
 				
-			}else{
+			} else {
 				model.addAttribute("acao", "cadastrar");
 				model.addAttribute("id", id);
 			}
@@ -179,6 +180,7 @@ public class PatrimonioController {
 	
 	@RequestMapping(value = {"/cadastrar/local/{acao}/{id}"}, method = RequestMethod.GET)
 	public String addLocal(Model model, @PathVariable("acao") String acao, @PathVariable("id") long id) {
+		
 		if(acao.equals("editar")){
 			model.addAttribute("acao", "editar");
 			model.addAttribute("id", id);
@@ -195,16 +197,44 @@ public class PatrimonioController {
 	@RequestMapping(value = {"/cadastrar/local"}, method = RequestMethod.POST)
 	public String addLocal(Model model, @Valid @ModelAttribute("local") Local local, BindingResult result, RedirectAttributes redirect,  @RequestParam("acao") String acao, @RequestParam("idd") long id) {
 		
+		if (local != null) {
+			
+			if (patrimonioService.isLocalNomeCadastrado(local)) {
+				result.rejectValue("nome", "local.nome", "Nome do local já cadastrado.");
+			}
+			
+			if (patrimonioService.isLocalPavimentoCadastrado(local)) {
+				result.rejectValue("pavimento", "local.pavimento", "Pavimento do local já cadastrado.");
+			}
+			
+			if (patrimonioService.isLocalBlocoCadastrado(local)) {
+				result.rejectValue("bloco", "local.bloco", "Bloco do local já cadastrado.");
+			}
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("local", local);
+			
+			if (acao.equals("editar")) {
+				model.addAttribute("acao", "editar");
+				model.addAttribute("id", id);
+				
+			} else {
+				model.addAttribute("acao", "cadastrar");
+				model.addAttribute("id", id);
+			}
+			
 			return "patrimonio/cadastrar-local";
 		}
 		
 		patrimonioService.salvarLocal(local);
 		redirect.addFlashAttribute("info", "Novo local adicionado.");
-		if(acao.equals("editar")){
+		
+		if (acao.equals("editar")) {
+			
 			return "redirect:/patrimonio/editar/"+id;
 		}
+		
 		return "redirect:/patrimonio/cadastrar";
 	}
 }
