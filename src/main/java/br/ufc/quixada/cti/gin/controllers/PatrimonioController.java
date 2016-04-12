@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.ufc.quixada.cti.gin.log.PatrimonioLog;
 import br.ufc.quixada.cti.gin.model.Categoria;
+import br.ufc.quixada.cti.gin.model.Historico;
 import br.ufc.quixada.cti.gin.model.Local;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
+import br.ufc.quixada.cti.gin.service.HistoricoService;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
 
 @Controller
@@ -24,6 +27,9 @@ public class PatrimonioController {
 
 	@Inject
 	private PatrimonioService patrimonioService;
+	
+	@Inject
+	private HistoricoService historicoService;
 	
 	@RequestMapping(value = {"/","/listar"}, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
@@ -93,8 +99,21 @@ public class PatrimonioController {
 
 			return "patrimonio/cadastrar-patrimonio";
 		}
-		
+		Patrimonio antigo = patrimonioService.find(Patrimonio.class, patrimonio.getId());
 		patrimonioService.update(patrimonio);
+		
+		
+		
+		
+		
+		//preenche o objeto completo categoria e local pois os mesmo vem apenas com id na chamada do controller;
+		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
+		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
+		
+		Historico historico = PatrimonioLog.editar(antigo, patrimonio);
+		if(historico != null)
+			historicoService.save(historico);
+		
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";
 	}
