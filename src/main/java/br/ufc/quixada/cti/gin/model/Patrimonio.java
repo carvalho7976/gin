@@ -23,6 +23,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
@@ -41,6 +42,7 @@ public class Patrimonio {
 	@Min(value = 0, message = "Número de tombamento deve ser maior ou igual a um.")
 	private Integer tombamento;
 	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String descricao;
 	
 	@ManyToOne
