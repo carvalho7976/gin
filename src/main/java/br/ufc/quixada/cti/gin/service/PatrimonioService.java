@@ -26,4 +26,9 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	public abstract boolean isLocalPavimentoCadastrado(Local local);
 	
 	public abstract boolean isLocalBlocoCadastrado(Local local);
+
+	public abstract Categoria getCategoria(long id);
+	
+	public abstract Local getLocal(long id);
+	
 }

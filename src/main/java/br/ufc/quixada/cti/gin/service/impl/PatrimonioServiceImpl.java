@@ -112,4 +112,13 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 		return true;
 	}
 	
+	public Categoria getCategoria(long id) {
+		return categoriaRepository.find(Categoria.class, id);
+	}
+
+	@Override
+	public Local getLocal(long id) {
+		return localRepository.find(Local.class, id);
+	}
+	
 }
