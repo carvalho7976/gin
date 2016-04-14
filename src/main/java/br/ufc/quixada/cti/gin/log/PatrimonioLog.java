@@ -1,16 +1,8 @@
 package br.ufc.quixada.cti.gin.log;
 
 import java.util.Date;
-
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.ufc.quixada.cti.gin.model.Historico;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
-import br.ufc.quixada.cti.gin.service.HistoricoService;
-import br.ufc.quixada.cti.gin.service.impl.HistoricoImpl;
-
 
 public class PatrimonioLog {
 	

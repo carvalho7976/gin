@@ -19,7 +19,7 @@
 			<input type="hidden" name="idd" value= "${id}"/>
 			<fieldset>
 				<legend>Novo Local</legend>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="nome" class="col-lg-2 control-label">Nome do local</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome do local..."/>
@@ -28,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="pavimento" class="col-lg-2 control-label">Pavimento</label>
 					<div class="col-lg-10">
 						<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..."/>
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="bloco" class="col-lg-2 control-label">Bloco</label>
 					<div class="col-lg-10">
 						<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="Bloco..."/>

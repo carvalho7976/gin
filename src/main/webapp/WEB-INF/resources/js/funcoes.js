@@ -50,10 +50,10 @@ $(document).ready(function() {
 			},
 		},
 		highlight : function(element) {
-			$(element).closest('.form-group').addClass('has-error');
+			$(element).closest('.form-error').addClass('has-error');
 		},
 		unhighlight : function(element) {
-			$(element).closest('.form-group').removeClass('has-error');
+			$(element).closest('.form-error').removeClass('has-error');
 		},
 		errorElement : 'span',
 		errorClass : 'help-block',
@@ -86,13 +86,81 @@ $(document).ready(function() {
 				required: "Informe o estado de conservação do patrimônio."
 			},
 			data_incorporacao : {
-				required : "Informe a data de incorporção do patrimônio."
+				required : "Informe a data de incorporação do patrimônio."
 			},
 			data_chegada_campus : {
 				required : "Informe a data de chegada do patrimônio no campus."
 			}
 		}
 			
+	});
+	
+	$('#cadastrarCategoria').validate({
+		rules : {
+			nome : {
+				required : true
+			}
+		},
+		highlight : function(element) {
+			$(element).closest('.form-error').addClass('has-error');
+		},
+		unhighlight : function(element) {
+			$(element).closest('.form-error').removeClass('has-error');
+		},
+		errorElement : 'span',
+		errorClass : 'help-block',
+		errorPlacement : function(error, element) {
+			error.insertAfter(element.parent().children().last());
+			var itemForm = element.parent();
+			var id = element.attr("name");
+			$(itemForm).find("span").attr("id", id);
+		},
+		messages : {
+			nome : {
+				required : "Informe o nome da categoria."
+			}
+		}
+		
+	});
+	
+	$('#cadastrarLocal').validate({
+		rules : {
+			nome : {
+				required : true
+			},
+			pavimento : {
+				required : true
+			},
+			bloco : {
+				required : true
+			}
+		},
+		highlight : function(element) {
+			$(element).closest('.form-error').addClass('has-error');
+		},
+		unhighlight : function(element) {
+			$(element).closest('.form-error').removeClass('has-error');
+		},
+		errorElement : 'span',
+		errorClass : 'help-block',
+		errorPlacement : function(error, element) {
+			error.insertAfter(element.parent().children().last());
+			var itemForm = element.parent();
+			var id = element.attr("name");
+			$(itemForm).find("span").attr("id", id);
+		},
+		messages : {
+			nome : {
+				required : "Informe o nome do local."
+			},
+			pavimento : {
+				required : "Informe o pavimento do local."
+			},
+			bloco : {
+				required : "Informe o bloco do local."
+			}
+		}
+		
 	});
 	
 	$('div.error-validation:has(span)').find('span').css('color', '#a94442');

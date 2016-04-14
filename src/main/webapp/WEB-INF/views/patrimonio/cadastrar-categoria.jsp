@@ -21,7 +21,7 @@
 			
 			<fieldset>
 				<legend>Nova Categoria</legend>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="nome" class="col-lg-2 control-label">Nome da Categoria</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..."/>
