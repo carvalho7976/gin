@@ -43,25 +43,25 @@
 					</div>
 				</c:if>
 				<form:input path="id" type="hidden"/>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label ">Tombamento</label>
 					<div class="col-lg-10">
 						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="Tombamento..."/>
-						<div class="error-validation">
+						<div class="error-validation" id="error-tombamento">
 							<form:errors path="tombamento"></form:errors>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="descricao" class="col-lg-2 control-label">Descrição</label>
 					<div class="col-lg-10">
 						<form:input path="descricao" id="descricao" class="form-control" type="text" placeholder="Descrição..."/>
-						<div class="error-validation">
+						<div class="error-validation" id="error-descricao">
 							<form:errors path="descricao"></form:errors>
 						</div>
 					</div>
 				</div>
-				<div class="row form-group">
+				<div class="row form-group form-error">
 					<div>
 						<label for="categoria" class="col-lg-2 control-label">Categoria</label>
 						<div class="col-lg-9">
@@ -69,6 +69,9 @@
 								<form:option value=""> Selecione uma categoria</form:option>
 								<form:options items="${categorias }" itemLabel="nome" itemValue="id"/>
 							</form:select>
+							<div class="error-validation" id="error-categoria">
+								<form:errors path="categoria"></form:errors>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-1">
@@ -76,7 +79,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="row form-group">
+				<div class="row form-group form-error">
 					<div>
 						<label for="local" class="col-lg-2 control-label">Local</label>
 						<div class="col-lg-9">
@@ -84,6 +87,9 @@
 								<form:option value=""> Selecione um local</form:option>
 								<form:options items="${locais}" itemLabel="fullLocal" itemValue="id"/>
 							</form:select>
+							<div class="error-validation" id="error-local">
+								<form:errors path="local"></form:errors>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-1">
@@ -91,55 +97,59 @@
 						</a>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="situacao" class="col-lg-2 control-label">Situação</label>
 					<div class="col-lg-10">
 						<form:select path="situacao" id="situacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${situacao }" itemLabel="tipo"/>
 						</form:select>
-						<div class="error-validation">
+						<div class="error-validation" id="error-situacao">
 							<form:errors path="situacao"></form:errors>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="lotacao" class="col-lg-2 control-label">Lotação</label>
 					<div class="col-lg-10">
 						<form:select path="list_de_lotacao" id="lotacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${list_de_lotacao }" itemLabel="tipo"/>
 						</form:select>
-						<div class="error-validation">
+						<div class="error-validation" id="error-lotacao">
 							<form:errors path="list_de_lotacao"></form:errors>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="conservacao" class="col-lg-2 control-label">Conservação</label>
 					<div class="col-lg-10">
 						<form:select path="conservacao" id="conservacao" class="form-control">
-							<form:option value="NONE"> Selecione uma opção</form:option>
+							<form:option value=""> Selecione uma opção</form:option>
 							<form:options items="${conservacao}" itemLabel="tipo"/>
 						</form:select>
-						<div class="error-validation">
+						<div class="error-validation" id="error-conservacao">
 							<form:errors path="conservacao"></form:errors>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div>
+					<div class="form-error">
 						<label for="data_incorporacao" class="col-lg-2 control-label">Data de Incorporação</label>
 						<div class="col-lg-4">
 							<form:input id="data_incorporacao" class="form-control" path="data_incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
-							<form:errors path="data_incorporacao" cssClass="error" />
+							<div class="error-validation" id="error-data-incorporacao">
+								<form:errors path="data_incorporacao"></form:errors>
+							</div>
 						</div>
 					</div>
-					<div>
+					<div class="form-error">
 						<label for="data_chegada_campus" class="col-lg-2 control-label">Chegada no Campus</label>
 						<div class="col-lg-4">
 							<form:input id="data_chegada_campus" class="form-control" path="data_chegada_campus" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
-							<form:errors path="data_chegada_campus" cssClass="error" />
+							<div class="error-validation" id="error-data-chegada-campus">
+								<form:errors path="data_chegada_campus"></form:errors>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -153,8 +163,7 @@
 				<br> <br>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<a	href="<c:url value="/patrimonio/listar"></c:url>"
-					class="btn btn-danger"">Cancelar</a>
+						<a	href="<c:url value="/patrimonio/listar"></c:url>" class="btn btn-danger">Cancelar</a>
 						<button type="submit" class="btn btn-success">${botao}</button>
 					</div>
 				</div>

@@ -58,10 +58,19 @@ public class PatrimonioController {
 		
 		model.addAttribute("action", "cadastrar");
 		
+		if (patrimonio != null) {
+			if (patrimonioService.isPatrimonioCadastrado(patrimonio)) {
+				result.rejectValue("tombamento", "patrimonio.tombamento", "Número de tombamento já existe.");
+			}
+		}
+		
 		if (result.hasErrors()) {
+			
 			model.addAttribute("patrimonio", patrimonio);
+			model.addAttribute("id", -1);
 			model.addAttribute("categorias", patrimonioService.getCategorias());
 			model.addAttribute("locais", patrimonioService.getLocais());
+			
 			return "patrimonio/cadastrar-patrimonio";
 		}
 		
@@ -136,26 +145,44 @@ public class PatrimonioController {
 	}
 	
 	@RequestMapping(value = {"/cadastrar/categoria/{acao}/{id}"}, method = RequestMethod.GET)
-	public String addCategoria(Model model, @PathVariable("acao") String acao, @PathVariable("id") long id) {
+	public String addCategoria(Model model, @PathVariable("acao") String acao, @PathVariable("id") Integer id) {
 		
 		if(acao.equals("editar")){
 			model.addAttribute("acao", "editar");
 			model.addAttribute("id", id);
+			
 		}else{
 			model.addAttribute("acao", "cadastrar");
 			model.addAttribute("id", id);
 		}
+		
 		model.addAttribute("categoria", new Categoria());
 		
 		return "patrimonio/cadastrar-categoria";
 	}
 	
 	@RequestMapping(value = {"/cadastrar/categoria"}, method = RequestMethod.POST)
-	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirect, @RequestParam("acao") String acao, @RequestParam("idd") long id) {
+	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirect, @RequestParam("acao") String acao, @RequestParam("idd") Integer id) {
 		
+		if (categoria != null) {
+			if (patrimonioService.isCategoriaCadastrada(categoria)) {
+				result.rejectValue("nome", "categoria.nome", "Categoria já cadastrada.");
+			}
+		}
 		
 		if (result.hasErrors()) {
+			
 			model.addAttribute("categoria", categoria);
+			
+			if (acao.equals("editar")){
+				model.addAttribute("acao", "editar");
+				model.addAttribute("id", id);
+				
+			} else {
+				model.addAttribute("acao", "cadastrar");
+				model.addAttribute("id", id);
+			}
+			
 			return "patrimonio/cadastrar-categoria";
 		}
 		
@@ -163,13 +190,16 @@ public class PatrimonioController {
 		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
 		
 		if(acao.equals("editar")){
+			
 			return "redirect:/patrimonio/editar/"+id;
 		}
+		
 		return "redirect:/patrimonio/cadastrar";
 	}
 	
 	@RequestMapping(value = {"/cadastrar/local/{acao}/{id}"}, method = RequestMethod.GET)
 	public String addLocal(Model model, @PathVariable("acao") String acao, @PathVariable("id") long id) {
+		
 		if(acao.equals("editar")){
 			model.addAttribute("acao", "editar");
 			model.addAttribute("id", id);
@@ -186,16 +216,44 @@ public class PatrimonioController {
 	@RequestMapping(value = {"/cadastrar/local"}, method = RequestMethod.POST)
 	public String addLocal(Model model, @Valid @ModelAttribute("local") Local local, BindingResult result, RedirectAttributes redirect,  @RequestParam("acao") String acao, @RequestParam("idd") long id) {
 		
+		if (local != null) {
+			
+			if (patrimonioService.isLocalNomeCadastrado(local)) {
+				result.rejectValue("nome", "local.nome", "Nome do local já cadastrado.");
+			}
+			
+			if (patrimonioService.isLocalPavimentoCadastrado(local)) {
+				result.rejectValue("pavimento", "local.pavimento", "Pavimento do local já cadastrado.");
+			}
+			
+			if (patrimonioService.isLocalBlocoCadastrado(local)) {
+				result.rejectValue("bloco", "local.bloco", "Bloco do local já cadastrado.");
+			}
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("local", local);
+			
+			if (acao.equals("editar")) {
+				model.addAttribute("acao", "editar");
+				model.addAttribute("id", id);
+				
+			} else {
+				model.addAttribute("acao", "cadastrar");
+				model.addAttribute("id", id);
+			}
+			
 			return "patrimonio/cadastrar-local";
 		}
 		
 		patrimonioService.salvarLocal(local);
 		redirect.addFlashAttribute("info", "Novo local adicionado.");
-		if(acao.equals("editar")){
+		
+		if (acao.equals("editar")) {
+			
 			return "redirect:/patrimonio/editar/"+id;
 		}
+		
 		return "redirect:/patrimonio/cadastrar";
 	}
 }

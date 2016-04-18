@@ -10,15 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="categoria")
+@Table(name="categoria", uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty(message = "Campo obrigatório.")
 	private String nome;
 	
 	@OneToMany(mappedBy = "categoria", targetEntity = Patrimonio.class, fetch = FetchType.LAZY,cascade=CascadeType.MERGE)

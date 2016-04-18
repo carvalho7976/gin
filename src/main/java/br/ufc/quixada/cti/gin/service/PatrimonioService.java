@@ -10,10 +10,25 @@ import br.ufc.quixada.npi.service.GenericService;
 public interface PatrimonioService extends GenericService<Patrimonio> {
 
 	public abstract void salvarCategoria(Categoria categoria);
+	
 	public abstract void salvarLocal(Local local);
 	
 	public abstract List<Local> getLocais();
+	
 	public abstract List<Categoria> getCategorias();
+	
+	public abstract boolean isPatrimonioCadastrado(Patrimonio patrimonio);
+	
+	public abstract boolean isCategoriaCadastrada(Categoria categoria);
+	
+	public abstract boolean isLocalNomeCadastrado(Local local);
+	
+	public abstract boolean isLocalPavimentoCadastrado(Local local);
+	
+	public abstract boolean isLocalBlocoCadastrado(Local local);
+
 	public abstract Categoria getCategoria(long id);
+	
 	public abstract Local getLocal(long id);
+	
 }

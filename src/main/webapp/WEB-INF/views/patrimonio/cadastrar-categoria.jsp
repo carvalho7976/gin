@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,19 +21,18 @@
 			
 			<fieldset>
 				<legend>Nova Categoria</legend>
-				<div class="form-group">
+				<div class="form-group form-error">
 					<label for="nome" class="col-lg-2 control-label">Nome da Categoria</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..."/>
-						<div class="error-validation">
+						<div class="error-validation" id="error-nome">
 							<form:errors path="nome"></form:errors>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<a	href="<c:url value="/patrimonio/listar"></c:url>"
-					class="btn btn-danger"">Cancelar</a>
+						<a	href="#" class="btn btn-danger back">Cancelar </a>
 						<button type="submit" class="btn btn-success">Adicionar</button>
 					</div>
 				</div>
