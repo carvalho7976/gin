@@ -20,7 +20,7 @@
 			<fieldset>
 				<legend>Novo Local</legend>
 				<div class="form-group form-error">
-					<label for="nome" class="col-lg-2 control-label">Nome do local</label>
+					<label for="nome" class="col-lg-2 control-label"><span class="red">*</span> Nome do Local</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome do local..."/>
 						<div class="error-validation" id="error-nome">
@@ -29,7 +29,7 @@
 					</div>
 				</div>
 				<div class="form-group form-error">
-					<label for="pavimento" class="col-lg-2 control-label">Pavimento</label>
+					<label for="pavimento" class="col-lg-2 control-label"><span class="red">*</span> Pavimento</label>
 					<div class="col-lg-10">
 						<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..."/>
 						<div class="error-validation">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="form-group form-error">
-					<label for="bloco" class="col-lg-2 control-label">Bloco</label>
+					<label for="bloco" class="col-lg-2 control-label"><span class="red">*</span> Bloco</label>
 					<div class="col-lg-10">
 						<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="Bloco..."/>
 						<div class="error-validation">

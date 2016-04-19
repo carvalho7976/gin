@@ -2,3 +2,7 @@
 .modal-backdrop {
 	z-index: auto;
 }
+
+.red {
+	color: red;
+}
