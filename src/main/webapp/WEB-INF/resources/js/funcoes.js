@@ -36,18 +36,15 @@ $(document).ready(function() {
 			situacao : {
 				required : true
 			},
-			list_de_lotacao : {
+			lotacao : {
 				required : true
 			},
 			conservacao : {
 				required : true
 			},
-			data_incorporacao : {
+			incorporacao : {
 				required : true
-			},
-			data_chegada_campus : {
-				required : true
-			},
+			}
 		},
 		highlight : function(element) {
 			$(element).closest('.form-error').addClass('has-error');
@@ -79,17 +76,14 @@ $(document).ready(function() {
 			situacao : {
 				required : "Informe a situação do patrimônio."
 			},
-			list_de_lotacao : {
+			lotacao : {
 				required : "Informe a lotação do patrimônio."
 			},
 			conservacao : {
 				required: "Informe o estado de conservação do patrimônio."
 			},
-			data_incorporacao : {
+			incorporacao : {
 				required : "Informe a data de incorporação do patrimônio."
-			},
-			data_chegada_campus : {
-				required : "Informe a data de chegada do patrimônio no campus."
 			}
 		}
 			

@@ -47,11 +47,11 @@
 							<td>${patrimonio.descricao}</td>
 							<td>${patrimonio.categoria.nome}</td>
 							<td>${patrimonio.situacao.tipo}</td>
-							<td>${patrimonio.list_de_lotacao.tipo}</td>
+							<td>${patrimonio.lotacao.tipo}</td>
 							<td>${patrimonio.local.fullLocal}</td>
 							<td>${patrimonio.conservacao.tipo}</td>
-							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_incorporacao}" /></td>
-							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.data_chegada_campus}" /></td>
+							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.incorporacao}" /></td>
+							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.chegadaCampus}" /></td>
 							<td>${patrimonio.comentario.mensagem}</td>
 							<td><a
 								href="<c:url value="/patrimonio/editar/${patrimonio.id }/" ></c:url>">

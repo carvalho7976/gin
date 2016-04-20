@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="form-group form-error">
-					<label for="descricao" class="col-lg-2 control-label">Descrição</label>
+					<label for="descricao" class="col-lg-2 control-label"><span class="red">*</span> Descrição</label>
 					<div class="col-lg-10">
 						<form:input path="descricao" id="descricao" class="form-control" type="text" placeholder="Descrição..."/>
 						<div class="error-validation" id="error-descricao">
@@ -112,12 +112,12 @@
 				<div class="form-group form-error">
 					<label for="lotacao" class="col-lg-2 control-label"><span class="red">*</span> Lotação</label>
 					<div class="col-lg-10">
-						<form:select path="list_de_lotacao" id="lotacao" class="form-control">
+						<form:select path="lotacao" id="lotacao" class="form-control">
 							<form:option value=""> Selecione uma opção</form:option>
-							<form:options items="${list_de_lotacao }" itemLabel="tipo"/>
+							<form:options items="${lotacao }" itemLabel="tipo"/>
 						</form:select>
 						<div class="error-validation" id="error-lotacao">
-							<form:errors path="list_de_lotacao"></form:errors>
+							<form:errors path="lotacao"></form:errors>
 						</div>
 					</div>
 				</div>
@@ -135,20 +135,20 @@
 				</div>
 				<div class="row">
 					<div class="form-error">
-						<label for="data_incorporacao" class="col-lg-2 control-label"><span class="red">*</span> Data de Incorporação</label>
+						<label for="incorporacao" class="col-lg-2 control-label"><span class="red">*</span> Data de Incorporação</label>
 						<div class="col-lg-4">
-							<form:input id="data_incorporacao" class="form-control" path="data_incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+							<form:input id="incorporacao" class="form-control" path="incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
 							<div class="error-validation" id="error-data-incorporacao">
-								<form:errors path="data_incorporacao"></form:errors>
+								<form:errors path="incorporacao"></form:errors>
 							</div>
 						</div>
 					</div>
 					<div class="form-error">
-						<label for="data_chegada_campus" class="col-lg-2 control-label"><span class="red">*</span> Chegada no Campus</label>
+						<label for="chegadaCampus" class="col-lg-2 control-label">Chegada no Campus</label>
 						<div class="col-lg-4">
-							<form:input id="data_chegada_campus" class="form-control" path="data_chegada_campus" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
-							<div class="error-validation" id="error-data-chegada-campus">
-								<form:errors path="data_chegada_campus"></form:errors>
+							<form:input id="chegadaCampus" class="form-control" path="chegadaCampus" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+							<div class="error-validation" id="error-chegada-campus">
+								<form:errors path="chegadaCampus"></form:errors>
 							</div>
 						</div>
 					</div>
@@ -175,8 +175,8 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$("#data_incorporacao").datepicker({dateFormat: 'dd/mm/yy'});
-			$("#data_chegada_campus").datepicker({dateFormat: 'dd/mm/yy'});
+			$("#incorporacao").datepicker({dateFormat: 'dd/mm/yy'});
+			$("#chegadaCampus").datepicker({dateFormat: 'dd/mm/yy'});
 		});
 	</script>
 </body>

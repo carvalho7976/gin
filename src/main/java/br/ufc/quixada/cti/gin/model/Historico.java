@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="historico")
 public class Historico {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -22,7 +23,7 @@ public class Historico {
 	private String comentario;
 	
 	@ManyToOne
-	@JoinColumn(name="id_patrimonio")
+	@JoinColumn(name="patrimonio_id")
 	private Patrimonio patrimonio;
 
 	public Integer getId() {

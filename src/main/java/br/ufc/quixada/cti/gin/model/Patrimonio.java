@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +21,6 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -46,8 +44,12 @@ public class Patrimonio {
 	private String descricao;
 	
 	@ManyToOne
-	@JoinColumn(name="id_categoria")
+	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
+
+	@ManyToOne
+	@JoinColumn(name="local_id")
+	private Local local;
 	
 	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
@@ -55,7 +57,7 @@ public class Patrimonio {
 	
 	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
-	private Lotacao list_de_lotacao;
+	private Lotacao lotacao;
 	
 	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
@@ -64,25 +66,18 @@ public class Patrimonio {
 	@NotNull(message = "Campo obrigatório.")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	private Date data_incorporacao;
+	private Date incorporacao;
 	
-	@NotNull(message = "Campo obrigatório.")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	private Date data_chegada_campus;
+	private Date chegadaCampus;
 	
-	private Date data_registro_sist; 	
-	
-	@ManyToOne
-	@JoinColumn(name="id_local")
-	private Local local;
-	
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name = "comentario_id")
 	private Comentario comentario;
 	
-	@OneToMany(mappedBy="patrimonio", targetEntity=Historico.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JsonBackReference
-	private List<Historico> registros;
+	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
+	private List<Historico> historicos;
 
 	public Integer getId() {
 		return id;
@@ -115,8 +110,7 @@ public class Patrimonio {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
 	public Situacao getSituacao() {
 		return situacao;
 	}
@@ -124,17 +118,15 @@ public class Patrimonio {
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
-	
-	
-	public Lotacao getList_de_lotacao() {
-		return list_de_lotacao;
+
+	public Lotacao getLotacao() {
+		return lotacao;
 	}
 
-	public void setList_de_lotacao(Lotacao list_de_lotacao) {
-		this.list_de_lotacao = list_de_lotacao;
+	public void setLotacao(Lotacao lotacao) {
+		this.lotacao = lotacao;
 	}
-	
-	
+
 	public Conservacao getConservacao() {
 		return conservacao;
 	}
@@ -143,28 +135,20 @@ public class Patrimonio {
 		this.conservacao = conservacao;
 	}
 
-	public Date getData_incorporacao() {
-		return data_incorporacao;
+	public Date getIncorporacao() {
+		return incorporacao;
 	}
 
-	public void setData_incorporacao(Date data_incorporacao) {
-		this.data_incorporacao = data_incorporacao;
+	public void setIncorporacao(Date incorporacao) {
+		this.incorporacao = incorporacao;
 	}
 
-	public Date getData_chegada_campus() {
-		return data_chegada_campus;
+	public Date getChegadaCampus() {
+		return chegadaCampus;
 	}
 
-	public void setData_chegada_campus(Date data_chegada_campus) {
-		this.data_chegada_campus = data_chegada_campus;
-	}
-
-	public Date getData_registro_sist() {
-		return data_registro_sist;
-	}
-
-	public void setData_registro_sist(Date data_registro_sist) {
-		this.data_registro_sist = data_registro_sist;
+	public void setChegadaCampus(Date chegadaCampus) {
+		this.chegadaCampus = chegadaCampus;
 	}
 
 	public Local getLocal() {
@@ -183,13 +167,12 @@ public class Patrimonio {
 		this.comentario = comentario;
 	}
 
-	public List<Historico> getRegistros() {
-		return registros;
+	public List<Historico> getHistoricos() {
+		return historicos;
 	}
 
-	public void setRegistros(List<Historico> registros) {
-		this.registros = registros;
+	public void setHistoricos(List<Historico> historicos) {
+		this.historicos = historicos;
 	}
 
-	
 }
