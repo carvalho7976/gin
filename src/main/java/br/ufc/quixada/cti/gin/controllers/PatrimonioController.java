@@ -1,5 +1,8 @@
 package br.ufc.quixada.cti.gin.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.cti.gin.log.PatrimonioLog;
@@ -20,6 +24,7 @@ import br.ufc.quixada.cti.gin.model.Local;
 import br.ufc.quixada.cti.gin.model.Patrimonio;
 import br.ufc.quixada.cti.gin.service.HistoricoService;
 import br.ufc.quixada.cti.gin.service.PatrimonioService;
+
 
 @Controller
 @RequestMapping("patrimonio")
@@ -252,5 +257,13 @@ public class PatrimonioController {
 		}
 		
 		return "redirect:/patrimonio/cadastrar";
+	}
+	
+	@RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
+	public ModelAndView downloadExcel() {
+		List<Patrimonio> listaPatrimonios = patrimonioService.find(Patrimonio.class);
+
+		// return a view which will be resolved by an excel view resolver
+		return new ModelAndView("pdfView", "listaPatrimonios", listaPatrimonios);
 	}
 }
