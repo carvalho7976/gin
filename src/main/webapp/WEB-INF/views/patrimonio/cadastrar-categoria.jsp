@@ -17,12 +17,12 @@
 
 		<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
 			<input type="hidden"  name="acao" value="${acao}"/>
-			<input type="hidden" name="idd" value= "${id}"/>'
+			<input type="hidden" name="idd" value= "${id}"/>
 			
 			<fieldset>
 				<legend>Nova Categoria</legend>
 				<div class="form-group form-error">
-					<label for="nome" class="col-lg-2 control-label">Nome da Categoria</label>
+					<label for="nome" class="col-lg-2 control-label"><span class="red">*</span> Nome da Categoria</label>
 					<div class="col-lg-10">
 						<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..."/>
 						<div class="error-validation" id="error-nome">
