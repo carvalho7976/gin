@@ -29,8 +29,10 @@ public class PDFBuilder extends AbstractITextPdfView {
 			throws Exception {
 		// get data model which is passed by the Spring container
 		List<Patrimonio> listPatrimonios = (List<Patrimonio>) model.get("listaPatrimonios");
-		
-		
+				
+		doc.setPageSize(PageSize.A4.rotate());
+		doc.newPage();
+		System.out.println(doc.getPageSize().getRotation());
 		
 		doc.add(new Paragraph("Lista de Patrimonios"));
 		
@@ -42,11 +44,13 @@ public class PDFBuilder extends AbstractITextPdfView {
 		// define font for table header row
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setColor(BaseColor.WHITE);
+		font.setSize(10);
 		
 		// define table header cell
 		PdfPCell cell = new PdfPCell();
 		cell.setBackgroundColor(BaseColor.BLUE);
 		cell.setPadding(5);
+		
 		
 		// write table header 
 		cell.setPhrase(new Phrase("Tombamento", font));
@@ -101,8 +105,8 @@ public class PDFBuilder extends AbstractITextPdfView {
 			}
 		}
 		
-		doc.add(table);
-		
+	doc.add(table);
+			
 	}
 
 }
