@@ -1,5 +1,6 @@
 package br.ufc.quixada.cti.gin.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,6 +19,7 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(length = 500)
 	private String mensagem;
 	
 	@Enumerated(EnumType.STRING)
