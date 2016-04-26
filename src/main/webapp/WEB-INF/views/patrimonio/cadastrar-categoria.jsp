@@ -16,8 +16,9 @@
 	<div class="container">
 
 		<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
-			<input type="hidden"  name="acao" value="${acao}"/>
-			<input type="hidden" name="idd" value= "${id}"/>
+			
+			<input type="hidden" name="action" value="${action}"/>
+			<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
 			
 			<fieldset>
 				<legend>Nova Categoria</legend>

@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria/${action}/${id}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria/${action}/${idPatrimonio}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
 				</div>
