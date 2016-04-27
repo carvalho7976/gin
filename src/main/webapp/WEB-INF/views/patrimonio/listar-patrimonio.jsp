@@ -32,6 +32,7 @@
 						<th>Categoria</th>
 						<th>Situação</th>
 						<th>Lotação</th>
+						<th>Conformidade Relatorio</th>
 						<th>Local</th>
 						<th>Conservação</th>
 						<th>Incorporação</th>
@@ -48,6 +49,7 @@
 							<td>${patrimonio.categoria.nome}</td>
 							<td>${patrimonio.situacao.tipo}</td>
 							<td>${patrimonio.lotacao.tipo}</td>
+							<td>${patrimonio.conformeRelatorio.tipo}</td>
 							<td>${patrimonio.local.fullLocal}</td>
 							<td>${patrimonio.conservacao.tipo}</td>
 							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${patrimonio.incorporacao}" /></td>
