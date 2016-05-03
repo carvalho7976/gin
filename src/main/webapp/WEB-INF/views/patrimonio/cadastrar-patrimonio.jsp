@@ -117,6 +117,18 @@
 					</div>
 				</div>
 				<div class="form-group form-error">
+					<label for="situacao" class="col-lg-2 control-label"><span class="red">*</span> Conformidade com Relatório</label>
+					<div class="col-lg-10">
+						<form:select path="conformeRelatorio" id="conformeRelatorio" class="form-control">
+							<form:option value=""> Selecione uma opção</form:option>
+							<form:options items="${conformeRelatorio}" itemLabel="tipo"/>
+						</form:select>
+						<div class="error-validation" id="error-conformeRelatorio">
+							<form:errors path="conformeRelatorio"></form:errors>
+						</div>
+					</div>
+				</div>
+				<div class="form-group form-error">
 					<label for="situacao" class="col-lg-2 control-label"><span class="red">*</span> Situação</label>
 					<div class="col-lg-10">
 						<form:select path="situacao" id="situacao" class="form-control">
