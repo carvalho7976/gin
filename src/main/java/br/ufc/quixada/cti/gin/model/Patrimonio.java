@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.ufc.quixada.cti.gin.enumeration.ConformeRelatorio;
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
 import br.ufc.quixada.cti.gin.enumeration.Lotacao;
 import br.ufc.quixada.cti.gin.enumeration.Situacao;
@@ -78,6 +79,18 @@ public class Patrimonio {
 	
 	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
 	private List<Historico> historicos;
+	
+	@Enumerated(EnumType.STRING)
+	private ConformeRelatorio conformeRelatorio;
+	
+
+	public ConformeRelatorio getConformeRelatorio() {
+		return conformeRelatorio;
+	}
+
+	public void setConformeRelatorio(ConformeRelatorio conformeRelatorio) {
+		this.conformeRelatorio = conformeRelatorio;
+	}
 
 	public Integer getId() {
 		return id;
