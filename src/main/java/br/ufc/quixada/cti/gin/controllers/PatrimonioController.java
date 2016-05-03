@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -156,12 +157,10 @@ public class PatrimonioController {
 		}
 
 		if (result.hasErrors()) {
-//			model.addAttribute("categoria", categoria);
-//			model.addAttribute("patrimonio", new Patrimonio());
-//			model.addAttribute("categorias", patrimonioService.getCategorias());
-//			model.addAttribute("locais", patrimonioService.getLocais());
-			
-			redirect.addFlashAttribute("erro", "Categoria já cadastrada.");
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("patrimonio", new Patrimonio());
+			model.addAttribute("categorias", patrimonioService.getCategorias());
+			model.addAttribute("locais", patrimonioService.getLocais());
 			
 			return "redirect:/patrimonio/cadastrar";
 		}
@@ -172,36 +171,24 @@ public class PatrimonioController {
 		return "redirect:/patrimonio/cadastrar";
 	}
 
-	@RequestMapping(value = { "/cadastrar/local" }, method = RequestMethod.GET)
-	public String addLocal(Model model) {
-
-		model.addAttribute("local", new Local());
-
-		return "patrimonio/cadastrar-local";
-	}
-
 	@RequestMapping(value = { "/cadastrar/local" }, method = RequestMethod.POST)
 	public String addLocal(Model model, @Valid @ModelAttribute("local") Local local, BindingResult result,
 			RedirectAttributes redirect) {
 
 		if (local != null) {
 
-			if (patrimonioService.isLocalNomeCadastrado(local)) {
-				result.rejectValue("nome", "local.nome", "Nome do local já cadastrado.");
-			}
-
-			if (patrimonioService.isLocalPavimentoCadastrado(local)) {
-				result.rejectValue("pavimento", "local.pavimento", "Pavimento do local já cadastrado.");
-			}
-
-			if (patrimonioService.isLocalBlocoCadastrado(local)) {
-				result.rejectValue("bloco", "local.bloco", "Bloco do local já cadastrado.");
+			if (patrimonioService.isLocalizacaoCadastrada(local)) {
+				result.rejectValue("localizacao", "local.localizacao", "Localização já está cadastrada.");
 			}
 		}
 
 		if (result.hasErrors()) {
 			model.addAttribute("local", local);
-			return "patrimonio/cadastrar-local";
+			model.addAttribute("patrimonio", new Patrimonio());
+			model.addAttribute("categorias", patrimonioService.getCategorias());
+			model.addAttribute("locais", patrimonioService.getLocais());
+			
+			return "redirect:/patrimonio/cadastrar";
 		}
 
 		patrimonioService.salvarLocal(local);
@@ -216,5 +203,15 @@ public class PatrimonioController {
 
 		// return a view which will be resolved by an excel view resolver
 		return new ModelAndView("pdfView", "listaPatrimonios", listaPatrimonios);
+	}
+	
+	@RequestMapping(value = { "checkCategoria" }, method = RequestMethod.POST)
+	public @ResponseBody boolean checkCategoria(Categoria categoria) {
+		return patrimonioService.isCategoriaCadastrada(categoria);
+	}
+	
+	@RequestMapping(value = { "checkLocalizacao" }, method = RequestMethod.POST)
+	public @ResponseBody boolean checkLocalizacao(Local local) {
+		return patrimonioService.isLocalizacaoCadastrada(local);
 	}
 }

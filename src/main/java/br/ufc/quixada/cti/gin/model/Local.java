@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="local", uniqueConstraints = @UniqueConstraint(columnNames = {"nome", "pavimento", "bloco"}))
+@Table(name="local", uniqueConstraints = @UniqueConstraint(columnNames = {"localizacao"}))
 public class Local {
 	
 	@Id
@@ -18,7 +18,7 @@ public class Local {
 	private Long id;
 	
 	@NotEmpty(message = "Campo obrigatório.")
-	private String nome;
+	private String localizacao;
 	
 	@NotEmpty(message = "Campo obrigatório.")
 	private String pavimento;
@@ -34,14 +34,14 @@ public class Local {
 		this.id = id;
 	}
 	
-	public String getNome() {
-		return nome;
+	public String getLocalizacao() {
+		return localizacao;
 	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
 	}
-	
+
 	public String getPavimento() {
 		return pavimento;
 	}
@@ -59,7 +59,7 @@ public class Local {
 	}
 	
 	public String getFullLocal(){
-		return this.nome +" / bloco: " + this.bloco + "/ pavimento: " + this.pavimento;
+		return this.localizacao + " - " + this.bloco + " - " + this.pavimento;
 	}
 	
 }

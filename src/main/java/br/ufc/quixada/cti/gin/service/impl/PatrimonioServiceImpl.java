@@ -74,36 +74,10 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	}
 
 	@Override
-	public boolean isLocalNomeCadastrado(Local local) {
+	public boolean isLocalizacaoCadastrada(Local local) {
 		@SuppressWarnings("unchecked")
-		List<Categoria> locais = find(QueryType.JPQL, "from Local as l where l.nome = :nome", 
-				new SimpleMap<String, Object>("nome", local.getNome()));
-		
-		if (locais == null || locais.isEmpty()) {
-			return false;
-		}
-		
-		return true;
-	}
-
-	@Override
-	public boolean isLocalPavimentoCadastrado(Local local) {
-		@SuppressWarnings("unchecked")
-		List<Categoria> locais = find(QueryType.JPQL, "from Local as l where l.pavimento = :pavimento", 
-				new SimpleMap<String, Object>("pavimento", local.getPavimento()));
-		
-		if (locais == null || locais.isEmpty()) {
-			return false;
-		}
-		
-		return true;
-	}
-
-	@Override
-	public boolean isLocalBlocoCadastrado(Local local) {
-		@SuppressWarnings("unchecked")
-		List<Categoria> locais = find(QueryType.JPQL, "from Local as l where l.bloco = :bloco", 
-				new SimpleMap<String, Object>("bloco", local.getBloco()));
+		List<Categoria> locais = find(QueryType.JPQL, "from Local as l where l.localizacao = :localizacao", 
+				new SimpleMap<String, Object>("localizacao", local.getLocalizacao()));
 		
 		if (locais == null || locais.isEmpty()) {
 			return false;

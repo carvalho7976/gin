@@ -109,7 +109,9 @@
 					</div>
 					<div class="col-lg-1">
 						<a class="btn btn-success" 
-							href="<c:url value="/patrimonio/cadastrar/local"></c:url>" > 
+							data-href="<c:url value="#"></c:url>" 
+							data-toggle="modal"
+							data-target="#cadastrar-local"> 
 							<span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
@@ -192,13 +194,12 @@
 	<div id="cadastrar-categoria" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
-				</div>
-				<div class="modal-body">
-
-					<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
+				<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
+					</div>
+					<div class="modal-body">
 						<div class="form-group form-error">
 							<label for="nome" class="col-lg-4 control-label"><span class="red">*</span> Nome da Categoria</label>
 							<div class="col-lg-8">
@@ -208,15 +209,58 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-success">Adicionar</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
 
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Cancelar</button>
-							<button type="submit" class="btn btn-success">Adicionar</button>
+	<div id="cadastrar-local" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" commandName="local" method="POST" class="form-horizontal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Novo Local</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group form-error">
+							<label for="localizacao" class="col-lg-4 control-label"><span class="red">*</span> Localização</label>
+							<div class="col-lg-8">
+								<form:input path="localizacao" id="localizacao" class="form-control" type="text" placeholder="Nome do local..." />
+								<div class="error-validation" id="error-nome">
+									<form:errors path="localizacao"></form:errors>
+								</div>
+							</div>
 						</div>
-
-					</form:form>
-				</div>
+						<div class="form-group form-error">
+							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
+							<div class="col-lg-8">
+								<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..." />
+								<div class="error-validation">
+									<form:errors path="pavimento"></form:errors>
+								</div>
+							</div>
+						</div>
+						<div class="form-group form-error">
+							<label for="bloco" class="col-lg-4 control-label"><span class="red">*</span> Bloco</label>
+							<div class="col-lg-8">
+								<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="Bloco..." />
+								<div class="error-validation">
+									<form:errors path="bloco"></form:errors>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-success">Adicionar</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
