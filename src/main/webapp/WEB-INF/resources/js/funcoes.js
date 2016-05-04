@@ -28,9 +28,16 @@ $(document).ready(function() {
 				required : true
 			},
 			categoria : {
-				required : true
+				id : {
+					required : true					
+				}
 			},
 			local : {
+				id : {
+					required : true
+				}
+			},
+			conformeRelatorio : {
 				required : true
 			},
 			situacao : {
@@ -68,10 +75,17 @@ $(document).ready(function() {
 				required : "Informe uma descrição do patrimônio."
 			},
 			categoria : {
-				required : "Informe a categoria do patrimônio."
+				id : {
+					required : "Informe a categoria do patrimônio."
+				}
 			},
 			local : {
-				required : "Informe o local do patrimônio."
+				id : {
+					required : "Informe o local do patrimônio."
+				}
+			},
+			conformeRelatorio : {
+				required : "Informe a conformidade com o relatório."
 			},
 			situacao : {
 				required : "Informe a situação do patrimônio."
@@ -89,10 +103,30 @@ $(document).ready(function() {
 			
 	});
 	
+	var response;
+	
+	$.validator.addMethod(
+		"uniqueCategoria",
+		function(value, element) {
+			$.ajax({
+				type: "POST",
+				url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
+				data: "nome="+value,
+				dataType: "html",
+				success: function(message) {
+					response = (message == 'true') ? false : true;
+				}
+			});
+			return response;
+		},
+		"Categoria já cadastrada."
+	);
+	
 	$('#cadastrarCategoria').validate({
 		rules : {
 			nome : {
-				required : true
+				required : true,
+				uniqueCategoria : true
 			}
 		},
 		highlight : function(element) {
@@ -111,22 +145,38 @@ $(document).ready(function() {
 		},
 		messages : {
 			nome : {
-				required : "Informe o nome da categoria."
+				required : "Informe o nome da categoria.",
+				uniqueCategoria : "Esta categoria já está cadastrada."
 			}
 		}
 		
 	});
 	
+	$.validator.addMethod(
+		"uniqueLocalizacao",
+		function(value, element) {
+			$.ajax({
+				type: "POST",
+				url: "http://"+ location.host +"/gin/patrimonio/checkLocalizacao",
+				data: "localizacao="+value,
+				dataType: "html",
+				success: function(message) {
+					response = (message == 'true') ? false : true;
+				}
+			});
+			return response;
+		},
+		"Localização já cadastrada."
+	);
+	
 	$('#cadastrarLocal').validate({
 		rules : {
-			nome : {
-				required : true
+			localizacao : {
+				required : true,
+				uniqueLocalizacao: true
 			},
 			pavimento : {
-				required : true
-			},
-			bloco : {
-				required : true
+				required : true,
 			}
 		},
 		highlight : function(element) {
@@ -144,14 +194,12 @@ $(document).ready(function() {
 			$(itemForm).find("span").attr("id", id);
 		},
 		messages : {
-			nome : {
-				required : "Informe o nome do local."
+			localizacao : {
+				required : "Informe o nome do local.",
+				uniqueLocalizacao : "Esta localização já está cadastrada."
 			},
 			pavimento : {
 				required : "Informe o pavimento do local."
-			},
-			bloco : {
-				required : "Informe o bloco do local."
 			}
 		}
 		

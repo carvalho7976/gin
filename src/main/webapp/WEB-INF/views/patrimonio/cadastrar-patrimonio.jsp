@@ -28,20 +28,27 @@
 	<jsp:include page="../menu.jsp"></jsp:include>
 	
 	<div class="container">
-	
-		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
+		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" modelAttribute="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>${titulo}</legend>
 
+				<c:if test="${not empty erro}">
+					<div class="alert alert-danger alert-dismissible" role="alert" id="alert-erro">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<c:out value="${erro}"></c:out>
+					</div>
+				</c:if>
 				<c:if test="${not empty info}">
-					<div class="alert alert-success alert-dismissible" role="alert"
-						id="alert-info">
+					<div class="alert alert-success alert-dismissible" role="alert" id="alert-info">
 						<button type="button" class="close" data-dismiss="alert">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
 						<c:out value="${info}"></c:out>
 					</div>
 				</c:if>
+				
 				<form:input path="id" type="hidden"/>
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
@@ -75,7 +82,11 @@
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/categoria/${action}/${id}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						<a class="btn btn-success" 
+							href="<c:url value="#"></c:url>"
+							data-toggle="modal"
+							data-target="#cadastrar-categoria" > 
+							<span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
 				</div>
@@ -93,7 +104,11 @@
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar/local/${action}/${id}"></c:url>" > <span class="glyphicon glyphicon-plus"></span> 
+						<a class="btn btn-success" 
+							data-href="<c:url value="#"></c:url>" 
+							data-toggle="modal"
+							data-target="#cadastrar-local"> 
+							<span class="glyphicon glyphicon-plus"></span> 
 						</a>
 					</div>
 				</div>
@@ -183,6 +198,89 @@
 		</form:form>
 
 	</div>
+
+	<div id="cadastrar-categoria" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" modelAttribute="categoria" method="POST" class="form-horizontal">
+					
+					<input type="hidden" name="action" value="${action}"/>
+					<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group form-error">
+							<label for="nome" class="col-lg-4 control-label"><span class="red">*</span> Nome da Categoria</label>
+							<div class="col-lg-8">
+								<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..." />
+								<div class="error-validation" id="error-nome">
+									<form:errors path="nome"></form:errors>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-success">Adicionar</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+	<div id="cadastrar-local" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" modelAttribute="local" method="POST" class="form-horizontal">
+					
+					<input type="hidden" name="action" value="${action}"/>
+					<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Novo Local</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group form-error">
+							<label for="localizacao" class="col-lg-4 control-label"><span class="red">*</span> Localização</label>
+							<div class="col-lg-8">
+								<form:input path="localizacao" id="localizacao" class="form-control" type="text" placeholder="Nome do local..." />
+								<div class="error-validation" id="error-nome">
+									<form:errors path="localizacao"></form:errors>
+								</div>
+							</div>
+						</div>
+						<div class="form-group form-error">
+							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
+							<div class="col-lg-8">
+								<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..." />
+								<div class="error-validation">
+									<form:errors path="pavimento"></form:errors>
+								</div>
+							</div>
+						</div>
+						<div class="form-group form-error">
+							<label for="bloco" class="col-lg-4 control-label"><span class="red">*</span> Bloco</label>
+							<div class="col-lg-8">
+								<form:input path="bloco" id="bloco" class="form-control only-num" type="text" placeholder="Bloco..." />
+								<div class="error-validation">
+									<form:errors path="bloco"></form:errors>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-success">Adicionar</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 	<script type="text/javascript">

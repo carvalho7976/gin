@@ -15,8 +15,10 @@
 	<div class="container">
 
 		<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" commandName="local" method="POST" class="form-horizontal">
-			<input type="hidden"  name="acao" value="${acao}"/>
-			<input type="hidden" name="idd" value= "${id}"/>
+			
+			<input type="hidden" name="action" value="${action}"/>
+			<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
+			
 			<fieldset>
 				<legend>Novo Local</legend>
 				<div class="form-group form-error">

@@ -80,6 +80,7 @@ public class Patrimonio {
 	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
 	private List<Historico> historicos;
 	
+	@NotNull(message = "Campo obrigatório.")
 	@Enumerated(EnumType.STRING)
 	private ConformeRelatorio conformeRelatorio;
 	

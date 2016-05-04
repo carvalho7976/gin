@@ -1,11 +1,10 @@
 package br.ufc.quixada.cti.gin.enumeration;
 
-//checar os valores de B e NE
 public enum ConformeRelatorio {
-	NCR("Não Consta no Relatório"), 
-	C("Consta no Relatório"), 
+	NCR("Não consta no relatório"), 
+	C("Consta no relatório"), 
 	B("Baixa"),
-	NE("Não Existente");
+	NE("Não existente");
 	
 	private String tipo; 
 	
