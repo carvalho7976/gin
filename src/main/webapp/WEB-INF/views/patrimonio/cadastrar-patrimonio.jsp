@@ -28,12 +28,7 @@
 	<jsp:include page="../menu.jsp"></jsp:include>
 	
 	<div class="container">
-	
-		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" commandName="patrimonio" method="POST" class="form-horizontal">
-		
-			<input type="hidden" name="action" value="${action}"/>
-			<%-- <input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/> --%>
-			
+		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" modelAttribute="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>${titulo}</legend>
 
@@ -53,7 +48,8 @@
 						<c:out value="${info}"></c:out>
 					</div>
 				</c:if>
-
+				
+				<form:input path="id" type="hidden"/>
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
 					<div class="col-lg-10">
@@ -206,7 +202,11 @@
 	<div id="cadastrar-categoria" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" commandName="categoria" method="POST" class="form-horizontal">
+				<form:form id="cadastrarCategoria" servletRelativeAction="/patrimonio/cadastrar/categoria" modelAttribute="categoria" method="POST" class="form-horizontal">
+					
+					<input type="hidden" name="action" value="${action}"/>
+					<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
+					
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
@@ -234,7 +234,11 @@
 	<div id="cadastrar-local" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" commandName="local" method="POST" class="form-horizontal">
+				<form:form id="cadastrarLocal" servletRelativeAction="/patrimonio/cadastrar/local" modelAttribute="local" method="POST" class="form-horizontal">
+					
+					<input type="hidden" name="action" value="${action}"/>
+					<input type="hidden" name="idPatrimonio" value="${idPatrimonio}"/>
+					
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">Novo Local</h4>
@@ -261,7 +265,7 @@
 						<div class="form-group form-error">
 							<label for="bloco" class="col-lg-4 control-label"><span class="red">*</span> Bloco</label>
 							<div class="col-lg-8">
-								<form:input path="bloco" id="bloco" class="form-control" type="text" placeholder="Bloco..." />
+								<form:input path="bloco" id="bloco" class="form-control only-num" type="text" placeholder="Bloco..." />
 								<div class="error-validation">
 									<form:errors path="bloco"></form:errors>
 								</div>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -68,12 +69,23 @@ public class PatrimonioController {
 			if (patrimonioService.isPatrimonioCadastrado(patrimonio)) {
 				result.rejectValue("tombamento", "patrimonio.tombamento", "Número de tombamento já existe.");
 			}
+			
+			if (patrimonio.getCategoria().getId() == null) {
+				result.rejectValue("categoria", "patrimonio.categoria", "Selecione uma categoria.");
+			}
+			
+			if (patrimonio.getLocal().getId() == null) {
+				result.rejectValue("local", "patrimonio.local", "Selecione um local.");
+			}
 		}
 
 		if (result.hasErrors()) {
-
 			model.addAttribute("patrimonio", patrimonio);
+			
+			model.addAttribute("categoria", new Categoria());
 			model.addAttribute("categorias", patrimonioService.getCategorias());
+			
+			model.addAttribute("local", new Local());
 			model.addAttribute("locais", patrimonioService.getLocais());
 
 			return "patrimonio/cadastrar-patrimonio";
@@ -92,21 +104,43 @@ public class PatrimonioController {
 
 		model.addAttribute("action", "editar");
 		model.addAttribute("patrimonio", patrimonio);
+
+		model.addAttribute("idPatrimonio", patrimonio.getId());
+		
+		model.addAttribute("categoria", new Categoria());
 		model.addAttribute("categorias", patrimonioService.getCategorias());
+		
+		model.addAttribute("local", new Local());
 		model.addAttribute("locais", patrimonioService.getLocais());
 
 		return "patrimonio/cadastrar-patrimonio";
 	}
 
 	@RequestMapping(value = { "/editar" }, method = RequestMethod.POST)
-	public String editarPatrimonio(Model model, @Valid @ModelAttribute("patrimonio") Patrimonio patrimonio,
+	public String editarPatrimonio(@Valid @ModelAttribute("patrimonio") Patrimonio patrimonio, Model model,
 			BindingResult result, RedirectAttributes redirect) {
 
 		model.addAttribute("action", "editar");
+		
+		if (patrimonio != null) {
+			if (patrimonio.getCategoria().getId() == null) {
+				result.rejectValue("categoria", "patrimonio.categoria", "Selecione uma categoria.");
+			}
+			
+			if (patrimonio.getLocal().getId() == null) {
+				result.rejectValue("local", "patrimonio.local", "Selecione um local.");
+			}
+		}
 
 		if (result.hasErrors()) {
+			model.addAttribute("idPatrimonio", patrimonio.getId());
+			
 			model.addAttribute("patrimonio", patrimonio);
+			
+			model.addAttribute("categoria", new Categoria());
 			model.addAttribute("categorias", patrimonioService.getCategorias());
+			
+			model.addAttribute("local", new Local());
 			model.addAttribute("locais", patrimonioService.getLocais());
 
 			return "patrimonio/cadastrar-patrimonio";
@@ -147,7 +181,8 @@ public class PatrimonioController {
 	}
 
 	@RequestMapping(value = { "/cadastrar/categoria" }, method = RequestMethod.POST)
-	public String addCategoria(Model model, @Valid @ModelAttribute("categoria") Categoria categoria,
+	public String addCategoria(@RequestParam("action") String action, @RequestParam("idPatrimonio") Integer idPatrimonio,
+			Model model, @Valid @ModelAttribute("categoria") Categoria categoria,
 			BindingResult result, RedirectAttributes redirect) {
 
 		if (categoria != null) {
@@ -162,17 +197,26 @@ public class PatrimonioController {
 			model.addAttribute("categorias", patrimonioService.getCategorias());
 			model.addAttribute("locais", patrimonioService.getLocais());
 			
+			if (action.equals("editar")) {
+				return "redirect:/patrimonio/editar/" + idPatrimonio;
+			}
+			
 			return "redirect:/patrimonio/cadastrar";
 		}
 
 		patrimonioService.salvarCategoria(categoria);
 		redirect.addFlashAttribute("info", "Nova categoria adicionada.");
-
+		
+		if (action.equals("editar")) {
+			return "redirect:/patrimonio/editar/" + idPatrimonio;
+		}
+		
 		return "redirect:/patrimonio/cadastrar";
 	}
 
 	@RequestMapping(value = { "/cadastrar/local" }, method = RequestMethod.POST)
-	public String addLocal(Model model, @Valid @ModelAttribute("local") Local local, BindingResult result,
+	public String addLocal(@RequestParam("action") String action, @RequestParam("idPatrimonio") Integer idPatrimonio,
+			Model model, @Valid @ModelAttribute("local") Local local, BindingResult result,
 			RedirectAttributes redirect) {
 
 		if (local != null) {
@@ -188,11 +232,19 @@ public class PatrimonioController {
 			model.addAttribute("categorias", patrimonioService.getCategorias());
 			model.addAttribute("locais", patrimonioService.getLocais());
 			
+			if (action.equals("editar")) {
+				return "redirect:/patrimonio/editar/" + idPatrimonio;
+			}
+			
 			return "redirect:/patrimonio/cadastrar";
 		}
 
 		patrimonioService.salvarLocal(local);
 		redirect.addFlashAttribute("info", "Novo local adicionado.");
+		
+		if (action.equals("editar")) {
+			return "redirect:/patrimonio/editar/" + idPatrimonio;
+		}
 
 		return "redirect:/patrimonio/cadastrar";
 	}

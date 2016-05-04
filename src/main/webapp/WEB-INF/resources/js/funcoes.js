@@ -28,9 +28,16 @@ $(document).ready(function() {
 				required : true
 			},
 			categoria : {
-				required : true
+				id : {
+					required : true					
+				}
 			},
 			local : {
+				id : {
+					required : true
+				}
+			},
+			conformeRelatorio : {
 				required : true
 			},
 			situacao : {
@@ -68,10 +75,17 @@ $(document).ready(function() {
 				required : "Informe uma descrição do patrimônio."
 			},
 			categoria : {
-				required : "Informe a categoria do patrimônio."
+				id : {
+					required : "Informe a categoria do patrimônio."
+				}
 			},
 			local : {
-				required : "Informe o local do patrimônio."
+				id : {
+					required : "Informe o local do patrimônio."
+				}
+			},
+			conformeRelatorio : {
+				required : "Informe a conformidade com o relatório."
 			},
 			situacao : {
 				required : "Informe a situação do patrimônio."
@@ -163,9 +177,6 @@ $(document).ready(function() {
 			},
 			pavimento : {
 				required : true,
-			},
-			bloco : {
-				required : true,
 			}
 		},
 		highlight : function(element) {
@@ -189,10 +200,6 @@ $(document).ready(function() {
 			},
 			pavimento : {
 				required : "Informe o pavimento do local."
-			},
-			bloco : {
-				required : "Informe o bloco do local."
-				
 			}
 		}
 		

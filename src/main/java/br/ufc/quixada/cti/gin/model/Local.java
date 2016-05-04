@@ -23,7 +23,6 @@ public class Local {
 	@NotEmpty(message = "Campo obrigatório.")
 	private String pavimento;
 	
-	@NotEmpty(message = "Campo obrigatório.")
 	private String bloco;
 	
 	public Long getId() {
@@ -59,7 +58,7 @@ public class Local {
 	}
 	
 	public String getFullLocal(){
-		return this.localizacao + " - " + this.bloco + " - " + this.pavimento;
+		return this.localizacao + "\nBloco: " + this.bloco + "\nPavimento: " + this.pavimento;
 	}
 	
 }

@@ -76,7 +76,7 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	@Override
 	public boolean isLocalizacaoCadastrada(Local local) {
 		@SuppressWarnings("unchecked")
-		List<Categoria> locais = find(QueryType.JPQL, "from Local as l where l.localizacao = :localizacao", 
+		List<Local> locais = find(QueryType.JPQL, "from Local as l where l.localizacao = :localizacao", 
 				new SimpleMap<String, Object>("localizacao", local.getLocalizacao()));
 		
 		if (locais == null || locais.isEmpty()) {
@@ -94,5 +94,5 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	public Local getLocal(long id) {
 		return localRepository.find(Local.class, id);
 	}
-	
+
 }
