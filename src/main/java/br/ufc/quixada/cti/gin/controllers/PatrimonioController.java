@@ -40,7 +40,7 @@ public class PatrimonioController {
 
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
 
-		return "patrimonio/listar-patrimonio";
+		return "patrimonio/listar-patrimonios";
 	}
 
 	@RequestMapping(value = { "/cadastrar" }, method = RequestMethod.GET)

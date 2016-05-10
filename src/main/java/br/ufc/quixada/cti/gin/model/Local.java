@@ -58,7 +58,10 @@ public class Local {
 	}
 	
 	public String getFullLocal(){
-		return this.localizacao + "\nBloco: " + this.bloco + "\nPavimento: " + this.pavimento;
+		String fullLocal = this.localizacao + " - Pavimento: " + this.pavimento;
+		fullLocal += (this.bloco != null && !this.bloco.isEmpty()) ? " - Bloco:" + this.bloco : ".";
+		
+		return fullLocal;
 	}
 	
 }

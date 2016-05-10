@@ -5,6 +5,10 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('.upper-fl').keyup(function() {
+		$(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().substr(1));
+	});
+	
 	$('.valid-num').keyup(function() {
 		$(this).val($(this).val().replace(" ",''));
 		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
@@ -25,17 +29,14 @@ $(document).ready(function() {
 				required : true
 			},
 			descricao : {
-				required : true
+				required : true,
+				maxlength : 15
 			},
 			categoria : {
-				id : {
-					required : true					
-				}
+				required : true
 			},
 			local : {
-				id : {
-					required : true
-				}
+				required : true
 			},
 			conformeRelatorio : {
 				required : true
@@ -72,17 +73,14 @@ $(document).ready(function() {
 				required : "Informe o tombamento do patrimônio."
 			},
 			descricao : {
-				required : "Informe uma descrição do patrimônio."
+				required : "Informe uma descrição do patrimônio.",
+				maxlength : "Descrição deve ser de no máximo {0} caracteres."
 			},
 			categoria : {
-				id : {
-					required : "Informe a categoria do patrimônio."
-				}
+				required : "Informe a categoria do patrimônio."
 			},
 			local : {
-				id : {
-					required : "Informe o local do patrimônio."
-				}
+				required : "Informe o local do patrimônio."
 			},
 			conformeRelatorio : {
 				required : "Informe a conformidade com o relatório."

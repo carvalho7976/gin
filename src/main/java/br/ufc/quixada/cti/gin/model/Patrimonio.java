@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,6 +43,7 @@ public class Patrimonio {
 	private Integer tombamento;
 	
 	@NotEmpty(message = "Campo obrigatório.")
+	@Size(max = 15, message = "Máximo de 15 caracteres.")
 	private String descricao;
 	
 	@ManyToOne

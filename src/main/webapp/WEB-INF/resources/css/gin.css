@@ -1,8 +1,50 @@
 
+body {
+	background: #EDEDED;
+	color: #2C3F52;
+}
+a {
+	cursor:pointer;
+	cursor:hand;
+}
+
 .modal-backdrop {
 	z-index: auto;
 }
 
 .red {
 	color: red;
+}
+
+.section {
+	border-bottom: 1px solid;
+}
+
+.btn {
+	padding: 6px 12px;
+}
+
+.gin-footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	padding: 10px 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: 3px solid #e5e5e5;
+	margin-top: 15px;
+}
+
+.gin-footer p:last-child {
+	margin-bottom: 0;
+}
+
+.footer-height {
+	height: 50px;
+	z-index: 999;
+}
+
+.navbar-inverse {
+	background-color: #2c3e50;
 }
