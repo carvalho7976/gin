@@ -110,9 +110,9 @@ $(document).ready(function() {
 				type: "POST",
 				url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
 				data: "nome="+value,
-				dataType: "html",
+				dataType: "json",
 				success: function(message) {
-					response = (message == 'true') ? false : true;
+					response = (message == 'true') ? true : false;
 				}
 			});
 			return response;
@@ -157,9 +157,9 @@ $(document).ready(function() {
 				type: "POST",
 				url: "http://"+ location.host +"/gin/patrimonio/checkLocalizacao",
 				data: "localizacao="+value,
-				dataType: "html",
+				dataType: "json",
 				success: function(message) {
-					response = (message == 'true') ? false : true;
+					response = (message == 'true') ? true : false;
 				}
 			});
 			return response;

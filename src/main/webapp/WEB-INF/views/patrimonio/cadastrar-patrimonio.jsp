@@ -13,7 +13,7 @@
 </c:if>
 <c:if test="${action eq 'editar' }">
 	<c:url var="url" value="/patrimonio/editar"></c:url>
-	<c:set var="titulo" value="Editar Patrimonio"></c:set>
+	<c:set var="titulo" value="Alterar Patrimonio"></c:set>
 	<c:set var="botao" value="Salvar Alterações"></c:set>
 </c:if>
 
@@ -25,7 +25,7 @@
 <body>
 
 	<jsp:include page="../header-gin.jsp"></jsp:include>
-	
+	<br>
 	<div class="container">
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" modelAttribute="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
