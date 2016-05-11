@@ -1,9 +1,12 @@
 package br.ufc.quixada.cti.gin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.quixada.cti.gin.model.Categoria;
@@ -61,12 +64,15 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	}
 
 	@Override
-	public boolean isCategoriaCadastrada(Categoria categoria) {
-		@SuppressWarnings("unchecked")
-		List<Categoria> categorias = find(QueryType.JPQL, "from Categoria as c where c.nome = :nome", 
-				new SimpleMap<String, Object>("nome", categoria.getNome()));
+	public boolean isCategoriaCadastrada(String nomeCategoria) {
 		
-		if (categorias == null || categorias.isEmpty()) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("nome", nomeCategoria);
+		
+		@SuppressWarnings("unchecked")
+		Categoria categoria = (Categoria) findFirst(QueryType.JPQL, " select c from Categoria c where c.nome = :nome", params);
+	
+		if (categoria == null) {
 			return false;
 		}
 		
@@ -74,10 +80,10 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	}
 
 	@Override
-	public boolean isLocalizacaoCadastrada(Local local) {
+	public boolean isLocalizacaoCadastrada(String localizacao) {
 		@SuppressWarnings("unchecked")
 		List<Local> locais = find(QueryType.JPQL, "from Local as l where l.localizacao = :localizacao", 
-				new SimpleMap<String, Object>("localizacao", local.getLocalizacao()));
+				new SimpleMap<String, Object>("localizacao", localizacao));
 		
 		if (locais == null || locais.isEmpty()) {
 			return false;
@@ -93,6 +99,12 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	@Override
 	public Local getLocal(long id) {
 		return localRepository.find(Local.class, id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Patrimonio getPatrimonioComHistorico(Integer idPatrimonio) {
+		return (Patrimonio) findFirst("Patrimonio.findPatrimonioComHistoricoById", new SimpleMap<String, Object>("idPatrimonio", idPatrimonio));
 	}
 
 }

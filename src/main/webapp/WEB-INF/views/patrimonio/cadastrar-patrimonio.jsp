@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,12 +9,12 @@
 <c:if test="${action eq 'cadastrar' }">
 	<c:url var="url" value="/patrimonio/cadastrar" ></c:url>
 	<c:set var="titulo" value="Novo Patrimonio"></c:set>
-	<c:set var="botao" value="Cadastrar"></c:set>
+	<c:set var="botao" value="Confirmar"></c:set>
 </c:if>
 <c:if test="${action eq 'editar' }">
 	<c:url var="url" value="/patrimonio/editar"></c:url>
-	<c:set var="titulo" value="Editar Patrimonio"></c:set>
-	<c:set var="botao" value="Atualizar"></c:set>
+	<c:set var="titulo" value="Alterar Patrimonio"></c:set>
+	<c:set var="botao" value="Salvar Alterações"></c:set>
 </c:if>
 
 <html>
@@ -25,12 +24,12 @@
 </head>
 <body>
 
-	<jsp:include page="../menu.jsp"></jsp:include>
-	
+	<jsp:include page="../header-gin.jsp"></jsp:include>
+	<br>
 	<div class="container">
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" modelAttribute="patrimonio" method="POST" class="form-horizontal">
 			<fieldset>
-				<legend>${titulo}</legend>
+				<legend class="section">${titulo}</legend>
 
 				<c:if test="${not empty erro}">
 					<div class="alert alert-danger alert-dismissible" role="alert" id="alert-erro">
@@ -53,7 +52,7 @@
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
 					<div class="col-lg-10">
-						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="Tombamento..."/>
+						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000"/>
 						<div class="error-validation" id="error-tombamento">
 							<form:errors path="tombamento"></form:errors>
 						</div>
@@ -62,7 +61,8 @@
 				<div class="form-group form-error">
 					<label for="descricao" class="col-lg-2 control-label"><span class="red">*</span> Descrição</label>
 					<div class="col-lg-10">
-						<form:input path="descricao" id="descricao" class="form-control" type="text" placeholder="Descrição..."/>
+						<form:input path="descricao" id="descricao" class="form-control upper-fl" type="text" placeholder="Descrição..."/>
+						<span class="help-block">Descrição simples de o que é o patrimônio.</span>
 						<div class="error-validation" id="error-descricao">
 							<form:errors path="descricao"></form:errors>
 						</div>
@@ -187,7 +187,7 @@
 						<form:textarea path="comentario.mensagem" id="comentario" class="form-control" placeholder="Comentário..." rows="3"/>
 					</div>
 				</div>
-				<br> <br>
+				<br> 
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 						<a	href="<c:url value="/patrimonio/listar"></c:url>" class="btn btn-danger">Cancelar</a>
@@ -196,7 +196,6 @@
 				</div>
 			</fieldset>
 		</form:form>
-
 	</div>
 
 	<div id="cadastrar-categoria" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -215,7 +214,7 @@
 						<div class="form-group form-error">
 							<label for="nome" class="col-lg-4 control-label"><span class="red">*</span> Nome da Categoria</label>
 							<div class="col-lg-8">
-								<form:input path="nome" id="nome" class="form-control" type="text" placeholder="Nome da categoria..." />
+								<form:input path="nome" id="nome" class="form-control upper-fl" type="text" placeholder="Nome da categoria..." />
 								<div class="error-validation" id="error-nome">
 									<form:errors path="nome"></form:errors>
 								</div>
@@ -247,7 +246,7 @@
 						<div class="form-group form-error">
 							<label for="localizacao" class="col-lg-4 control-label"><span class="red">*</span> Localização</label>
 							<div class="col-lg-8">
-								<form:input path="localizacao" id="localizacao" class="form-control" type="text" placeholder="Nome do local..." />
+								<form:input path="localizacao" id="localizacao" class="form-control upper-fl" type="text" placeholder="Nome do local..." />
 								<div class="error-validation" id="error-nome">
 									<form:errors path="localizacao"></form:errors>
 								</div>
@@ -256,7 +255,7 @@
 						<div class="form-group form-error">
 							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
 							<div class="col-lg-8">
-								<form:input path="pavimento" id="pavimento" class="form-control" type="text" placeholder="Pavimento..." />
+								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="text" placeholder="Pavimento..." />
 								<div class="error-validation">
 									<form:errors path="pavimento"></form:errors>
 								</div>
@@ -279,7 +278,7 @@
 				</form:form>
 			</div>
 		</div>
-	</div>
+	</div> <br><br>
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 

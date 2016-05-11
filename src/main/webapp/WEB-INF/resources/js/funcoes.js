@@ -5,6 +5,10 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('.upper-fl').keyup(function() {
+		$(this).val($(this).val().charAt(0).toUpperCase() + $(this).val().substr(1));
+	});
+	
 	$('.valid-num').keyup(function() {
 		$(this).val($(this).val().replace(" ",''));
 		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
@@ -19,23 +23,42 @@ $(document).ready(function() {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
 	
+	$('#detalhe-patrimonio').on('show.bs.modal', function(e) {
+		var url = $(e.relatedTarget).data('href');
+		var itemForm = $(this);
+		$.ajax({
+			method : "GET",
+			url : "http://" + location.host + url,
+			dataType : "json",
+			success : function(element) {
+				$(itemForm).find('.tombamento').html(element.tombamento);
+				$(itemForm).find('.descricao').html(element.descricao);
+				$(itemForm).find('.categoria').html(element.categoria.nome);
+				$(itemForm).find('.local').html(element.local.fullLocal);
+				$(itemForm).find('.situacao').html(element.situacao);
+				$(itemForm).find('.lotacao').html(element.lotacao);
+				$(itemForm).find('.conservacao').html(element.conservacao);
+				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio);
+				$(itemForm).find('.incorporacao').html(element.incorporacao);
+				$(itemForm).find('.chegadaCampus').html(element.chegadaCampus);
+			}
+		});
+	});
+	
 	$('#cadastrarPatrimonio').validate({
 		rules : {
 			tombamento : {
 				required : true
 			},
 			descricao : {
-				required : true
+				required : true,
+				maxlength : 15
 			},
 			categoria : {
-				id : {
-					required : true					
-				}
+				required : true
 			},
 			local : {
-				id : {
-					required : true
-				}
+				required : true
 			},
 			conformeRelatorio : {
 				required : true
@@ -72,17 +95,14 @@ $(document).ready(function() {
 				required : "Informe o tombamento do patrimônio."
 			},
 			descricao : {
-				required : "Informe uma descrição do patrimônio."
+				required : "Informe uma descrição do patrimônio.",
+				maxlength : "Descrição deve ser de no máximo {0} caracteres."
 			},
 			categoria : {
-				id : {
-					required : "Informe a categoria do patrimônio."
-				}
+				required : "Informe a categoria do patrimônio."
 			},
 			local : {
-				id : {
-					required : "Informe o local do patrimônio."
-				}
+				required : "Informe o local do patrimônio."
 			},
 			conformeRelatorio : {
 				required : "Informe a conformidade com o relatório."
@@ -104,23 +124,28 @@ $(document).ready(function() {
 	});
 	
 	var response;
-	
 	$.validator.addMethod(
-		"uniqueCategoria",
-		function(value, element) {
-			$.ajax({
-				type: "POST",
-				url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
-				data: "nome="+value,
-				dataType: "html",
-				success: function(message) {
-					response = (message == 'true') ? false : true;
-				}
-			});
-			return response;
-		},
-		"Categoria já cadastrada."
-	);
+			"uniqueCategoria",
+			function(value, element) {
+				
+					$.ajax({
+						method: "POST",
+						url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
+						data: "nomeCategoria="+value,
+						dataType: "json",
+						success: function(message) {
+							response = !message;
+						}
+					});
+				 
+				 if(response != undefined) {
+					 var temp = response;
+					 response = undefined;
+					 return temp;
+				 }
+			},
+			"Categoria já cadastrada."
+		);
 	
 	$('#cadastrarCategoria').validate({
 		rules : {
@@ -156,15 +181,19 @@ $(document).ready(function() {
 		"uniqueLocalizacao",
 		function(value, element) {
 			$.ajax({
-				type: "POST",
+				method: "POST",
 				url: "http://"+ location.host +"/gin/patrimonio/checkLocalizacao",
 				data: "localizacao="+value,
-				dataType: "html",
+				dataType: "json",
 				success: function(message) {
-					response = (message == 'true') ? false : true;
+					response = !message;
 				}
 			});
-			return response;
+			if(response != undefined) {
+				 var temp = response;
+				 response = undefined;
+				 return temp;
+			 }
 		},
 		"Localização já cadastrada."
 	);

@@ -40,7 +40,7 @@ public class PatrimonioController {
 
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
 
-		return "patrimonio/listar-patrimonio";
+		return "patrimonio/listar-patrimonios";
 	}
 
 	@RequestMapping(value = { "/cadastrar" }, method = RequestMethod.GET)
@@ -179,6 +179,11 @@ public class PatrimonioController {
 
 		return "redirect:/patrimonio/listar";
 	}
+	
+	@RequestMapping(value = { "detalhe/{idPatrimonio}" }, method = RequestMethod.GET)
+	public @ResponseBody Patrimonio getPatrimonio(@PathVariable("idPatrimonio") Integer idPatrimonio){
+		return patrimonioService.getPatrimonioComHistorico(idPatrimonio);
+	}
 
 	@RequestMapping(value = { "/cadastrar/categoria" }, method = RequestMethod.POST)
 	public String addCategoria(@RequestParam("action") String action, @RequestParam("idPatrimonio") Integer idPatrimonio,
@@ -186,7 +191,7 @@ public class PatrimonioController {
 			BindingResult result, RedirectAttributes redirect) {
 
 		if (categoria != null) {
-			if (patrimonioService.isCategoriaCadastrada(categoria)) {
+			if (patrimonioService.isCategoriaCadastrada(categoria.getNome())) {
 				result.rejectValue("nome", "categoria.nome", "Categoria já cadastrada.");
 			}
 		}
@@ -221,7 +226,7 @@ public class PatrimonioController {
 
 		if (local != null) {
 
-			if (patrimonioService.isLocalizacaoCadastrada(local)) {
+			if (patrimonioService.isLocalizacaoCadastrada(local.getLocalizacao())) {
 				result.rejectValue("localizacao", "local.localizacao", "Localização já está cadastrada.");
 			}
 		}
@@ -258,12 +263,13 @@ public class PatrimonioController {
 	}
 	
 	@RequestMapping(value = { "checkCategoria" }, method = RequestMethod.POST)
-	public @ResponseBody boolean checkCategoria(Categoria categoria) {
-		return patrimonioService.isCategoriaCadastrada(categoria);
+	public @ResponseBody boolean checkCategoria(String nomeCategoria) {
+		System.out.println(nomeCategoria);
+		return patrimonioService.isCategoriaCadastrada(nomeCategoria);
 	}
 	
 	@RequestMapping(value = { "checkLocalizacao" }, method = RequestMethod.POST)
-	public @ResponseBody boolean checkLocalizacao(Local local) {
-		return patrimonioService.isLocalizacaoCadastrada(local);
+	public @ResponseBody boolean checkLocalizacao(String localizacao) {
+		return patrimonioService.isLocalizacaoCadastrada(localizacao);
 	}
 }

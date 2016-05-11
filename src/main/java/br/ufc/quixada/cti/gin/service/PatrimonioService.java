@@ -8,6 +8,8 @@ import br.ufc.quixada.cti.gin.model.Patrimonio;
 import br.ufc.quixada.npi.service.GenericService;
 
 public interface PatrimonioService extends GenericService<Patrimonio> {
+	
+	public abstract Patrimonio getPatrimonioComHistorico(Integer idPatrimonio);
 
 	public abstract void salvarCategoria(Categoria categoria);
 	
@@ -19,9 +21,9 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract boolean isPatrimonioCadastrado(Patrimonio patrimonio);
 	
-	public abstract boolean isCategoriaCadastrada(Categoria categoria);
+	public abstract boolean isCategoriaCadastrada(String nomeCategoria);
 	
-	public abstract boolean isLocalizacaoCadastrada(Local local);
+	public abstract boolean isLocalizacaoCadastrada(String localizacao);
 
 	public abstract Categoria getCategoria(long id);
 	

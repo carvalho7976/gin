@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +34,9 @@ import br.ufc.quixada.cti.gin.enumeration.Situacao;
 
 @Entity
 @Table(name="patrimonio", uniqueConstraints = @UniqueConstraint(columnNames = "tombamento"))
+@NamedQueries({
+	@NamedQuery(name = "Patrimonio.findPatrimonioComHistoricoById", query = "select p from Patrimonio p left join fetch p.historicos where p.id = :idPatrimonio")
+})
 public class Patrimonio {
 	
 	@Id
@@ -42,6 +48,7 @@ public class Patrimonio {
 	private Integer tombamento;
 	
 	@NotEmpty(message = "Campo obrigatório.")
+	@Size(max = 15, message = "Máximo de 15 caracteres.")
 	private String descricao;
 	
 	@ManyToOne
