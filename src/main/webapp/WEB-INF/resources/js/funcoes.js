@@ -23,6 +23,28 @@ $(document).ready(function() {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
 	
+	$('#detalhe-patrimonio').on('show.bs.modal', function(e) {
+		var url = $(e.relatedTarget).data('href');
+		var itemForm = $(this);
+		$.ajax({
+			method : "GET",
+			url : "http://" + location.host + url,
+			dataType : "json",
+			success : function(element) {
+				$(itemForm).find('.tombamento').html(element.tombamento);
+				$(itemForm).find('.descricao').html(element.descricao);
+				$(itemForm).find('.categoria').html(element.categoria.nome);
+				$(itemForm).find('.local').html(element.local.fullLocal);
+				$(itemForm).find('.situacao').html(element.situacao);
+				$(itemForm).find('.lotacao').html(element.lotacao);
+				$(itemForm).find('.conservacao').html(element.conservacao);
+				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio);
+				$(itemForm).find('.incorporacao').html(element.incorporacao);
+				$(itemForm).find('.chegadaCampus').html(element.chegadaCampus);
+			}
+		});
+	});
+	
 	$('#cadastrarPatrimonio').validate({
 		rules : {
 			tombamento : {
@@ -107,11 +129,12 @@ $(document).ready(function() {
 		"uniqueCategoria",
 		function(value, element) {
 			$.ajax({
-				type: "POST",
+				method: "POST",
 				url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
-				data: "nome="+value,
+				data: "nomeCategoria="+value,
 				dataType: "json",
 				success: function(message) {
+					console.log(message);
 					response = (message == 'true') ? true : false;
 				}
 			});
@@ -154,7 +177,7 @@ $(document).ready(function() {
 		"uniqueLocalizacao",
 		function(value, element) {
 			$.ajax({
-				type: "POST",
+				method: "POST",
 				url: "http://"+ location.host +"/gin/patrimonio/checkLocalizacao",
 				data: "localizacao="+value,
 				dataType: "json",

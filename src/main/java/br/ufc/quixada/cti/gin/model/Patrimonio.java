@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,6 +34,9 @@ import br.ufc.quixada.cti.gin.enumeration.Situacao;
 
 @Entity
 @Table(name="patrimonio", uniqueConstraints = @UniqueConstraint(columnNames = "tombamento"))
+@NamedQueries({
+	@NamedQuery(name = "Patrimonio.findPatrimonioComHistoricoById", query = "select p from Patrimonio p left join fetch p.historicos where p.id = :idPatrimonio")
+})
 public class Patrimonio {
 	
 	@Id

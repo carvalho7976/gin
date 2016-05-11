@@ -7,7 +7,4 @@
 <!-- CSS -->
 <link href="<c:url value="/resources/css/bootstrap-flatly.min.css" />" rel="stylesheet" />
 <link href="<c:url value="/resources/css/jquery-ui.css" />" rel="stylesheet" />
-<link href="<c:url value="/resources/css/datatables.min.css" />" rel="stylesheet" />
-<link href="<c:url value="/resources/css/dataTables.tableTools.css" />" rel="stylesheet" />
-<link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet" />
 <link href="<c:url value="/resources/css/gin.css" />" rel="stylesheet" />

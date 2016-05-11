@@ -74,7 +74,7 @@
 							<td>${patrimonio.categoria.nome}</td>
 							<td>${patrimonio.local.fullLocal}</td>
 							<td><a class="btn btn-primary"
-								data-href="<c:url value="#"></c:url>"
+								data-href="<c:url value="/patrimonio/detalhe/${patrimonio.id }"></c:url>"
 								data-toggle="modal" data-target="#detalhe-patrimonio"> <span
 									class="glyphicon glyphicon-eye-open"></span>
 							</a></td>
@@ -128,56 +128,56 @@
 								<tr class="active">
 									<td>Tombamento:</td>
 									<td></td>
-									<td>0001</td>
+									<td class="tombamento"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Descrição:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="descricao"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Categoria:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="categoria"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Local:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="local"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Situação:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="situacao"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Lotação:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="lotacao"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Conservação:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="conservacao"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Conforme Relatório:</td>
 									<td></td>
-									<td>teste</td>
+									<td class="conformeRelatorio"></td>
 									<td></td>
 								</tr>
 								<tr class="active">
 									<td>Data de Incorporação:</td>
-									<td>14/01/1995</td>
+									<td class="incorporacao"></td>
 									<td>Data de Chegada no Campus:</td>
-									<td>14/01/1995</td>
+									<td class="chegadaCampus"></td>
 								</tr>
 							</tbody>
 						</table>
