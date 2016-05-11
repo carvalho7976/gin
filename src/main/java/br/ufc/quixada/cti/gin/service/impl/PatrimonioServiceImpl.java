@@ -1,9 +1,12 @@
 package br.ufc.quixada.cti.gin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.quixada.cti.gin.model.Categoria;
@@ -62,11 +65,14 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 
 	@Override
 	public boolean isCategoriaCadastrada(String nomeCategoria) {
-		@SuppressWarnings("unchecked")
-		List<Categoria> categorias = find(QueryType.JPQL, "from Categoria as c where c.nome = :nome", 
-				new SimpleMap<String, Object>("nome", nomeCategoria));
 		
-		if (categorias == null || categorias.isEmpty()) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("nome", nomeCategoria);
+		
+		@SuppressWarnings("unchecked")
+		Categoria categoria = (Categoria) findFirst(QueryType.JPQL, " select c from Categoria c where c.nome = :nome", params);
+	
+		if (categoria == null) {
 			return false;
 		}
 		

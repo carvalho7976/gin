@@ -124,24 +124,28 @@ $(document).ready(function() {
 	});
 	
 	var response;
-	
 	$.validator.addMethod(
-		"uniqueCategoria",
-		function(value, element) {
-			$.ajax({
-				method: "POST",
-				url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
-				data: "nomeCategoria="+value,
-				dataType: "json",
-				success: function(message) {
-					console.log(message);
-					response = (message == 'true') ? true : false;
-				}
-			});
-			return response;
-		},
-		"Categoria já cadastrada."
-	);
+			"uniqueCategoria",
+			function(value, element) {
+				
+					$.ajax({
+						method: "POST",
+						url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
+						data: "nomeCategoria="+value,
+						dataType: "json",
+						success: function(message) {
+							response = !message;
+						}
+					});
+				 
+				 if(response != undefined) {
+					 var temp = response;
+					 response = undefined;
+					 return temp;
+				 }
+			},
+			"Categoria já cadastrada."
+		);
 	
 	$('#cadastrarCategoria').validate({
 		rules : {
@@ -182,10 +186,14 @@ $(document).ready(function() {
 				data: "localizacao="+value,
 				dataType: "json",
 				success: function(message) {
-					response = (message == 'true') ? true : false;
+					response = !message;
 				}
 			});
-			return response;
+			if(response != undefined) {
+				 var temp = response;
+				 response = undefined;
+				 return temp;
+			 }
 		},
 		"Localização já cadastrada."
 	);
