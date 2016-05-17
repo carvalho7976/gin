@@ -52,7 +52,7 @@
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
 					<div class="col-lg-10">
-						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000"/>
+						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000..."/>
 						<div class="error-validation" id="error-tombamento">
 							<form:errors path="tombamento"></form:errors>
 						</div>

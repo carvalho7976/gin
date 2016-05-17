@@ -10,7 +10,7 @@
 <html>
 <head>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<title>Inventário da UFC/Quixadá</title>
+	<title>Inventário UFC/Quixadá</title>
 </head>
 <body>
 
