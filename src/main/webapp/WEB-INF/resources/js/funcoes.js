@@ -52,7 +52,7 @@ $(document).ready(function() {
 			},
 			descricao : {
 				required : true,
-				maxlength : 15
+				maxlength : 140
 			},
 			categoria : {
 				required : true

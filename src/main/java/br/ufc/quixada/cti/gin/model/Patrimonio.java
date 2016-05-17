@@ -48,7 +48,7 @@ public class Patrimonio {
 	private Integer tombamento;
 	
 	@NotEmpty(message = "Campo obrigatório.")
-	@Size(max = 15, message = "Máximo de 15 caracteres.")
+	@Size(max = 140, message = "Máximo de 140 caracteres.")
 	private String descricao;
 	
 	@ManyToOne

@@ -69,7 +69,6 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("nome", nomeCategoria);
 		
-		@SuppressWarnings("unchecked")
 		Categoria categoria = (Categoria) findFirst(QueryType.JPQL, " select c from Categoria c where c.nome = :nome", params);
 	
 		if (categoria == null) {
