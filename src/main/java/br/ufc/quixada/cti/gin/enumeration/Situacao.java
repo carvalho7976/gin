@@ -2,12 +2,14 @@ package br.ufc.quixada.cti.gin.enumeration;
 
 public enum Situacao {
 	
-	USO("Em uso"), 
+	USO("Em uso"),
+	DP("Devolvido ao patrimônio"),
 	AUSENTE("Ausente"), 
 	DEPOSITO("Em depósito"), 
 	BAIXA("Baixo uso"), 
-	MANUTENCAO("Em manutenção"),
-	TERMO_RESPONSABILIDADE("Termo de responsabilidade");
+	MANUTENCAO("Pede manutenção"),
+	SOB_RESPONS("Sob responsabilidade"),
+	DEFEITO("Com defeito");
 	
 	private String tipo;
 	

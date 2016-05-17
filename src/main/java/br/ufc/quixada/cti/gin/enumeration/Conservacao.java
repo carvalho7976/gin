@@ -2,10 +2,11 @@ package br.ufc.quixada.cti.gin.enumeration;
 
 public enum Conservacao {
 	
-	RUIM("Ruim"), 
-	REGULAR("Regular"), 
 	EXCELENTE("Excelente"), 
-	OTIMO("Ótimo"), 
+	OTIMO("Ótimo"),
+	BOM("Bom"),
+	REGULAR("Regular"), 
+	RUIM("Ruim"), 
 	ND("Nada");
 	
 	private String tipo;
