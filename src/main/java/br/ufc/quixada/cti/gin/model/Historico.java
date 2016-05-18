@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="historico")
 public class Historico {
@@ -22,6 +24,7 @@ public class Historico {
 
 	private String comentario;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="patrimonio_id")
 	private Patrimonio patrimonio;

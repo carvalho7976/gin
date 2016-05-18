@@ -52,7 +52,7 @@
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
 					<div class="col-lg-10">
-						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000"/>
+						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000..."/>
 						<div class="error-validation" id="error-tombamento">
 							<form:errors path="tombamento"></form:errors>
 						</div>
@@ -184,7 +184,8 @@
 				<div class="form-group">
 					<label for="comentario" class="col-lg-2 control-label">Comentario</label>
 					<div class="col-lg-10">
-						<form:textarea path="comentario.mensagem" id="comentario" class="form-control" placeholder="Comentário..." rows="3"/>
+						<form:textarea path="comentario" id="comentario" class="form-control upper-fl" rows="3"/>
+						<span class="help-block">Comentário extra sobre o patrimônio a cerca de sua situação, conversação ou quaisquer outro tipo de característica.</span>
 					</div>
 				</div>
 				<br> 

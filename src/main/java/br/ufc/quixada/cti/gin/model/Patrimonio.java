@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +25,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.ufc.quixada.cti.gin.enumeration.ConformeRelatorio;
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
@@ -48,7 +49,7 @@ public class Patrimonio {
 	private Integer tombamento;
 	
 	@NotEmpty(message = "Campo obrigatório.")
-	@Size(max = 15, message = "Máximo de 15 caracteres.")
+	@Size(max = 140, message = "Máximo de 140 caracteres.")
 	private String descricao;
 	
 	@ManyToOne
@@ -80,10 +81,9 @@ public class Patrimonio {
 	@Temporal(TemporalType.DATE)
 	private Date chegadaCampus;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "comentario_id")
-	private Comentario comentario;
+	private String comentario;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
 	private List<Historico> historicos;
 	
@@ -180,11 +180,11 @@ public class Patrimonio {
 		this.local = local;
 	}
 
-	public Comentario getComentario() {
+	public String getComentario() {
 		return comentario;
 	}
 
-	public void setComentario(Comentario comentario) {
+	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
 

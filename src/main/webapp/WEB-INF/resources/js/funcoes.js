@@ -41,6 +41,7 @@ $(document).ready(function() {
 				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio);
 				$(itemForm).find('.incorporacao').html(element.incorporacao);
 				$(itemForm).find('.chegadaCampus').html(element.chegadaCampus);
+				$(itemForm).find('.comentario').html(element.comentario);
 			}
 		});
 	});
@@ -52,7 +53,7 @@ $(document).ready(function() {
 			},
 			descricao : {
 				required : true,
-				maxlength : 15
+				maxlength : 140
 			},
 			categoria : {
 				required : true
