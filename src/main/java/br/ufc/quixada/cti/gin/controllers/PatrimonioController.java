@@ -149,8 +149,8 @@ public class PatrimonioController {
 		Patrimonio antigo = patrimonioService.find(Patrimonio.class, patrimonio.getId());
 		patrimonioService.update(patrimonio);
 
-		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
-		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
+//		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
+//		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
 
 		Historico historico = PatrimonioLog.editar(antigo, patrimonio);
 		if (historico != null) {
@@ -262,7 +262,6 @@ public class PatrimonioController {
 	
 	@RequestMapping(value = { "checkCategoria" }, method = RequestMethod.POST)
 	public @ResponseBody boolean checkCategoria(String nomeCategoria) {
-		System.out.println(nomeCategoria);
 		return patrimonioService.isCategoriaCadastrada(nomeCategoria);
 	}
 	

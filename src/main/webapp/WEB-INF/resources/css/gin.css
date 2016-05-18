@@ -8,6 +8,10 @@ a {
 	cursor:hand;
 }
 
+tbody {
+	background-color: #f9f9f9;
+}
+
 .modal-backdrop {
 	z-index: auto;
 }
@@ -33,6 +37,7 @@ a {
 	background-color: #f9f9f9;
 	border-top: 3px solid #e5e5e5;
 	margin-top: 15px;
+	position: fixed;
 }
 
 .gin-footer p:last-child {

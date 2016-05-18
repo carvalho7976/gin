@@ -125,61 +125,61 @@
 				<div class="modal-body">
 						<table class="table table-striped table-hover">
 							<tbody>
-								<tr class="active">
+								<tr>
 									<td>Tombamento:</td>
 									<td></td>
 									<td class="tombamento"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Descrição:</td>
 									<td></td>
 									<td class="descricao"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Categoria:</td>
 									<td></td>
 									<td class="categoria"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Local:</td>
 									<td></td>
 									<td class="local"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Situação:</td>
 									<td></td>
 									<td class="situacao"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Lotação:</td>
 									<td></td>
 									<td class="lotacao"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Conservação:</td>
 									<td></td>
 									<td class="conservacao"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Conforme Relatório:</td>
 									<td></td>
 									<td class="conformeRelatorio"></td>
 									<td></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Data de Incorporação:</td>
 									<td class="incorporacao"></td>
 									<td>Data de Chegada no Campus:</td>
 									<td class="chegadaCampus"></td>
 								</tr>
-								<tr class="active">
+								<tr>
 									<td>Comentário:</td>
 									<td></td>
 									<td class="comentario"></td>

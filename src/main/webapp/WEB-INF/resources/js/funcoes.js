@@ -35,12 +35,13 @@ $(document).ready(function() {
 				$(itemForm).find('.descricao').html(element.descricao);
 				$(itemForm).find('.categoria').html(element.categoria.nome);
 				$(itemForm).find('.local').html(element.local.fullLocal);
-				$(itemForm).find('.situacao').html(element.situacao.getTipo);
-				$(itemForm).find('.lotacao').html(element.lotacao.getTipo);
-				$(itemForm).find('.conservacao').html(element.conservacao.getTipo);
-				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio.getTipo);
+				$(itemForm).find('.situacao').html(element.situacao);
+				$(itemForm).find('.lotacao').html(element.lotacao);
+				$(itemForm).find('.conservacao').html(element.conservacao);
+				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio);
 				$(itemForm).find('.incorporacao').html(element.incorporacao);
 				$(itemForm).find('.chegadaCampus').html(element.chegadaCampus);
+				$(itemForm).find('.comentario').html(element.comentario);
 			}
 		});
 	});
