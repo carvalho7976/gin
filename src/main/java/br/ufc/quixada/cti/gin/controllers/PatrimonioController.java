@@ -149,8 +149,6 @@ public class PatrimonioController {
 		Patrimonio antigo = patrimonioService.find(Patrimonio.class, patrimonio.getId());
 		patrimonioService.update(patrimonio);
 
-		// preenche o objeto completo categoria e local pois os mesmo vem apenas
-		// com idPatrimonio na chamada do controller;
 		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
 		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
 

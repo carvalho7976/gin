@@ -179,6 +179,12 @@
 									<td>Data de Chegada no Campus:</td>
 									<td class="chegadaCampus"></td>
 								</tr>
+								<tr class="active">
+									<td>Comentário:</td>
+									<td></td>
+									<td class="comentario"></td>
+									<td></td>
+								</tr>
 							</tbody>
 						</table>
 				</div>

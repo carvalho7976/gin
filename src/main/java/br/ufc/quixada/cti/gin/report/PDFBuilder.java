@@ -1,6 +1,5 @@
 package br.ufc.quixada.cti.gin.report;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Map;
 
@@ -99,7 +98,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell("");
 			}
 			if(p.getComentario() != null){
-				table.addCell(p.getComentario().getMensagem());
+				table.addCell(p.getComentario());
 			}else{
 				table.addCell("");
 			}

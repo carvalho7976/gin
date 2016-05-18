@@ -184,7 +184,7 @@
 				<div class="form-group">
 					<label for="comentario" class="col-lg-2 control-label">Comentario</label>
 					<div class="col-lg-10">
-						<form:textarea path="comentario.mensagem" id="comentario" class="form-control" rows="3"/>
+						<form:textarea path="comentario" id="comentario" class="form-control upper-fl" rows="3"/>
 						<span class="help-block">Comentário extra sobre o patrimônio a cerca de sua situação, conversação ou quaisquer outro tipo de característica.</span>
 					</div>
 				</div>

@@ -60,8 +60,8 @@ public class PatrimonioLog {
 			}
 		}
 		
-		if(!antigoPatrimonio.getComentario().getMensagem().equalsIgnoreCase(novoPatrimonio.getComentario().getMensagem())){
-			comment += "Comentário alterado de ( " + antigoPatrimonio.getComentario().getMensagem() + " ) para ( " + novoPatrimonio.getComentario().getMensagem() + " ) #";
+		if(!antigoPatrimonio.getComentario().equalsIgnoreCase(novoPatrimonio.getComentario())){
+			comment += "Comentário alterado de ( " + antigoPatrimonio.getComentario() + " ) para ( " + novoPatrimonio.getComentario() + " ) #";
 			
 		}
 		

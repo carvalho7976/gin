@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -80,9 +79,7 @@ public class Patrimonio {
 	@Temporal(TemporalType.DATE)
 	private Date chegadaCampus;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "comentario_id")
-	private Comentario comentario;
+	private String comentario;
 	
 	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
 	private List<Historico> historicos;
@@ -180,11 +177,11 @@ public class Patrimonio {
 		this.local = local;
 	}
 
-	public Comentario getComentario() {
+	public String getComentario() {
 		return comentario;
 	}
 
-	public void setComentario(Comentario comentario) {
+	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
 
