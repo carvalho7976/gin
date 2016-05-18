@@ -6,11 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="historico")
@@ -23,11 +19,6 @@ public class Historico {
 	private Date timestamp;
 
 	private String comentario;
-	
-	@JsonManagedReference
-	@ManyToOne
-	@JoinColumn(name="patrimonio_id")
-	private Patrimonio patrimonio;
 
 	public Integer getId() {
 		return id;
@@ -52,13 +43,4 @@ public class Historico {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-
-	public Patrimonio getPatrimonio() {
-		return patrimonio;
-	}
-
-	public void setPatrimonio(Patrimonio patrimonio) {
-		this.patrimonio = patrimonio;
-	}
-
 }

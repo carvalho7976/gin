@@ -69,7 +69,6 @@ public class PatrimonioLog {
 			Historico historico = new Historico();
 			
 			historico.setComentario(comment);
-			historico.setPatrimonio(novoPatrimonio);
 			historico.setTimestamp(new Date() );
 			
 			return historico;

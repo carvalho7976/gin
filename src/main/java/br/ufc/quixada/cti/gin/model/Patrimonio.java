@@ -3,7 +3,6 @@ package br.ufc.quixada.cti.gin.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,8 +24,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.ufc.quixada.cti.gin.enumeration.ConformeRelatorio;
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
@@ -83,8 +80,8 @@ public class Patrimonio {
 	
 	private String comentario;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
+	@OneToMany
+	@JoinColumn(name="historico_id")
 	private List<Historico> historicos;
 	
 	@NotNull(message = "Campo obrigatório.")
