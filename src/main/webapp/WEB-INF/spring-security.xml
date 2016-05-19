@@ -8,6 +8,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	
 	<http auto-config="true" use-expressions="true">
+	
 		<access-denied-handler error-page="/403" />
  		<intercept-url pattern="/login*" access="permitAll" />
  		<intercept-url pattern="/webjars/**" access="permitAll" />
@@ -17,9 +18,9 @@
  		
  	</http>
 
-	<beans:bean id="authenticationSuccessHandlerImpl" class="br.ufc.quixada.npi.gpa.controller.AuthenticationSuccessHandlerImpl" />
+	<beans:bean id="authenticationSuccessHandlerImpl" class="br.ufc.quixada.cti.gin.controllers.AuthenticationSuccessHandlerImpl" />
 	
-	<beans:bean id="ldapAuthentication" class="br.ufc.quixada.npi.gpa.service.LdapAuthentication"></beans:bean>
+	<beans:bean id="ldapAuthentication" class="br.ufc.quixada.cti.gin.service.impl.LdapAuthentication"></beans:bean>
 	
 		<authentication-manager alias="authenticationManager">
 			<authentication-provider ref="ldapAuthentication"></authentication-provider>
