@@ -11,12 +11,13 @@
 
 	<mvc:annotation-driven />
 	<context:component-scan base-package="br.ufc.quixada.cti.gin.controllers" />
+	
 	<bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
         <property name="order" value="1"/>
         <property name="basename" value="views"/>
     </bean>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/views/</value>
 		</property>

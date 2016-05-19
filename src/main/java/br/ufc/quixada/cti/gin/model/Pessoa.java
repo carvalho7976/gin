@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,10 +23,18 @@ import br.ufc.quixada.cti.gin.enumeration.Estado;
 @Entity
 @EntityListeners(PessoaEntityListener.class)
 @Table(uniqueConstraints = @UniqueConstraint( columnNames = { "id", "cpf" } ))
+@NamedQueries({
+	@NamedQuery(name = "Pessoa.findPessoaByCpf", query = "select p from Pessoa p where p.cpf = :cpf")
+})
 public class Pessoa {
 
 	public Pessoa() {
 		super();
+	}
+	
+	public Pessoa(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
 	}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
