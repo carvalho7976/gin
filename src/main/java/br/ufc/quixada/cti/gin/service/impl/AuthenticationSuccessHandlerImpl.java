@@ -1,4 +1,4 @@
-package br.ufc.quixada.cti.gin.controllers;
+package br.ufc.quixada.cti.gin.service.impl;
 
 import java.io.IOException;
 

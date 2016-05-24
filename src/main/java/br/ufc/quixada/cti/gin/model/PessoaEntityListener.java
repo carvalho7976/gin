@@ -23,8 +23,7 @@ public class PessoaEntityListener implements ApplicationContextAware{
 		Usuario usuario = usuarioService.getByCpf(pessoa.getCpf());
 		pessoa.setNome(usuario.getNome());
 		pessoa.setEmail(usuario.getEmail());
-		pessoa.setDataNascimento(usuario.getNascimento());
-		pessoa.setTelefone(usuario.getTelefone());
+		pessoa.setSiape(usuario.getSiape());
 	}
 	
 	public static ApplicationContext getApplicationContext() {

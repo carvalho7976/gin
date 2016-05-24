@@ -1,4 +1,4 @@
-package br.ufc.quixada.cti.gin.controllers;
+package br.ufc.quixada.cti.gin.controller;
 
 import java.security.Principal;
 
@@ -38,17 +38,17 @@ public class LoginController {
 		return "redirect:/servidor/patrimonio/listar";
 	}
 	
-	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/login", "" }, method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "logout", required = false) String logout, 
 								@RequestParam(value = "error", required = false) String error) {
 		
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Error! Login inválido.");
+			model.addObject("error", "Usuário e/ou senha inválidos!");
 		}
 		
 		if (logout != null) {
-			model.addObject("info", "Logout realizado.");
+			model.addObject("info", "Logout realizado com sucesso.");
 		}
 		
 		model.setViewName("login");
@@ -60,7 +60,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 
-		model.addAttribute("error", "CPF ou senha inválidos.");
+		model.addAttribute("error", "Usuário e/ou senha inválidos!");
 		
 		return "login";
 	}
@@ -76,12 +76,24 @@ public class LoginController {
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String acessoNegado(ModelMap model, Principal user) {
 		if (user != null) {
-			model.addAttribute("message", "Olá " + user.getName()  + ", você não tem permissão para acessar essa funcionalidade.");
+			model.addAttribute("message", "Olá " + user.getName()  + ", você não tem permissão para acessar essa página.");
 		
 		} else {
-			model.addAttribute("message", "Permissão negada.");
+			model.addAttribute("message", "Você não tem permissão para acessar essa página.");
 		}
 		
 		return "403";
+	}
+	
+	@RequestMapping(value = "/404", method = RequestMethod.GET)
+	public String paginaInexistente(ModelMap model, Principal user) {
+		model.addAttribute("message", "Oops, página não encontrada.");
+		return "404";
+	}
+	
+	@RequestMapping(value = "/500", method = RequestMethod.GET)
+	public String erroServidor(ModelMap model, Principal user) {
+		model.addAttribute("message", "Ops, o site teve um erro técnico.");
+		return "500";
 	}
 }

@@ -46,6 +46,9 @@ public class Pessoa {
 	@Transient
 	private String nome;
 	
+	@Transient
+	private String siape;
+	
 	private String rg;
 
 	private String cpf;
@@ -162,7 +165,13 @@ public class Pessoa {
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-	
-	
+
+	public String getSiape() {
+		return siape;
+	}
+
+	public void setSiape(String siape) {
+		this.siape = siape;
+	}
 	
 }

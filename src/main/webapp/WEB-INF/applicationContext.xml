@@ -12,7 +12,7 @@
 		   http://www.springframework.org/schema/jee 
            http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
 
-	<bean id="applicationContextProvider" class="br.ufc.quixada.cti.gin.model.PessoaEntityListener" />
+	<bean id="applicationContextProvder" class="br.ufc.quixada.cti.gin.model.PessoaEntityListener"/>
 	
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="dev" />
@@ -31,7 +31,6 @@
 		<!-- one of the properties available; the maximum file size in bytes -->
 		<!-- <property name="maxUploadSize" value="100000"/> -->
 	</bean>
-	
 	
 	<jee:jndi-lookup id="ldapUrl" jndi-name="java:comp/env/ldap/url" expected-type="java.lang.String" />
 	<jee:jndi-lookup id="ldapBase" jndi-name="java:comp/env/ldap/base" expected-type="java.lang.String" />
@@ -57,11 +56,11 @@
 	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
 
 	<context:annotation-config />
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.controllers" />
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.service" />
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.impl" />
-	<context:component-scan base-package="br.ufc.quixada.npi.repository"/>
-	<context:component-scan base-package="br.ufc.quixada.npi.service.impl.GenericServiceImpl"/>
-	<context:component-scan base-package="br.ufc.quixada.npi.report"/>
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.controller" />
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.*" />
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.impl.*" />
+	<context:component-scan base-package="br.ufc.quixada.npi.ldap.*" />
+	<context:component-scan base-package="br.ufc.quixada.npi.repository" />
+	<context:component-scan base-package="br.ufc.quixada.npi.service.impl.GenericServiceImpl" />
 
 </beans>
