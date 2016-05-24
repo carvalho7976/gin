@@ -9,12 +9,12 @@
 
 <html>
 <head>
-	<jsp:include page="../header.jsp"></jsp:include>
+	<jsp:include page="../modulos/header.jsp"></jsp:include>
 	<title>Inventário UFC/Quixadá</title>
 </head>
 <body>
 
-	<jsp:include page="../header-gin.jsp"></jsp:include>
+	<jsp:include page="../modulos/header-gin.jsp"></jsp:include>
 
 	<div class="container">
 		<h3 class="section">Patrimônios da UFC/Quixadá</h3>
@@ -195,6 +195,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../modulos/footer.jsp"></jsp:include>
 </body>
 </html>
