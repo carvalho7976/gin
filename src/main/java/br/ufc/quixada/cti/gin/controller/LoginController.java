@@ -87,7 +87,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/404", method = RequestMethod.GET)
 	public String paginaInexistente(ModelMap model, Principal user) {
-		model.addAttribute("message", "Oops, página não encontrada.");
+		model.addAttribute("message", "Ops, página não encontrada.");
 		return "404";
 	}
 	
