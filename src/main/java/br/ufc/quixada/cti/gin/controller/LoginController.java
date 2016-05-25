@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.ufc.quixada.cti.gin.model.Pessoa;
 import br.ufc.quixada.npi.ldap.model.Usuario;
 import br.ufc.quixada.npi.ldap.service.UsuarioService;
 
@@ -51,6 +52,7 @@ public class LoginController {
 			model.addObject("info", "Logout realizado com sucesso.");
 		}
 		
+		model.addObject("pessoa", new Pessoa());
 		model.setViewName("login");
 		
 		return model;
@@ -60,6 +62,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 
+		model.addAttribute("pessoa", new Pessoa());
 		model.addAttribute("error", "Usuário e/ou senha inválidos!");
 		
 		return "login";
