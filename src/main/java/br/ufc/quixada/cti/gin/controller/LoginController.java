@@ -30,13 +30,13 @@ public class LoginController {
 			Usuario usuario = usuarioService.getByCpf(auth.getName());
 			
 			for (GrantedAuthority ga : usuario.getAuthorities()) {
-				if (ga.getAuthority().equalsIgnoreCase("PREFEITO") || ga.getAuthority().equalsIgnoreCase("STA")) {
-					return "redirect:/servidor/patrimonio/listar";
+				if (ga.getAuthority().equalsIgnoreCase("ADMINISTRADOR_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
+					return "redirect:/patrimonio/listar";
 				}
 			}
 		}
 		
-		return "redirect:/servidor/patrimonio/listar";
+		return "redirect:/403";
 	}
 	
 	@RequestMapping(value = { "/", "/login", "" }, method = RequestMethod.GET)
