@@ -41,34 +41,26 @@ public class Pessoa {
 	private Integer id;
 	
 	@Transient
-	private String email;
-	
-	@Transient
 	private String nome;
 	
 	@Transient
+	private String email;
+
+	@Transient
 	private String siape;
 	
-	private String rg;
-
 	private String cpf;
+
+	private String rg;
 
 	@Column(name = "datanascimento", columnDefinition="DATE")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	private String nacionalidade;
-	
-	private String naturalidade;
-	
 	@Enumerated(EnumType.STRING)
 	private Estado uf;
-
-	private String sexo;
 	
 	private String telefone;
-	
-	private String estadoCivil;
 
 	public Integer getId() {
 		return id;
@@ -76,14 +68,6 @@ public class Pessoa {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getNome() {
@@ -94,12 +78,20 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getRg() {
-		return rg;
+	public String getSiape() {
+		return siape;
 	}
 
-	public void setRg(String rg) {
-		this.rg = rg;
+	public void setSiape(String siape) {
+		this.siape = siape;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCpf() {
@@ -110,28 +102,20 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public String getNacionalidade() {
-		return nacionalidade;
-	}
-
-	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
-	}
-
-	public String getNaturalidade() {
-		return naturalidade;
-	}
-
-	public void setNaturalidade(String naturalidade) {
-		this.naturalidade = naturalidade;
 	}
 
 	public Estado getUf() {
@@ -142,36 +126,12 @@ public class Pessoa {
 		this.uf = uf;
 	}
 
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public String getEstadoCivil() {
-		return estadoCivil;
-	}
-
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
-	}
-
-	public String getSiape() {
-		return siape;
-	}
-
-	public void setSiape(String siape) {
-		this.siape = siape;
 	}
 	
 }

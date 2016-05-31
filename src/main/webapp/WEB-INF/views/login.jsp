@@ -23,7 +23,7 @@
 	<div class="login-container" align="center">
 	
 		<div class="login-header" align="center">
-			<img alt="GIN - Gestão de Inventário" src="<c:url value="#" />">
+			<img alt="GIN - Gestão de Inventário" src="<c:url value="/resources/images/gin-logo-02.png" />">
 		</div>
 		
 		<div class="container-form">
