@@ -2,6 +2,30 @@ $(document).ready(function() {
 	
 	var protocolo = window.location.protocol;
 	
+	$('#tombamento').focus(function() {
+		$('#tombamentoInput').removeClass("form-error has-error");
+		$('#tombamentoMessage').remove();
+	}).blur(function() {
+				
+		var value = $('#tombamento').val();
+		console.log(value);
+		if(value.length > 0){
+		
+			$.ajax({
+				method: "POST",
+				url: protocolo + "//"+ location.host +"/gin/patrimonio/checkTombamento",
+				data: "tombamento="+value+"",
+				dataType: "json",
+				success: function(message) {
+					if(message === true){
+						$('#tombamentoInput').addClass("form-error has-error");
+						$('#error-tombamento').append('<span id="tombamentoMessage" class="help-block" style="display: block;">Patrimônio já existente.</span>');
+					}
+					
+				}
+			});
+		}
+	});
 	
 	$('a.back').click(function() {
 		parent.history.back();
@@ -96,7 +120,8 @@ $(document).ready(function() {
 		},
 		messages : {
 			tombamento : {
-				required : "Informe o tombamento do patrimônio."
+				required : "Informe o tombamento do patrimônio.",
+				
 			},
 			descricao : {
 				required : "Informe uma descrição do patrimônio.",
@@ -150,6 +175,7 @@ $(document).ready(function() {
 			},
 			"Categoria já cadastrada."
 		);
+	
 	
 	$('#cadastrarCategoria').validate({
 		rules : {

@@ -106,4 +106,20 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 		return (Patrimonio) findFirst("Patrimonio.findPatrimonioComHistoricoById", new SimpleMap<String, Object>("idPatrimonio", idPatrimonio));
 	}
 
+	@Override
+	public boolean isPatrimonioCadastrado(Integer tombamento) {
+		if(tombamento == null)
+				return false;
+		
+		@SuppressWarnings("unchecked")
+		List<Patrimonio> patrimonios = find(QueryType.JPQL, "from Patrimonio as p where p.tombamento = :tombamento", 
+				new SimpleMap<String, Object>("tombamento", tombamento));
+		
+		if (patrimonios == null || patrimonios.isEmpty()) {
+			return false;
+		}
+		
+		return true;
+	}
+
 }

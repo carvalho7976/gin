@@ -51,7 +51,7 @@
 				<form:input path="id" type="hidden"/>
 				<div class="form-group form-error">
 					<label for="tombamento" class="col-lg-2 control-label "><span class="red">*</span> Tombamento</label>
-					<div class="col-lg-10">
+					<div class="col-lg-10" id="tombamentoInput">
 						<form:input path="tombamento" id="tombamento" class="form-control only-num valid-num" type="text" placeholder="000..."/>
 						<div class="error-validation" id="error-tombamento">
 							<form:errors path="tombamento"></form:errors>

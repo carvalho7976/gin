@@ -58,6 +58,8 @@ public class PatrimonioController {
 
 		return "patrimonio/cadastrar-patrimonio";
 	}
+	
+
 
 	@RequestMapping(value = { "/cadastrar" }, method = RequestMethod.POST)
 	public String cadastrarPatrimonio(Model model, @Valid @ModelAttribute("patrimonio") Patrimonio patrimonio,
@@ -268,5 +270,10 @@ public class PatrimonioController {
 	@RequestMapping(value = { "checkLocalizacao" }, method = RequestMethod.POST)
 	public @ResponseBody boolean checkLocalizacao(String localizacao) {
 		return patrimonioService.isLocalizacaoCadastrada(localizacao);
+	}
+	@RequestMapping(value = { "checkTombamento" }, method = RequestMethod.POST)
+	public @ResponseBody boolean  ceckTombamento(Integer tombamento) {
+		return  patrimonioService.isPatrimonioCadastrado(tombamento);
+			
 	}
 }
