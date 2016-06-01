@@ -8,7 +8,7 @@
 	<title>GIN - Gestão de Inventário</title>
 	
 	<link href="<c:url value="/resources/css/bootstrap-flatly.min.css" />" rel="stylesheet" />
-	<link href="<c:url value="/webjars/font-awesome/4.4.0/css/font-awesome.css" />" rel="stylesheet" />
+	<link href="<c:url value="/resources/css/font-awesome.css" />" rel="stylesheet" />
 	<link href="<c:url value="/resources/css/login-gin.css" />" rel="stylesheet" />
 	
 	<script src="<c:url value="/webjars/jquery/2.1.0/jquery.min.js" />"></script>
