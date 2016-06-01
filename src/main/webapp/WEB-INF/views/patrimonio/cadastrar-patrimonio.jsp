@@ -247,7 +247,7 @@
 						<div class="form-group form-error">
 							<label for="localizacao" class="col-lg-4 control-label"><span class="red">*</span> Localização</label>
 							<div class="col-lg-8">
-								<form:input path="localizacao" id="localizacao" class="form-control upper-fl" type="text" placeholder="Nome do local..." />
+								<form:input path="localizacao" id="localizacao" class="form-control upper-fl" type="text" placeholder="Ex: Biblioteca, Sala de reunião" />
 								<div class="error-validation" id="error-nome">
 									<form:errors path="localizacao"></form:errors>
 								</div>
@@ -263,7 +263,7 @@
 							</div>
 						</div>
 						<div class="form-group form-error">
-							<label for="bloco" class="col-lg-4 control-label"><span class="red">*</span> Bloco</label>
+							<label for="bloco" class="col-lg-4 control-label"> Bloco</label>
 							<div class="col-lg-8">
 								<form:input path="bloco" id="bloco" class="form-control only-num" type="text" placeholder="Bloco..." />
 								<div class="error-validation">
