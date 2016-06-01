@@ -1,5 +1,8 @@
 $(document).ready(function() {
 	
+	var protocolo = window.location.protocol;
+	
+	
 	$('a.back').click(function() {
 		parent.history.back();
 		return false;
@@ -28,7 +31,7 @@ $(document).ready(function() {
 		var itemForm = $(this);
 		$.ajax({
 			method : "GET",
-			url : "http://" + location.host + url,
+			url : protocolo + "//" + location.host + url,
 			dataType : "json",
 			success : function(element) {
 				$(itemForm).find('.tombamento').html(element.tombamento);
@@ -131,7 +134,7 @@ $(document).ready(function() {
 				
 					$.ajax({
 						method: "POST",
-						url: "http://"+ location.host +"/gin/patrimonio/checkCategoria",
+						url: protocolo + "//"+ location.host +"/gin/patrimonio/checkCategoria",
 						data: "nomeCategoria="+value,
 						dataType: "json",
 						success: function(message) {
@@ -183,7 +186,7 @@ $(document).ready(function() {
 		function(value, element) {
 			$.ajax({
 				method: "POST",
-				url: "http://"+ location.host +"/gin/patrimonio/checkLocalizacao",
+				url: protocolo +"//"+ location.host +"/gin/patrimonio/checkLocalizacao",
 				data: "localizacao="+value,
 				dataType: "json",
 				success: function(message) {
