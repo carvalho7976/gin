@@ -12,6 +12,8 @@
 		   http://www.springframework.org/schema/jee 
            http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
 
+	<bean id="applicationContextProvder" class="br.ufc.quixada.cti.gin.model.PessoaEntityListener"/>
+	
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="dev" />
 		<property name="dataSource" ref="gin" />
@@ -29,16 +31,36 @@
 		<!-- one of the properties available; the maximum file size in bytes -->
 		<!-- <property name="maxUploadSize" value="100000"/> -->
 	</bean>
+	
+	<jee:jndi-lookup id="ldapUrl" jndi-name="java:comp/env/ldap/url" expected-type="java.lang.String" />
+	<jee:jndi-lookup id="ldapBase" jndi-name="java:comp/env/ldap/base" expected-type="java.lang.String" />
+	<jee:jndi-lookup id="ldapUserDn" jndi-name="java:comp/env/ldap/userdn" expected-type="java.lang.String" />
+	<jee:jndi-lookup id="ldapPassword" jndi-name="java:comp/env/ldap/password" expected-type="java.lang.String" />
+	<jee:jndi-lookup id="ldapOu" jndi-name="java:comp/env/ldapou" expected-type="java.lang.String" />
+	
+	<bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+		<property name="url" ref="ldapUrl" />
+		<property name="base" ref="ldapBase" />
+		<property name="userDn" ref="ldapUserDn" />
+		<property name="password" ref="ldapPassword" />
+	</bean>
+	
+	<bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+		<constructor-arg ref="contextSource" />
+	</bean>
+	
+	<bean id="base" class="java.lang.String">
+		<constructor-arg ref="ldapOu" />
+	</bean>
 
 	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
 
 	<context:annotation-config />
-
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.controllers" />
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.service" />
-	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.impl" />
-	<context:component-scan base-package="br.ufc.quixada.npi.repository"/>
-	<context:component-scan base-package="br.ufc.quixada.npi.service.impl.GenericServiceImpl"/>
-	<context:component-scan base-package="br.ufc.quixada.npi.report"/>
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.controller" />
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.*" />
+	<context:component-scan base-package="br.ufc.quixada.cti.gin.service.impl.*" />
+	<context:component-scan base-package="br.ufc.quixada.npi.ldap.*" />
+	<context:component-scan base-package="br.ufc.quixada.npi.repository" />
+	<context:component-scan base-package="br.ufc.quixada.npi.service.impl.GenericServiceImpl" />
 
 </beans>

@@ -22,6 +22,15 @@
 			<ul class="nav navbar-nav menu">
 				<li id="inventario"> <a href="<c:url value="/patrimonio/downloadPDF"/>"><span class="fa fa-group"></span> Relatórios</a></li>
 			</ul>
+			
+			<ul class="nav navbar-right navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><strong> ${sessionScope.usuario }&nbsp</strong></b> <i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-chevron-down"></i></a>
+					<ul class="dropdown-menu">
+						<li><a href="<c:url value="/j_spring_security_logout" />"><i class="glyphicon glyphicon-off"></i> Sair</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

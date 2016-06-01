@@ -26,8 +26,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import br.ufc.quixada.cti.gin.enumeration.ConformeRelatorio;
 import br.ufc.quixada.cti.gin.enumeration.Conservacao;
 import br.ufc.quixada.cti.gin.enumeration.Lotacao;
@@ -83,8 +81,8 @@ public class Patrimonio {
 	
 	private String comentario;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy="patrimonio", cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
+	@JoinColumn(name="historico_id")
 	private List<Historico> historicos;
 	
 	@NotNull(message = "Campo obrigatório.")

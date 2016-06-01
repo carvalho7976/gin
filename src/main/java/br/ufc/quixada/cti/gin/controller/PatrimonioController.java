@@ -1,4 +1,4 @@
-package br.ufc.quixada.cti.gin.controllers;
+package br.ufc.quixada.cti.gin.controller;
 
 import java.util.List;
 
@@ -149,8 +149,8 @@ public class PatrimonioController {
 		Patrimonio antigo = patrimonioService.find(Patrimonio.class, patrimonio.getId());
 		patrimonioService.update(patrimonio);
 
-//		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
-//		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
+		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
+		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
 
 		Historico historico = PatrimonioLog.editar(antigo, patrimonio);
 		if (historico != null) {

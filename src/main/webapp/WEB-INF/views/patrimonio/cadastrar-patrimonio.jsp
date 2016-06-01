@@ -19,12 +19,12 @@
 
 <html>
 <head>
-	<jsp:include page="../header.jsp"></jsp:include>
+	<jsp:include page="../modulos/header.jsp"></jsp:include>
 	<title>${titulo}</title>
 </head>
 <body>
 
-	<jsp:include page="../header-gin.jsp"></jsp:include>
+	<jsp:include page="../modulos/header-gin.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<form:form id="cadastrarPatrimonio" servletRelativeAction="${url}" modelAttribute="patrimonio" method="POST" class="form-horizontal">
@@ -281,7 +281,7 @@
 		</div>
 	</div> <br><br>
 
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../modulos/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
 		$(function(){
