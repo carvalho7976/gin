@@ -26,6 +26,77 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$('#nomeCategoriaCadastrar').on('keyup blur', function(){
+		
+		var value = $('#nomeCategoriaCadastrar').val();
+		$('#addCategoriaButton').removeAttr('disabled');
+		$('#cadasdastrarCategoriaErrorDiv').removeClass("form-error has-error");
+		$('#cadastrarCategoriaMessage').remove();
+		
+		if(value != ''){
+		
+			$.ajax({
+				method: "POST",
+				url: protocolo + "//"+ location.host +"/gin/patrimonio/checkCategoria",
+				data: "nomeCategoria="+value,
+				dataType: "json",
+				success: function(existe) {
+					if(!existe){
+						$('#addCategoriaButton').removeAttr('disabled');
+						$('#cadasdastrarCategoriaErrorDiv').removeClass("form-error has-error");
+						$('#cadastrarCategoriaMessage').remove();
+						
+					}else{
+						$('#cadasdastrarCategoriaErrorDiv').addClass("form-error has-error");
+						$('#error-cadastrarCategoria').append('<span id="cadastrarCategoriaMessage" class="help-block" style="display: block;">Categoria já existente.</span>');
+						$('#addCategoriaButton').attr('disabled', 'disabled');
+						
+					}
+					
+				}
+			});
+			
+		}else{
+			$('#addCategoriaButton').attr('disabled', 'disabled');
+		}		
+		
+	});
+	
+$('#nomeLocalCadastrar').on('keyup blur', function(){
+		
+		var value = $('#nomeLocalCadastrar').val();
+		$('#addLocalButton').removeAttr('disabled');
+		$('#cadasdastrarLocalErrorDiv').removeClass("form-error has-error");
+		$('#cadastrarLocalMessage').remove();
+		
+		if(value != ''){
+		
+			$.ajax({
+				method: "POST",
+				url: protocolo +"//"+ location.host +"/gin/patrimonio/checkLocalizacao",
+				data: "localizacao="+value,
+				dataType: "json",
+				success: function(existe) {
+					if(!existe){
+						$('#addLocalButton').removeAttr('disabled');
+						$('#cadasdastrarLocalErrorDiv').removeClass("form-error has-error");
+						$('#cadastrarLocalMessage').remove();
+						
+					}else{
+						$('#cadasdastrarLocalErrorDiv').addClass("form-error has-error");
+						$('#error-cadastrarLocal').append('<span id="cadastrarLocalMessage" class="help-block" style="display: block;">Local já existente.</span>');
+						$('#addLocalButton').attr('disabled', 'disabled');
+						
+					}
+					
+				}
+			});
+			
+		}else{
+			$('#addLocalButton').attr('disabled', 'disabled');
+		}		
+		
+	});
 	
 	$('a.back').click(function() {
 		parent.history.back();
@@ -153,35 +224,11 @@ $(document).ready(function() {
 	});
 	
 	var response;
-	$.validator.addMethod(
-			"uniqueCategoria",
-			function(value, element) {
-				
-					$.ajax({
-						method: "POST",
-						url: protocolo + "//"+ location.host +"/gin/patrimonio/checkCategoria",
-						data: "nomeCategoria="+value,
-						dataType: "json",
-						success: function(message) {
-							response = !message;
-						}
-					});
-				 
-				 if(response != undefined) {
-					 var temp = response;
-					 response = undefined;
-					 return temp;
-				 }
-			},
-			"Categoria já cadastrada."
-		);
-	
 	
 	$('#cadastrarCategoria').validate({
 		rules : {
 			nome : {
 				required : true,
-				uniqueCategoria : true
 			}
 		},
 		highlight : function(element) {
@@ -201,38 +248,16 @@ $(document).ready(function() {
 		messages : {
 			nome : {
 				required : "Informe o nome da categoria.",
-				uniqueCategoria : "Esta categoria já está cadastrada."
 			}
 		}
 		
 	});
 	
-	$.validator.addMethod(
-		"uniqueLocalizacao",
-		function(value, element) {
-			$.ajax({
-				method: "POST",
-				url: protocolo +"//"+ location.host +"/gin/patrimonio/checkLocalizacao",
-				data: "localizacao="+value,
-				dataType: "json",
-				success: function(message) {
-					response = !message;
-				}
-			});
-			if(response != undefined) {
-				 var temp = response;
-				 response = undefined;
-				 return temp;
-			 }
-		},
-		"Localização já cadastrada."
-	);
 	
 	$('#cadastrarLocal').validate({
 		rules : {
 			localizacao : {
 				required : true,
-				uniqueLocalizacao: true
 			},
 			pavimento : {
 				required : true,
@@ -255,7 +280,6 @@ $(document).ready(function() {
 		messages : {
 			localizacao : {
 				required : "Informe o nome do local.",
-				uniqueLocalizacao : "Esta localização já está cadastrada."
 			},
 			pavimento : {
 				required : "Informe o pavimento do local."

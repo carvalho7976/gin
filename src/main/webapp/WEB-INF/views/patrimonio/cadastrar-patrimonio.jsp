@@ -212,11 +212,11 @@
 						<h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
 					</div>
 					<div class="modal-body">
-						<div class="form-group form-error">
+						<div class="form-group form-error" id="cadasdastrarCategoriaErrorDiv">
 							<label for="nome" class="col-lg-4 control-label"><span class="red">*</span> Nome da Categoria</label>
 							<div class="col-lg-8">
-								<form:input path="nome" id="nome" class="form-control upper-fl" type="text" placeholder="Nome da categoria..." />
-								<div class="error-validation" id="error-nome">
+								<form:input path="nome" id="nomeCategoriaCadastrar" class="form-control upper-fl" type="text" placeholder="Nome da categoria..." />
+								<div class="error-validation" id="error-cadastrarCategoria">
 									<form:errors path="nome"></form:errors>
 								</div>
 							</div>
@@ -224,7 +224,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-						<button type="submit" class="btn btn-success">Adicionar</button>
+						<button type="submit" class="btn btn-success"  id="addCategoriaButton" disabled>Adicionar</button>
 					</div>
 				</form:form>
 			</div>
@@ -244,11 +244,11 @@
 						<h4 class="modal-title" id="myModalLabel">Novo Local</h4>
 					</div>
 					<div class="modal-body">
-						<div class="form-group form-error">
+						<div class="form-group form-error" id="cadasdastrarLocalErrorDiv">
 							<label for="localizacao" class="col-lg-4 control-label"><span class="red">*</span> Localização</label>
 							<div class="col-lg-8">
-								<form:input path="localizacao" id="localizacao" class="form-control upper-fl" type="text" placeholder="Ex: Biblioteca, Sala de reunião" />
-								<div class="error-validation" id="error-nome">
+								<form:input path="localizacao" id="nomeLocalCadastrar" class="form-control upper-fl" type="text" placeholder="Ex: Biblioteca, Sala de reunião" />
+								<div class="error-validation" id="error-cadastrarLocal">
 									<form:errors path="localizacao"></form:errors>
 								</div>
 							</div>
@@ -256,7 +256,7 @@
 						<div class="form-group form-error">
 							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
 							<div class="col-lg-8">
-								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="text" placeholder="Pavimento..." />
+								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="number" min="0" placeholder="Ex: 1 " />
 								<div class="error-validation">
 									<form:errors path="pavimento"></form:errors>
 								</div>
@@ -265,7 +265,7 @@
 						<div class="form-group form-error">
 							<label for="bloco" class="col-lg-4 control-label"> Bloco</label>
 							<div class="col-lg-8">
-								<form:input path="bloco" id="bloco" class="form-control only-num" type="text" placeholder="Bloco..." />
+								<form:input path="bloco" id="bloco" class="form-control only-num" type="number" min="0" placeholder="Ex: 1" />
 								<div class="error-validation">
 									<form:errors path="bloco"></form:errors>
 								</div>
@@ -274,7 +274,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-						<button type="submit" class="btn btn-success">Adicionar</button>
+						<button type="submit" class="btn btn-success" id="addLocalButton" disabled>Adicionar</button>
 					</div>
 				</form:form>
 			</div>
