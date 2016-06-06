@@ -55,6 +55,6 @@ tbody {
 .navbar-inverse ul > li:hover {
 	background-color: #15a589;
 }
-.navbar-header > a:hover{
-	background-color: #15a589;
+.navbar-header:hover {
+	background-color: #15a589 !important;
 }
