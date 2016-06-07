@@ -17,8 +17,7 @@
 	<jsp:include page="../modulos/header-gin.jsp"></jsp:include>
 
 	<div class="container">
-		<h3 class="section">Patrimônios da UFC/Quixadá</h3>
-		
+	
 		<c:if test="${not empty erro}">
 			<div class="alert alert-danger alert-dismissible" role="alert"
 				id="alert-erro">
@@ -37,6 +36,24 @@
 				<c:out value="${info}"></c:out>
 			</div>
 		</c:if>
+		
+		<h3 class="section">Buscar Patrimônios</h3>
+		
+		<form:form id="formBuscarPatrimonio" role="form" servletRelativeAction="/patrimonio/buscar" method="POST" class="bs-component">
+			<div class="form-group">
+				<div class="input-group">
+					<input id="tombamento" name="tombamento" type="text" class="form-control only-num" placeholder="Tombamento..." required="required" value="${tombamento }" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" name="submit" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+		</form:form>
+		<br>
+		
+		<h3 class="section">Patrimônios da UFC/Quixadá</h3>
 		
 		<div align="right">
 			<a class="btn btn-success" href="<c:url value="/patrimonio/cadastrar"/>"> Novo Patrimônio</a>

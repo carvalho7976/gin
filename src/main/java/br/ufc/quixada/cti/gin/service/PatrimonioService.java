@@ -10,6 +10,8 @@ import br.ufc.quixada.npi.service.GenericService;
 public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract Patrimonio getPatrimonioComHistorico(Integer idPatrimonio);
+	
+	public abstract List<Patrimonio> getPatrimonioByTombamento(Integer tombamento);
 
 	public abstract void salvarCategoria(Categoria categoria);
 	
@@ -19,7 +21,6 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract List<Categoria> getCategorias();
 	
-	public abstract boolean isPatrimonioCadastrado(Patrimonio patrimonio);
 	public abstract boolean isPatrimonioCadastrado(Integer tombamento);
 	
 	public abstract boolean isCategoriaCadastrada(String nomeCategoria);

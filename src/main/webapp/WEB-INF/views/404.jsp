@@ -5,28 +5,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
-<head>
-	<jsp:include page="modulos/header.jsp"></jsp:include>
-	<title>404 - Página não encontrada</title>
-</head>
-<body>
-	<jsp:include page="modulos/header-gin.jsp"></jsp:include>
-	
-	<div class="container">
-		<div class = "error">
-		    <div class="col-lg-8 col-lg-offset-2 text-center">
-				<div class="logo">
-					<h1>404</h1>
-				</div>
-				<p class="lead text-muted">${message}</p>
-				<br>
-				<div class="col-lg-6 col-lg-offset-3">
-					<a class="btn btn-warning btn-group-justified back" >Voltar</a>
+	<sec:authorize access="isAuthenticated()">
+		<head>
+			<jsp:include page="modulos/header.jsp"></jsp:include>
+			<title>404 - Página não encontrada</title>
+		</head>
+		<body>
+			<jsp:include page="modulos/header-gin.jsp"></jsp:include>
+			
+			<div class="container">
+				<div class = "error">
+				    <div class="col-lg-8 col-lg-offset-2 text-center">
+						<div class="logo">
+							<h1>404</h1>
+						</div>
+						<p class="lead text-muted">${message}</p>
+						<br>
+						<div class="col-lg-6 col-lg-offset-3">
+							<a class="btn btn-warning btn-group-justified back" >Voltar</a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
-	<jsp:include page="modulos/footer.jsp"></jsp:include>
-</body>
+			
+			<jsp:include page="modulos/footer.jsp"></jsp:include>
+		</body>
+	</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+		<c:redirect url="/login"></c:redirect>
+	</sec:authorize>
 </html>

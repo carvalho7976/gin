@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.ufc.quixada.cti.gin.model.Pessoa;
 import br.ufc.quixada.npi.ldap.model.Usuario;
 import br.ufc.quixada.npi.ldap.service.UsuarioService;
 
@@ -24,22 +23,23 @@ public class LoginController {
 	@Inject
 	private UsuarioService usuarioService;
 	
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String inicio(Authentication auth) {
 		
 		if (auth != null) {
 			Usuario usuario = usuarioService.getByCpf(auth.getName());
 			
 			for (GrantedAuthority ga : usuario.getAuthorities()) {
-				if (ga.getAuthority().equalsIgnoreCase("ADMINISTRADOR_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
+				if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
 					return "redirect:/patrimonio/listar";
 				}
 			}
 		}
 		
-		return "redirect:/403";
+		return "redirect:/login";
 	}
 	
-	@RequestMapping(value = { "/", "/login", "" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "logout", required = false) String logout, 
 								@RequestParam(value = "error", required = false) String error) {
 		
@@ -52,7 +52,6 @@ public class LoginController {
 			model.addObject("info", "Logout realizado com sucesso.");
 		}
 		
-		model.addObject("pessoa", new Pessoa());
 		model.setViewName("login");
 		
 		return model;
@@ -62,7 +61,6 @@ public class LoginController {
 	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 
-		model.addAttribute("pessoa", new Pessoa());
 		model.addAttribute("error", "Usuário e/ou senha inválidos!");
 		
 		return "login";

@@ -34,7 +34,8 @@ import br.ufc.quixada.cti.gin.enumeration.Situacao;
 @Entity
 @Table(name="patrimonio", uniqueConstraints = @UniqueConstraint(columnNames = "tombamento"))
 @NamedQueries({
-	@NamedQuery(name = "Patrimonio.findPatrimonioComHistoricoById", query = "select p from Patrimonio p left join fetch p.historicos where p.id = :idPatrimonio")
+	@NamedQuery(name = "Patrimonio.findPatrimonioComHistoricoById", query = "select p from Patrimonio p left join fetch p.historicos where p.id = :idPatrimonio"),
+	@NamedQuery(name = "Patrimonio.findPatrimonioByTombamento", 	query = "select p from Patrimonio p where p.tombamento = :tombamento")
 })
 public class Patrimonio {
 	

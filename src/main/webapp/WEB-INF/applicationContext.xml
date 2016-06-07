@@ -12,8 +12,6 @@
 		   http://www.springframework.org/schema/jee 
            http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
 
-	<bean id="applicationContextProvder" class="br.ufc.quixada.cti.gin.model.PessoaEntityListener"/>
-	
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="dev" />
 		<property name="dataSource" ref="gin" />

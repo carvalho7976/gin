@@ -9,7 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-import br.ufc.quixada.cti.gin.service.PessoaService;
 import br.ufc.quixada.npi.ldap.model.Usuario;
 import br.ufc.quixada.npi.ldap.service.UsuarioService;
 
@@ -18,9 +17,6 @@ public class LdapAuthentication implements AuthenticationProvider {
 	
 	@Inject
 	private UsuarioService usuarioService;
-	
-	@Inject
-	private PessoaService pessoaService;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
@@ -29,8 +25,7 @@ public class LdapAuthentication implements AuthenticationProvider {
 		
 		Usuario usuario = usuarioService.getByCpf(username);
 		
-		if (usuario == null || !usuarioService.autentica(username, password) 
-			|| usuario.getAuthorities().isEmpty() || pessoaService.getPessoaByCpf(username) == null) {
+		if (usuario == null || !usuarioService.autentica(username, password) || usuario.getAuthorities().isEmpty()) {
 			
 			throw new BadCredentialsException("Login inválido.");
 		}
