@@ -62,7 +62,17 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 			
 			request.getSession().setAttribute("id", id);
 			request.getSession().setAttribute("usuario", nome);
+			
+		} else {
+			Usuario usuario = usuarioService.getByCpf(auth.getName());
+			
+			String nome = usuario.getNome();
+			String id = usuario.getSiape();
+			
+			request.getSession().setAttribute("id", id);
+			request.getSession().setAttribute("usuario", nome);
 		}
+
 	}
 
 }
