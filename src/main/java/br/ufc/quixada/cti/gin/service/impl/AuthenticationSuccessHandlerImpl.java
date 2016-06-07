@@ -14,8 +14,6 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import br.ufc.quixada.cti.gin.model.Pessoa;
-import br.ufc.quixada.cti.gin.service.PessoaService;
 import br.ufc.quixada.npi.ldap.model.Usuario;
 import br.ufc.quixada.npi.ldap.service.UsuarioService;
 
@@ -26,9 +24,6 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	
 	@Inject
 	private UsuarioService usuarioService;
-
-	@Inject
-	private PessoaService pessoaService;
 	
 	public AuthenticationSuccessHandlerImpl() {
 		redirectStrategy = new DefaultRedirectStrategy();
@@ -50,20 +45,20 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		Usuario usuario = usuarioService.getByCpf(authentication.getName());
 		
 		for (GrantedAuthority ga : usuario.getAuthorities()) {
-			if (ga.getAuthority().equalsIgnoreCase("ADMINISTRADOR_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
+			if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
 				return "/patrimonio/listar";
 			}
 		}
 		
-		return "/login";
+		return "/403";
 	}
 	
 	private void usuarioLogado(HttpServletRequest request, Authentication auth) {
 		if (request.getSession().getAttribute("usuario") == null) {
-			Pessoa pessoa = pessoaService.getPessoaByCpf(auth.getName());
+			Usuario usuario = usuarioService.getByCpf(auth.getName());
 			
-			String nome = pessoa.getNome();
-			Integer id = pessoa.getId();
+			String nome = usuario.getNome();
+			String id = usuario.getSiape();
 			
 			request.getSession().setAttribute("id", id);
 			request.getSession().setAttribute("usuario", nome);
