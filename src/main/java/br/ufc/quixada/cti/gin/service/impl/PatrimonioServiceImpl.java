@@ -94,8 +94,9 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 
 	@Override
 	public boolean isPatrimonioCadastrado(Integer tombamento) {
-		if(tombamento == null)
-				return false;
+		if(tombamento == null) {
+			return false;
+		}
 		
 		@SuppressWarnings("unchecked")
 		List<Patrimonio> patrimonios = find(QueryType.JPQL, "from Patrimonio as p where p.tombamento = :tombamento", 
@@ -106,6 +107,13 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 		}
 		
 		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(readOnly = true)
+	public List<Patrimonio> getPatrimonioByTombamento(Integer tombamento) {
+		return find("Patrimonio.findPatrimonioByTombamento", new SimpleMap<String, Object>("tombamento", tombamento));
 	}
 
 }
