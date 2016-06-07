@@ -68,7 +68,7 @@ public class PatrimonioController {
 		model.addAttribute("action", "cadastrar");
 
 		if (patrimonio != null) {
-			if (patrimonioService.isPatrimonioCadastrado(patrimonio)) {
+			if (patrimonioService.isPatrimonioCadastrado(patrimonio.getId())) {
 				result.rejectValue("tombamento", "patrimonio.tombamento", "Número de tombamento já existe.");
 			}
 			

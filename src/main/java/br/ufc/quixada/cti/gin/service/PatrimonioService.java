@@ -19,7 +19,6 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract List<Categoria> getCategorias();
 	
-	public abstract boolean isPatrimonioCadastrado(Patrimonio patrimonio);
 	public abstract boolean isPatrimonioCadastrado(Integer tombamento);
 	
 	public abstract boolean isCategoriaCadastrada(String nomeCategoria);

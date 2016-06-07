@@ -50,20 +50,6 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public boolean isPatrimonioCadastrado(Patrimonio patrimonio) {
-		@SuppressWarnings("unchecked")
-		List<Patrimonio> patrimonios = find(QueryType.JPQL, "from Patrimonio as p where p.tombamento = :tombamento", 
-				new SimpleMap<String, Object>("tombamento", patrimonio.getTombamento()));
-		
-		if (patrimonios == null || patrimonios.isEmpty()) {
-			return false;
-		}
-		
-		return true;
-	}
-
-	@Override
 	public boolean isCategoriaCadastrada(String nomeCategoria) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
