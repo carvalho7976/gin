@@ -45,7 +45,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		Usuario usuario = usuarioService.getByCpf(authentication.getName());
 		
 		for (GrantedAuthority ga : usuario.getAuthorities()) {
-			if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
+			if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN")) {
 				return "/patrimonio/listar";
 			}
 		}

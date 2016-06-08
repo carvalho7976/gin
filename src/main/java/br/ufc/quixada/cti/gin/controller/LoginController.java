@@ -30,7 +30,7 @@ public class LoginController {
 			Usuario usuario = usuarioService.getByCpf(auth.getName());
 			
 			for (GrantedAuthority ga : usuario.getAuthorities()) {
-				if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN") || ga.getAuthority().equalsIgnoreCase("STA")) {
+				if (ga.getAuthority().equalsIgnoreCase("ADMIN_GIN")) {
 					return "redirect:/patrimonio/listar";
 				}
 			}
