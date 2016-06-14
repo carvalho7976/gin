@@ -239,13 +239,6 @@ public class PatrimonioController {
 			Model model, @Valid @ModelAttribute("local") Local local, BindingResult result,
 			RedirectAttributes redirect) {
 
-		if (local != null) {
-
-			if (patrimonioService.isLocalizacaoCadastrada(local.getLocalizacao())) {
-				result.rejectValue("localizacao", "local.localizacao", "Localização já está cadastrada.");
-			}
-		}
-
 		if (result.hasErrors()) {
 			model.addAttribute("local", local);
 			model.addAttribute("patrimonio", new Patrimonio());
@@ -281,11 +274,7 @@ public class PatrimonioController {
 	public @ResponseBody boolean checkCategoria(String nomeCategoria) {
 		return patrimonioService.isCategoriaCadastrada(nomeCategoria);
 	}
-	
-	@RequestMapping(value = { "checkLocalizacao" }, method = RequestMethod.POST)
-	public @ResponseBody boolean checkLocalizacao(String localizacao) {
-		return patrimonioService.isLocalizacaoCadastrada(localizacao);
-	}
+
 	@RequestMapping(value = { "checkTombamento" }, method = RequestMethod.POST)
 	public @ResponseBody boolean  ceckTombamento(Integer tombamento) {
 		return  patrimonioService.isPatrimonioCadastrado(tombamento);

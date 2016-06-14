@@ -64,19 +64,6 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 		return true;
 	}
 
-	@Override
-	public boolean isLocalizacaoCadastrada(String localizacao) {
-		@SuppressWarnings("unchecked")
-		List<Local> locais = find(QueryType.JPQL, "from Local as l where l.localizacao = :localizacao", 
-				new SimpleMap<String, Object>("localizacao", localizacao));
-		
-		if (locais == null || locais.isEmpty()) {
-			return false;
-		}
-		
-		return true;
-	}
-	
 	public Categoria getCategoria(long id) {
 		return categoriaRepository.find(Categoria.class, id);
 	}
