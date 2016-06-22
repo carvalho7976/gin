@@ -256,8 +256,8 @@
 						<div class="form-group form-error">
 							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
 							<div class="col-lg-8">
-								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="number" min="0" placeholder="Ex: 1 " />
-								<span class="help-block">Pavimento de nível 0 é equivalente ao térreo.</span>
+								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="number" min="1" placeholder="Ex: 1 " />
+								<span class="help-block">Pavimento de nível 1 é equivalente ao térreo.</span>
 								<div class="error-validation">
 									<form:errors path="pavimento"></form:errors>
 								</div>
@@ -266,7 +266,7 @@
 						<div class="form-group form-error">
 							<label for="bloco" class="col-lg-4 control-label"> Bloco</label>
 							<div class="col-lg-8">
-								<form:input path="bloco" id="bloco" class="form-control only-num" type="number" min="0" placeholder="Ex: 1" />
+								<form:input path="bloco" id="bloco" class="form-control only-num" type="number" min="1" placeholder="Ex: 1" />
 								<div class="error-validation">
 									<form:errors path="bloco"></form:errors>
 								</div>
