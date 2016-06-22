@@ -26,6 +26,7 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
 	$('#nomeCategoriaCadastrar').on('keyup blur', function(){
 		
 		var value = $('#nomeCategoriaCadastrar').val();
@@ -62,7 +63,7 @@ $(document).ready(function() {
 		
 	});
 	
-$('#nomeLocalCadastrar').on('keyup blur', function(){
+	$('#nomeLocalCadastrar').on('keyup blur', function(){
 		
 		var value = $('#nomeLocalCadastrar').val();
 		$('#addLocalButton').removeAttr('disabled');
@@ -70,27 +71,7 @@ $('#nomeLocalCadastrar').on('keyup blur', function(){
 		$('#cadastrarLocalMessage').remove();
 		
 		if(value != ''){
-		
-			$.ajax({
-				method: "POST",
-				url: protocolo +"//"+ location.host +"/gin/patrimonio/checkLocalizacao",
-				data: "localizacao="+value,
-				dataType: "json",
-				success: function(existe) {
-					if(!existe){
-						$('#addLocalButton').removeAttr('disabled');
-						$('#cadasdastrarLocalErrorDiv').removeClass("form-error has-error");
-						$('#cadastrarLocalMessage').remove();
-						
-					}else{
-						$('#cadasdastrarLocalErrorDiv').addClass("form-error has-error");
-						$('#error-cadastrarLocal').append('<span id="cadastrarLocalMessage" class="help-block" style="display: block;">Local já existente.</span>');
-						$('#addLocalButton').attr('disabled', 'disabled');
-						
-					}
-					
-				}
-			});
+			$('#addLocalButton').removeAttr('disabled');
 			
 		}else{
 			$('#addLocalButton').attr('disabled', 'disabled');
@@ -223,8 +204,6 @@ $('#nomeLocalCadastrar').on('keyup blur', function(){
 			
 	});
 	
-	var response;
-	
 	$('#cadastrarCategoria').validate({
 		rules : {
 			nome : {
@@ -252,7 +231,6 @@ $('#nomeLocalCadastrar').on('keyup blur', function(){
 		}
 		
 	});
-	
 	
 	$('#cadastrarLocal').validate({
 		rules : {

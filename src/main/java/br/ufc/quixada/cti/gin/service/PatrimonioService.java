@@ -25,8 +25,6 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract boolean isCategoriaCadastrada(String nomeCategoria);
 	
-	public abstract boolean isLocalizacaoCadastrada(String localizacao);
-
 	public abstract Categoria getCategoria(long id);
 	
 	public abstract Local getLocal(long id);

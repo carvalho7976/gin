@@ -257,6 +257,7 @@
 							<label for="pavimento" class="col-lg-4 control-label"><span class="red">*</span> Pavimento</label>
 							<div class="col-lg-8">
 								<form:input path="pavimento" id="pavimento" class="form-control upper-fl" type="number" min="0" placeholder="Ex: 1 " />
+								<span class="help-block">Pavimento de nível 0 é equivalente ao térreo.</span>
 								<div class="error-validation">
 									<form:errors path="pavimento"></form:errors>
 								</div>
