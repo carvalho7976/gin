@@ -162,7 +162,7 @@
 				</div>
 				<div class="row">
 					<div class="form-error">
-						<label for="incorporacao" class="col-lg-2 control-label"><span class="red">*</span> Data de Incorporação</label>
+						<label for="incorporacao" class="col-lg-2 control-label">Data de Incorporação</label>
 						<div class="col-lg-4">
 							<form:input id="incorporacao" class="form-control" path="incorporacao" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
 							<div class="error-validation" id="error-data-incorporacao">

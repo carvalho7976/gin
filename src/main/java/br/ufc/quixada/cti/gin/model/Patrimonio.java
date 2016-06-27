@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -71,7 +72,6 @@ public class Patrimonio {
 	@Enumerated(EnumType.STRING)
 	private Conservacao conservacao;
 	
-	@NotNull(message = "Campo obrigatório.")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date incorporacao;
@@ -80,6 +80,7 @@ public class Patrimonio {
 	@Temporal(TemporalType.DATE)
 	private Date chegadaCampus;
 	
+	@Column(columnDefinition="TEXT")
 	private String comentario;
 	
 	@OneToMany(cascade = CascadeType.MERGE)

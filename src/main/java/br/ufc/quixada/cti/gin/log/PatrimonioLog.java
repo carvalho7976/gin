@@ -46,23 +46,27 @@ public class PatrimonioLog {
 			
 		}
 		
-		if(!antigoPatrimonio.getIncorporacao().equals(novoPatrimonio.getIncorporacao())){
+		
+		if(antigoPatrimonio.getIncorporacao()!= null && !antigoPatrimonio.getIncorporacao().equals(novoPatrimonio.getIncorporacao())){
 			comment += "Data incoporação alterada de " + antigoPatrimonio.getIncorporacao() + " para " + novoPatrimonio.getIncorporacao() + "# ";
 			
+		}else if(antigoPatrimonio.getIncorporacao() == null && novoPatrimonio.getIncorporacao() != null ){
+			comment += "Data incoporação alterada de (vazio) para " + novoPatrimonio.getIncorporacao() + "# ";
 		}
 		
-		if(antigoPatrimonio.getChegadaCampus() == null && novoPatrimonio.getChegadaCampus() != null){
+		if(antigoPatrimonio.getChegadaCampus() != null && !antigoPatrimonio.getChegadaCampus().equals(novoPatrimonio.getChegadaCampus()) ){
 			comment += "Data de chegada no campus alterada de " + antigoPatrimonio.getChegadaCampus() + " para " + novoPatrimonio.getChegadaCampus() + "# ";
 			
-		} else if (antigoPatrimonio.getChegadaCampus() != null) {
-			if (!antigoPatrimonio.getChegadaCampus().equals(novoPatrimonio.getChegadaCampus())) {
-				comment += "Data de chegada no campus alterada de " + antigoPatrimonio.getChegadaCampus() + " para " + novoPatrimonio.getChegadaCampus() + "# ";
-			}
+		} else if (antigoPatrimonio.getChegadaCampus() == null && novoPatrimonio.getChegadaCampus() != null) {
+			comment += "Data de chegada no campus alterada de vazio para " + novoPatrimonio.getChegadaCampus() + "# ";			
 		}
 		
-		if(!antigoPatrimonio.getComentario().equalsIgnoreCase(novoPatrimonio.getComentario())){
+		if(antigoPatrimonio.getComentario() != null && !antigoPatrimonio.getComentario().equalsIgnoreCase(novoPatrimonio.getComentario())){
 			comment += "Comentário alterado de ( " + antigoPatrimonio.getComentario() + " ) para ( " + novoPatrimonio.getComentario() + " ) #";
 			
+		}else if(antigoPatrimonio.getComentario() == null && novoPatrimonio.getComentario() != null){
+			comment += "Comentário alterado de (vazio) para ( " + novoPatrimonio.getComentario() + " ) #";
+
 		}
 		
 		if(!comment.isEmpty()){

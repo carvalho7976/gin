@@ -2,6 +2,7 @@ package br.ufc.quixada.cti.gin.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Historico {
 	
 	private Date timestamp;
 
+	@Column(columnDefinition="TEXT")
 	private String comentario;
 
 	public Integer getId() {

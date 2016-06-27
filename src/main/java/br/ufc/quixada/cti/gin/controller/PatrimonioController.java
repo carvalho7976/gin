@@ -168,11 +168,16 @@ public class PatrimonioController {
 
 		patrimonio.setCategoria(patrimonioService.getCategoria(patrimonio.getCategoria().getId()));
 		patrimonio.setLocal(patrimonioService.getLocal(patrimonio.getLocal().getId()));
-
-		Historico historico = PatrimonioLog.editar(antigo, patrimonio);
-		if (historico != null) {
-			historicoService.save(historico);
+		
+		try{
+			Historico historico = PatrimonioLog.editar(antigo, patrimonio);
+			if (historico != null) {
+				historicoService.save(historico);
+			}
+		}catch(Exception e){
+			//TODO
 		}
+		
 
 		redirect.addFlashAttribute("info", "Patrimônio atualizado com sucesso.");
 		return "redirect:/patrimonio/listar";

@@ -151,9 +151,6 @@ $(document).ready(function() {
 			},
 			conservacao : {
 				required : true
-			},
-			incorporacao : {
-				required : true
 			}
 		},
 		highlight : function(element) {
@@ -196,9 +193,6 @@ $(document).ready(function() {
 			},
 			conservacao : {
 				required: "Informe o estado de conservação do patrimônio."
-			},
-			incorporacao : {
-				required : "Informe a data de incorporação do patrimônio."
 			}
 		}
 			
