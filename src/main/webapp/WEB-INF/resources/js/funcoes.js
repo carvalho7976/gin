@@ -118,9 +118,15 @@ $(document).ready(function() {
 				$(itemForm).find('.lotacao').html(element.lotacao);
 				$(itemForm).find('.conservacao').html(element.conservacao);
 				$(itemForm).find('.conformeRelatorio').html(element.conformeRelatorio);
-				$(itemForm).find('.incorporacao').html(element.incorporacao);
-				$(itemForm).find('.chegadaCampus').html(element.chegadaCampus);
-				$(itemForm).find('.comentario').html(element.comentario);
+				if(element.incorporacao != null)
+					var incorporacao = element.incorporacao.split("-");
+				if(element.chegadaCampus != null)
+					var chegadaCampus = element.chegadaCampus.split("-");
+				
+				$(itemForm).find('.incorporacao').html((element.incorporacao == null) ? '<i>Não conhecida</i>' : incorporacao[2] + "/" + incorporacao[1] + "/" + incorporacao[0]);
+				$(itemForm).find('.chegadaCampus').html((element.chegadaCampus == null) ? '<i>Não conhecida</i>' : chegadaCampus[2] + "/" + chegadaCampus[1] + "/" + chegadaCampus[0]);
+				console.log(element.comentario.length);
+				$(itemForm).find('.comentario').html((element.comentario == null || element.comentario.length == 0) ? '<i>Sem comentários</i>' : element.comentario);
 			}
 		});
 	});

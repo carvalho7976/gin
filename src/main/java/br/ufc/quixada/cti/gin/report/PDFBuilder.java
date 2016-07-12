@@ -91,12 +91,19 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.addCell(p.getSituacao().getTipo());
 			table.addCell(p.getLotacao().getTipo());
 			table.addCell(p.getConservacao().getTipo());
-			table.addCell(p.getIncorporacao().toString());
+			
+			if(p.getIncorporacao() != null){
+				table.addCell(p.getIncorporacao().toString());
+			}else{
+				table.addCell("");
+			}
+			
 			if(p.getChegadaCampus() != null){
 				table.addCell(p.getChegadaCampus().toString());
 			}else{
 				table.addCell("");
 			}
+			
 			if(p.getComentario() != null){
 				table.addCell(p.getComentario());
 			}else{

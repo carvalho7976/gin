@@ -1,5 +1,7 @@
 package br.ufc.quixada.cti.gin.enumeration;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum ConformeRelatorio {
 	NCR("Não consta no relatório"), 
 	C("Consta no relatório"), 
@@ -11,7 +13,8 @@ public enum ConformeRelatorio {
 	private ConformeRelatorio(String tipo){
 		this.tipo = tipo; 
 	}
-
+	
+	@JsonValue
 	public String getTipo() {
 		return tipo;
 	}

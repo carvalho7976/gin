@@ -15,6 +15,7 @@ public enum Estado {
 		this.tipo = tipo;
 	}
 	
+	
 	public String getTipo(){
 		return tipo;
 	}

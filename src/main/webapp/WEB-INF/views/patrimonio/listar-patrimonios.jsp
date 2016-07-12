@@ -133,7 +133,7 @@
 	</div>
 	
 	<div id="detalhe-patrimonio" class="modal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -142,62 +142,68 @@
 				<div class="modal-body">
 						<table class="table table-striped table-hover">
 							<tbody>
-								<tr>
-									<td>Tombamento:</td>
+								<tr class="active">
+									<td><b>Tombamento:</b></td>
 									<td></td>
 									<td class="tombamento"></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td>Descrição:</td>
+									<td><b>Descrição:</b></td>
 									<td></td>
 									<td class="descricao"></td>
 									<td></td>
 								</tr>
-								<tr>
-									<td>Categoria:</td>
+								<tr class="active">
+									<td><b>Categoria:</b></td>
 									<td></td>
 									<td class="categoria"></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td>Local:</td>
+									<td><b>Local:</b></td>
 									<td></td>
 									<td class="local"></td>
 									<td></td>
 								</tr>
-								<tr>
-									<td>Situação:</td>
+								<tr class="active">
+									<td><b>Situação:</b></td>
 									<td></td>
 									<td class="situacao"></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td>Lotação:</td>
+									<td><b>Lotação:</b></td>
 									<td></td>
 									<td class="lotacao"></td>
 									<td></td>
 								</tr>
-								<tr>
-									<td>Conservação:</td>
+								<tr class="active">
+									<td><b>Conservação:</b></td>
 									<td></td>
 									<td class="conservacao"></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td>Conforme Relatório:</td>
+									<td><b>Conforme Relatório:</b></td>
 									<td></td>
 									<td class="conformeRelatorio"></td>
 									<td></td>
 								</tr>
-								<tr>
-									<td>Data de Incorporação:</td>
+								<tr class="active">
+									<td><b>Data de Incorporação:</b></td>
+									<td></td>
 									<td class="incorporacao"></td>
-									<td>Data de Chegada no Campus:</td>
-									<td class="chegadaCampus"></td>
+									<td></td>									
 								</tr>
 								<tr>
-									<td>Comentário:</td>
+								<td><b>Data de Chegada no Campus:</b></td>
+								    <td></td>
+									<td class="chegadaCampus"></td>
+									<td></td>
+								</tr>
+								<tr class="active">
+									<td><b>Comentário:</b></td>
 									<td></td>
 									<td class="comentario"></td>
 									<td></td>
