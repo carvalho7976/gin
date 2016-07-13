@@ -36,9 +36,16 @@ public class PatrimonioController {
 	private HistoricoService historicoService;
 	
 	@RequestMapping(value = { "buscar" }, method = RequestMethod.POST)
-	public String buscarPatrimonios(@RequestParam("tombamento") Integer tombamento, Model model, RedirectAttributes redirect) {
+	public String buscarPatrimonios(@RequestParam("descricao") String descricao, Model model, RedirectAttributes redirect) {
 		
-		List<Patrimonio> patrimonios = patrimonioService.getPatrimonioByTombamento(tombamento);
+		List<Patrimonio> patrimonios;
+		try{
+			Integer tombamento = Integer.valueOf(descricao);
+			patrimonios = patrimonioService.getPatrimonioByTombamento(tombamento);
+		}catch(Exception e){
+			patrimonios = patrimonioService.getPatrimonioByDescricao(descricao);
+		}
+	
 		
 		if (patrimonios == null || patrimonios.isEmpty()) {
 			redirect.addFlashAttribute("erro", "Patrimonio(s) não encontrado(s).");

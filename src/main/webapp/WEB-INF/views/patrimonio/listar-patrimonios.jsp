@@ -42,7 +42,7 @@
 		<form:form id="formBuscarPatrimonio" role="form" servletRelativeAction="/patrimonio/buscar" method="POST" class="bs-component">
 			<div class="form-group">
 				<div class="input-group">
-					<input id="tombamento" name="tombamento" type="text" class="form-control only-num" placeholder="Tombamento..." required="required" value="${tombamento }" />
+					<input id="bucaPratrimonio" name="descricao" type="text" class="form-control" placeholder="Tombamento ou Descrição..." required="required" value="${descricao }" />
 					<span class="input-group-btn">
 						<button class="btn btn-default" name="submit" type="submit">
 							<span class="glyphicon glyphicon-search"></span>

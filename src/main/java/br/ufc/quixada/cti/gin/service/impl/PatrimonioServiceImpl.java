@@ -102,5 +102,12 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	public List<Patrimonio> getPatrimonioByTombamento(Integer tombamento) {
 		return find("Patrimonio.findPatrimonioByTombamento", new SimpleMap<String, Object>("tombamento", tombamento));
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Patrimonio> getPatrimonioByDescricao(String descricao) {
+		return find(QueryType.JPQL, "from Patrimonio as p where UPPER(p.descricao) like :descricao", 
+				new SimpleMap<String, Object>("descricao", "%" + descricao.toUpperCase() + "%" ));
+	}
 
 }
