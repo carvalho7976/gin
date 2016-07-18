@@ -81,8 +81,6 @@ public class PatrimonioController {
 		return "patrimonio/cadastrar-patrimonio";
 	}
 	
-
-
 	@RequestMapping(value = { "/cadastrar" }, method = RequestMethod.POST)
 	public String cadastrarPatrimonio(Model model, @Valid @ModelAttribute("patrimonio") Patrimonio patrimonio,
 			BindingResult result, RedirectAttributes redirect) {
