@@ -53,14 +53,51 @@ public class PatrimonioController {
 		}
 		
 		model.addAttribute("patrimonios", patrimonios);
+		model.addAttribute("locais", patrimonioService.getLocais());
+		model.addAttribute("categorias", patrimonioService.getCategorias());
 		
 		return "patrimonio/listar-patrimonios";
 	}
+	
+	@RequestMapping(value={"buscaPersolanizada"}, method=RequestMethod.POST)
+	public String buscaPersonalizada(@RequestParam("selectLocais") Long idLocal, @RequestParam("selectCateogrias") Long idCategoria, Model model, RedirectAttributes redirectAttributes){
+		List<Patrimonio> patrimonios = null;
+		Local local = new Local();
+		Categoria categoria = new Categoria();
+		
+		if(idLocal != null && idCategoria != null && idLocal != -1 && idCategoria != -1){
+			
+			
+		}
+		else if(idLocal != null && idLocal != -1){
+			
+			local.setId(idLocal);
+			patrimonios = patrimonioService.getPatrimonioByLocal(local);
+		}
+		else if(idCategoria != null && idCategoria != -1){
+			
+			categoria.setId(idCategoria);
+			patrimonios = patrimonioService.getPatrimonioByCategoria(categoria);
+		}
+		
+		if (patrimonios == null || patrimonios.isEmpty()) {
+			redirectAttributes.addFlashAttribute("erro", "Patrimonio(s) não encontrado(s).");
+			return "redirect:/patrimonio/listar";
+		}
+		
+		model.addAttribute("patrimonios", patrimonios);
+		model.addAttribute("locais", patrimonioService.getLocais());
+		model.addAttribute("categorias", patrimonioService.getCategorias());
 
+		return "patrimonio/listar-patrimonios";
+	}
+	
 	@RequestMapping(value = { "/", "/listar" }, method = RequestMethod.GET)
 	public String getPatrimonios(Model model) {
 
 		model.addAttribute("patrimonios", patrimonioService.find(Patrimonio.class));
+		model.addAttribute("locais", patrimonioService.getLocais());
+		model.addAttribute("categorias", patrimonioService.getCategorias());
 
 		return "patrimonio/listar-patrimonios";
 	}
@@ -123,7 +160,7 @@ public class PatrimonioController {
 	public String editarPatrimonio(@PathVariable("idPatrimonio") Integer idPatrimonio, Model model) {
 
 		Patrimonio patrimonio = patrimonioService.find(Patrimonio.class, idPatrimonio);
-
+		
 		model.addAttribute("action", "editar");
 		model.addAttribute("patrimonio", patrimonio);
 

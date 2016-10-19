@@ -53,6 +53,38 @@
 		</form:form>
 		<br>
 		
+		<h3 class="section">Buscar por Categoria ou Local</h3>
+		
+		<form:form id="formBuscar" name="formBuscar" servletRelativeAction="/patrimonio/buscaPersolanizada" method="POST" class="bs-component">
+			<div class="form-group">
+				<div class="select-group">
+					<label for="selectLocais">Locais</label>
+					<select id="selectLocais" name="selectLocais" class="form-control">
+						<option value="-1" selected>Escolha um local...</option>
+						<c:forEach var="local" items="${locais}">
+							<option value="${local.id}">${local.localizacao}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="select-group">
+					<label for="selectCategorias">Categorias</label>
+					<select id="selectCateogrias" name="selectCateogrias" class="form-control">
+						<option value="-1" selected>Escolha uma categoria...</option>
+						<c:forEach var="categoria" items="${categorias}">
+							<option value="${categoria.id}">${categoria.nome}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+			<div align="right">
+				<button id="buscarLocalCategoria" type="submit" class="btn btn-success">Buscar</button>
+			</div>
+		</form:form>
+		
+		<br>
+		
 		<h3 class="section">Patrimônios da UFC/Quixadá</h3>
 		
 		<div align="right">

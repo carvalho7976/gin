@@ -12,7 +12,14 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	public abstract Patrimonio getPatrimonioComHistorico(Integer idPatrimonio);
 	
 	public abstract List<Patrimonio> getPatrimonioByTombamento(Integer tombamento);
+	
 	public abstract List<Patrimonio> getPatrimonioByDescricao(String descricao);
+	
+	public abstract List<Patrimonio> getPatrimonioByLocal(Local local);
+	
+	public abstract List<Patrimonio> getPatrimonioByCategoria(Categoria categoria);
+	
+	public abstract List<Patrimonio> getPatrimonioByLocalAndCategoria(Integer idLocal, Integer idCategoria);
 
 	public abstract void salvarCategoria(Categoria categoria);
 	

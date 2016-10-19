@@ -110,4 +110,23 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 				new SimpleMap<String, Object>("descricao", "%" + descricao.toUpperCase() + "%" ));
 	}
 
+	//@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(readOnly = true)
+	public List<Patrimonio> getPatrimonioByLocal(Local local) {
+		return find(QueryType.JPQL, "from Patrimonio as p where p.local = :local", new SimpleMap<String, Object>("local", local));
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Patrimonio> getPatrimonioByCategoria(Categoria categoria) {
+		return find(QueryType.JPQL, "from Patrimonio as p where p.categoria = :categoria", new SimpleMap<String, Object>("categoria", categoria));
+	}
+
+	@Override
+	public List<Patrimonio> getPatrimonioByLocalAndCategoria(Integer idLocal, Integer idCategoria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
