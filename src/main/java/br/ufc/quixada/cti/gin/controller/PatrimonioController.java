@@ -66,8 +66,9 @@ public class PatrimonioController {
 		Categoria categoria = new Categoria();
 		
 		if(idLocal != null && idCategoria != null && idLocal != -1 && idCategoria != -1){
-			
-			
+			categoria.setId(idCategoria);
+			local.setId(idLocal);
+			patrimonios = patrimonioService.getPatrimonioByLocalAndCategoria(categoria, local);
 		}
 		else if(idLocal != null && idLocal != -1){
 			

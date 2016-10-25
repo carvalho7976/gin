@@ -124,9 +124,13 @@ public class PatrimonioServiceImpl extends GenericServiceImpl<Patrimonio> implem
 	}
 
 	@Override
-	public List<Patrimonio> getPatrimonioByLocalAndCategoria(Integer idLocal, Integer idCategoria) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Patrimonio> getPatrimonioByLocalAndCategoria(Categoria categoria, Local local) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("categoria", categoria);
+		params.put("local", local);
+		
+		return find(QueryType.JPQL, "from Patrimonio as p where p.categoria = :categoria and p.local = :local", params);
 	}
 
 }

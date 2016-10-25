@@ -19,7 +19,7 @@ public interface PatrimonioService extends GenericService<Patrimonio> {
 	
 	public abstract List<Patrimonio> getPatrimonioByCategoria(Categoria categoria);
 	
-	public abstract List<Patrimonio> getPatrimonioByLocalAndCategoria(Integer idLocal, Integer idCategoria);
+	public abstract List<Patrimonio> getPatrimonioByLocalAndCategoria(Categoria categoria, Local local);
 
 	public abstract void salvarCategoria(Categoria categoria);
 	
